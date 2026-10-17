@@ -12,6 +12,7 @@ import {
   type UserProfile,
 } from "@ucommerz/shared";
 import { createClient } from "@/app/lib/supabase/server";
+import { cachedPublic } from "@/app/lib/public-cache";
 import { sanitizeSearch } from "@/app/lib/utils";
 import { boundingBox, filterByProximity } from "@/app/lib/proximity-search";
 
@@ -24,34 +25,31 @@ async function db(): Promise<SupabaseClient> {
 }
 
 /* ---------------- categories ---------------- */
-export async function getCategories(): Promise<Category[]> {
-  const supabase = await db();
-  const { data } = await supabase
-    .from("categories")
-    .select("*")
-    .eq("is_active", true)
-    .order("order_position", { ascending: true });
+async function loadCategories(supabase: SupabaseClient): Promise<Category[]> {
+  const { data, error } = await supabase.from("categories").select("*").eq("is_active", true).order("order_position", { ascending: true });
+  if (error) throw new Error(error.message);
   return (data as Category[]) ?? [];
 }
 
-/** Top-level categories with children and ACTIVE service counts. */
-export async function getCategoryTree(): Promise<CategoryNode[]> {
-  const supabase = await db();
-  const [categories, { data: services }] = await Promise.all([
-    getCategories(),
-    supabase.from("services").select("category, sub_category").eq("status", "ACTIVE"),
-  ]);
-  const rows = (services as { category: string | null; sub_category: string | null }[]) ?? [];
-  const parents = categories.filter((c) => !c.parent_id);
-  return parents.map((p) => {
-    const children = categories.filter((c) => c.parent_id === p.id);
-    return {
+/** Cached (60s) public category list. */
+export const getCategories = (): Promise<Category[]> => cachedPublic(["categories"], loadCategories)();
+
+/** Top-level categories with children and ACTIVE service counts (cached 60s). */
+export const getCategoryTree = (): Promise<CategoryNode[]> =>
+  cachedPublic(["category-tree"], async (supabase) => {
+    const [categories, { data: services, error }] = await Promise.all([
+      loadCategories(supabase),
+      supabase.from("services").select("category, sub_category").eq("status", "ACTIVE"),
+    ]);
+    if (error) throw new Error(error.message);
+    const rows = (services as { category: string | null; sub_category: string | null }[]) ?? [];
+    const parents = categories.filter((c) => !c.parent_id);
+    return parents.map((p) => ({
       ...p,
-      children,
+      children: categories.filter((c) => c.parent_id === p.id),
       service_count: rows.filter((s) => s.category === p.slug).length,
-    };
-  });
-}
+    }));
+  })();
 
 export async function getCategoryBySlug(slug: string): Promise<Category | null> {
   const supabase = await db();
@@ -128,17 +126,18 @@ export async function searchServices(
   return { services: (data as ServiceWithProvider[]) ?? [], total: count ?? 0, page, pageSize: PAGE_SIZE };
 }
 
-export async function getFeaturedServices(limit = 4): Promise<ServiceWithProvider[]> {
-  const supabase = await db();
-  const { data } = await supabase
-    .from("services")
-    .select(SERVICE_WITH_PROVIDER)
-    .eq("status", "ACTIVE")
-    .order("featured", { ascending: false })
-    .order("rating", { ascending: false })
-    .limit(limit);
-  return (data as ServiceWithProvider[]) ?? [];
-}
+export const getFeaturedServices = (limit = 4): Promise<ServiceWithProvider[]> =>
+  cachedPublic(["featured-services", String(limit)], async (supabase) => {
+    const { data, error } = await supabase
+      .from("services")
+      .select(SERVICE_WITH_PROVIDER)
+      .eq("status", "ACTIVE")
+      .order("featured", { ascending: false })
+      .order("rating", { ascending: false })
+      .limit(limit);
+    if (error) throw new Error(error.message);
+    return (data as ServiceWithProvider[]) ?? [];
+  })();
 
 export async function getServiceById(id: string): Promise<ServiceWithProvider | null> {
   const supabase = await db();
@@ -177,18 +176,19 @@ export async function getRelatedServices(service: Service, limit = 3): Promise<S
 }
 
 /* ---------------- providers ---------------- */
-export async function getFeaturedProviders(limit = 4): Promise<UserProfile[]> {
-  const supabase = await db();
-  const { data } = await supabase
-    .from("users")
-    .select(PUBLIC_USER_COLUMNS + ", role, is_active, social_links, website, latitude, longitude, created_at, updated_at")
-    .in("role", PROVIDER_ROLES as unknown as string[])
-    .eq("is_active", true)
-    .eq("verified", true)
-    .order("rating", { ascending: false })
-    .limit(limit);
-  return (data as unknown as UserProfile[]) ?? [];
-}
+export const getFeaturedProviders = (limit = 4): Promise<UserProfile[]> =>
+  cachedPublic(["featured-providers", String(limit)], async (supabase) => {
+    const { data, error } = await supabase
+      .from("users")
+      .select(PUBLIC_USER_COLUMNS + ", role, is_active, social_links, website, latitude, longitude, created_at, updated_at")
+      .in("role", PROVIDER_ROLES as unknown as string[])
+      .eq("is_active", true)
+      .eq("verified", true)
+      .order("rating", { ascending: false })
+      .limit(limit);
+    if (error) throw new Error(error.message);
+    return (data as unknown as UserProfile[]) ?? [];
+  })();
 
 export async function getProviderBySlug(slug: string): Promise<UserProfile | null> {
   const supabase = await db();

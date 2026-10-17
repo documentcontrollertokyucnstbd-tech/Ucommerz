@@ -9,6 +9,7 @@ import { logAdminAction } from "@/app/lib/audit-logger";
 import { createAdminClient, hasServiceRole } from "@/app/lib/supabase/admin";
 import { ActionError, limitAction, ok, parseInput, safeAction, type ActionResult } from "@/app/lib/action";
 import { logActivity } from "@/app/lib/activity-service";
+import { bustPublicCache } from "@/app/lib/public-cache";
 import { geocodeAddressServer } from "@/app/lib/geocoding";
 
 const serviceFormSchema = serviceSchema.and(
@@ -100,6 +101,7 @@ export async function createServiceAction(input: unknown, onBehalfOf?: string): 
       await logAdminAction({ adminId: profile.id, action: "SERVICE_CREATED_FOR_PROVIDER", targetType: "service", targetId: data.id, details: { provider_id: ownerId } });
       revalidatePath("/admin/services");
       revalidatePath("/browse");
+    bustPublicCache();
       return ok(status === "ACTIVE" ? "Service published for the provider." : "Service created.", { id: data.id, status });
     }
     if (!(await approvalRequired()) && hasServiceRole()) {
@@ -110,6 +112,7 @@ export async function createServiceAction(input: unknown, onBehalfOf?: string): 
     await logActivity({ userId: profile.id, action: "SERVICE_CREATED", targetType: "service", targetId: data.id, description: `Created service “${v.title}”` }, supabase);
     revalidatePath("/dashboard/my-services");
     revalidatePath("/browse");
+    bustPublicCache();
     return ok(status === "ACTIVE" ? "Service published!" : "Service submitted for review.", { id: data.id, status });
   });
 }
@@ -178,6 +181,7 @@ export async function deleteServiceAction(id: string): Promise<ActionResult> {
     await logActivity({ userId: profile.id, action: "SERVICE_DELETED", targetType: "service", targetId: serviceId, description: "Deleted a service" }, supabase);
     revalidatePath("/dashboard/my-services");
     revalidatePath("/browse");
+    bustPublicCache();
     return ok("Service deleted.");
   });
 }

@@ -29,10 +29,12 @@ export async function updateSession(request: NextRequest) {
     },
   });
 
-  // Do not run code between createServerClient and getUser().
+  // getSession() reads the cookie and only hits the network when the token must be refreshed, which keeps
+  // every request fast. It is only used for the "signed in?" redirect; the guards in app/lib/guards.ts
+  // validate the user with getUser() before any private data is read.
   const {
-    data: { user },
-  } = await supabase.auth.getUser();
+    data: { session },
+  } = await supabase.auth.getSession();
 
-  return { response, user };
+  return { response, signedIn: Boolean(session) };
 }

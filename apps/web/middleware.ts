@@ -43,10 +43,10 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  const { response, user } = await updateSession(request);
+  const { response, signedIn } = await updateSession(request);
 
   const needsAuth = PROTECTED_PREFIXES.some((p) => pathname === p || pathname.startsWith(`${p}/`)) || pathname.startsWith("/admin");
-  if (needsAuth && !user) {
+  if (needsAuth && !signedIn) {
     const url = request.nextUrl.clone();
     url.pathname = "/login";
     url.search = "";

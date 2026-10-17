@@ -8,6 +8,7 @@ import { createAdminClient, hasServiceRole } from "@/app/lib/supabase/admin";
 import { ActionError, limitAction, ok, parseInput, safeAction, type ActionResult } from "@/app/lib/action";
 import { logAdminAction } from "@/app/lib/audit-logger";
 import { sendEmail } from "@/app/lib/email-service";
+import { bustPublicCache } from "@/app/lib/public-cache";
 
 const uuid = z.string().uuid();
 
@@ -83,6 +84,7 @@ export async function setUserVerifiedAction(userId: string, verified: boolean): 
     await logAdminAction({ adminId: profile.id, action: verified ? "USER_VERIFIED" : "USER_UNVERIFIED", targetType: "user", targetId: id });
     if (verified) await createNotification(id, "You're verified!", "An administrator verified your profile.", "/profile");
     revalidatePath("/admin/users");
+    bustPublicCache();
     return ok(verified ? "User verified." : "Verification removed.");
   });
 }
@@ -140,6 +142,7 @@ export async function moderateServiceAction(serviceId: string, status: "ACTIVE" 
     }
     revalidatePath("/admin/services");
     revalidatePath(`/services/${id}`);
+    bustPublicCache();
     return ok(next === "ACTIVE" ? "Service approved." : next === "REJECTED" ? "Service rejected." : "Service updated.");
   });
 }
@@ -153,6 +156,7 @@ export async function setServiceFeaturedAction(serviceId: string, featured: bool
     await logAdminAction({ adminId: profile.id, action: featured ? "SERVICE_FEATURED" : "SERVICE_UNFEATURED", targetType: "service", targetId: id });
     revalidatePath("/admin/services");
     revalidatePath("/");
+    bustPublicCache();
     return ok(featured ? "Service featured." : "Service un-featured.");
   });
 }
@@ -165,6 +169,7 @@ export async function adminDeleteServiceAction(serviceId: string): Promise<Actio
     if (error) throw new ActionError(error.message);
     await logAdminAction({ adminId: profile.id, action: "SERVICE_DELETED", targetType: "service", targetId: id });
     revalidatePath("/admin/services");
+    bustPublicCache();
     return ok("Service deleted.");
   });
 }
@@ -201,6 +206,7 @@ export async function saveCategoryAction(input: unknown): Promise<ActionResult> 
     revalidatePath("/admin/categories");
     revalidatePath("/categories");
     revalidatePath("/");
+    bustPublicCache();
     return ok(v.id ? "Category updated." : "Category created.");
   });
 }
@@ -218,6 +224,7 @@ export async function deleteCategoryAction(id: string): Promise<ActionResult> {
     await logAdminAction({ adminId: profile.id, action: "CATEGORY_DELETED", targetType: "category", targetId: catId });
     revalidatePath("/admin/categories");
     revalidatePath("/categories");
+    bustPublicCache();
     return ok("Category deleted.");
   });
 }

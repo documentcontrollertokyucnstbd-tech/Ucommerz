@@ -3,7 +3,7 @@
 import { isStaffRole } from "@ucommerz/shared";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useState, useTransition, type FormEvent } from "react";
+import { useEffect, useState, useTransition, type FormEvent } from "react";
 import toast from "react-hot-toast";
 import {
   FolderTree,
@@ -38,6 +38,7 @@ import { ThemeToggle } from "@/app/components/ThemeToggle";
 import { Notifications } from "@/app/components/Notifications";
 import { signOutAction } from "@/app/actions/auth";
 import { cn, initials } from "@/app/lib/utils";
+import { createClient as createBrowserSupabase } from "@/app/lib/supabase/client";
 
 export type NavUser = {
   id: string;
@@ -53,7 +54,7 @@ const NAV = [
   { label: "Categories", href: "/categories" },
 ];
 
-export function Navigation({ user, unreadMessages = 0 }: { user: NavUser | null; unreadMessages?: number }) {
+export function Navigation({ user }: { user: NavUser | null }) {
   const router = useRouter();
   const pathname = usePathname() ?? "/";
   const [open, setOpen] = useState(false);
@@ -62,6 +63,28 @@ export function Navigation({ user, unreadMessages = 0 }: { user: NavUser | null;
 
   const isProvider = user ? PROVIDER_ROLES.includes(user.role) : false;
   const staff = user ? isStaffRole(user.role) : false;
+  const [unreadMessages, setUnreadMessages] = useState(0);
+  const userId = user?.id;
+
+  // Unread badge is fetched in the browser so it never delays the server-rendered page.
+  useEffect(() => {
+    if (!userId || staff) {
+      setUnreadMessages(0);
+      return;
+    }
+    let cancelled = false;
+    createBrowserSupabase()
+      .from("messages")
+      .select("id", { count: "exact", head: true })
+      .eq("receiver_id", userId)
+      .eq("is_read", false)
+      .then(({ count }) => {
+        if (!cancelled) setUnreadMessages(count ?? 0);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [userId, staff, pathname]);
 
   function onSearch(e: FormEvent) {
     e.preventDefault();
