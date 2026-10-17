@@ -1,0 +1,10 @@
+{
+  "name": "@ucommerz/config",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Shared ESLint rules and TypeScript base config for UCOMMERZ",
+  "exports": {
+    "./eslint": "./eslint/index.js",
+    "./typescript": "./typescript/tsconfig.base.json"
+  }
+}

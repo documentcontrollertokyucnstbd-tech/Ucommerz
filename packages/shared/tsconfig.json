@@ -1,0 +1,6 @@
+{
+  "extends": "../config/typescript/tsconfig.base.json",
+  "compilerOptions": { "jsx": "preserve", "types": [] },
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules"]
+}
