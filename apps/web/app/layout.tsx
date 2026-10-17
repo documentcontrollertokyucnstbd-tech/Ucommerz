@@ -4,12 +4,13 @@ import { Providers } from "@/app/components/Providers";
 import { ChromeGate } from "@/app/components/ChromeGate";
 import { SiteHeader } from "@/app/components/SiteHeader";
 import { Footer } from "@/app/components/Footer";
+import { getSiteUrl } from "@/app/lib/site-url";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 const plusJakarta = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-plus-jakarta", display: "swap" });
 
-const siteUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
+const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

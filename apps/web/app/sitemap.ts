@@ -1,9 +1,10 @@
 import type { MetadataRoute } from "next";
 import { createClient } from "@supabase/supabase-js";
+import { getSiteUrl } from "@/app/lib/site-url";
 
 export const revalidate = 3600;
 
-const base = (process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000").replace(/\/$/, "");
+const base = getSiteUrl();
 
 /** Anonymous client: the sitemap only needs public rows and must not depend on cookies. */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

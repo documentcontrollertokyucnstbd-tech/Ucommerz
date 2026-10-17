@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { getSiteUrl } from "@/app/lib/site-url";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -55,7 +56,7 @@ export function slugify(input: string): string {
 }
 
 export function absoluteUrl(path = "/"): string {
-  const base = (process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000").replace(/\/$/, "");
+  const base = getSiteUrl();
   return `${base}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
