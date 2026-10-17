@@ -28,8 +28,9 @@ export const metadata: Metadata = {
     title: "UCOMMERZ — Book Trusted Experts for Every Service",
     description: "Connect with verified local professionals and book with confidence.",
     url: siteUrl,
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "UCOMMERZ — Book trusted experts for every service" }],
   },
-  twitter: { card: "summary_large_image", title: "UCOMMERZ", description: "Book trusted experts for every service." },
+  twitter: { card: "summary_large_image", title: "UCOMMERZ", description: "Book trusted experts for every service.", images: ["/og-image.png"] },
   icons: {
     icon: [
       { url: "/icon-light-32x32.png", media: "(prefers-color-scheme: light)" },
