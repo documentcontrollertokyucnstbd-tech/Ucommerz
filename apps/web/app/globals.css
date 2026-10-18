@@ -173,3 +173,14 @@
   .marquee { overflow-x: auto; }
   .marquee-track { animation: none; }
 }
+
+/* Per-language fonts (Latin text keeps Inter via the fallback chain). CJK uses the visitor's system fonts. */
+html[lang="bn"] { --font-sans: var(--font-inter), var(--font-noto-bengali), ui-sans-serif, system-ui, sans-serif; --font-display: var(--font-inter), var(--font-noto-bengali), sans-serif; }
+html[lang="hi"] { --font-sans: var(--font-inter), var(--font-noto-devanagari), ui-sans-serif, system-ui, sans-serif; --font-display: var(--font-inter), var(--font-noto-devanagari), sans-serif; }
+html[lang="ar"], html[lang="ur"] { --font-sans: var(--font-inter), var(--font-noto-arabic), ui-sans-serif, system-ui, sans-serif; --font-display: var(--font-inter), var(--font-noto-arabic), sans-serif; }
+html[lang="zh"] { --font-sans: var(--font-inter), "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", ui-sans-serif, system-ui, sans-serif; --font-display: var(--font-sans); }
+html[lang="ja"] { --font-sans: var(--font-inter), "Hiragino Sans", "Yu Gothic UI", "Meiryo", "Noto Sans CJK JP", ui-sans-serif, system-ui, sans-serif; --font-display: var(--font-sans); }
+/* Slightly looser line-height for scripts with tall glyphs */
+html[lang="bn"] body, html[lang="hi"] body, html[lang="ur"] body, html[lang="ar"] body { line-height: 1.65; }
+/* Flip directional icons in right-to-left languages */
+html[dir="rtl"] .rtl-flip { transform: scaleX(-1); }

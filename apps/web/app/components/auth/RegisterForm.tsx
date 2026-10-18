@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -18,12 +19,14 @@ import { toastAction } from "@/app/lib/toast-action";
 import { cn } from "@/app/lib/utils";
 
 const ROLE_OPTIONS = [
-  { value: "SEEKER", title: "I want to hire", desc: "Find and book services", icon: Search },
-  { value: "PROVIDER", title: "I offer services", desc: "Get discovered and booked", icon: Briefcase },
-  { value: "BOTH", title: "Both", desc: "Hire and provide", icon: Layers },
+  { value: "SEEKER", title: "hire", desc: "hireDesc", icon: Search },
+  { value: "PROVIDER", title: "offer", desc: "offerDesc", icon: Briefcase },
+  { value: "BOTH", title: "both", desc: "bothDesc", icon: Layers },
 ] as const;
 
 export function RegisterForm() {
+  const t = useTranslations("Register");
+  const ta = useTranslations("Auth");
   const router = useRouter();
   const [verifyEmail, setVerifyEmail] = useState<string | null>(null);
   const [resending, setResending] = useState(false);
@@ -56,17 +59,17 @@ export function RegisterForm() {
       <div className="space-y-4">
         <Alert variant="success">
           <MailCheck />
-          <AlertTitle>Check your inbox</AlertTitle>
+          <AlertTitle>{t("checkInbox")}</AlertTitle>
           <AlertDescription>
-            We sent a verification link to <strong>{verifyEmail}</strong>. Click it to activate your account, then sign in.
+            {t.rich("sentTo", { email: verifyEmail, strong: (chunks) => <strong>{chunks}</strong> })}
           </AlertDescription>
         </Alert>
         <div className="flex flex-col gap-2 sm:flex-row">
           <Button variant="outline" className="flex-1" onClick={resend} disabled={resending}>
-            {resending && <Loader2 className="animate-spin" />} Resend email
+            {resending && <Loader2 className="animate-spin" />} {t("resend")}
           </Button>
           <Button asChild className="flex-1">
-            <Link href="/login">Go to sign in</Link>
+            <Link href="/login">{t("goSignIn")}</Link>
           </Button>
         </div>
       </div>
@@ -81,7 +84,7 @@ export function RegisterForm() {
           name="role"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>I want to…</FormLabel>
+              <FormLabel>{t("iWant")}</FormLabel>
               <FormControl>
                 <RadioGroup value={field.value} onValueChange={field.onChange} className="grid gap-2 sm:grid-cols-3">
                   {ROLE_OPTIONS.map(({ value, title, desc, icon: Icon }) => (
@@ -94,10 +97,10 @@ export function RegisterForm() {
                     >
                       <span className="flex items-center justify-between">
                         <Icon className="size-4 text-primary" />
-                        <RadioGroupItem value={value} aria-label={title} />
+                        <RadioGroupItem value={value} aria-label={t(title)} />
                       </span>
-                      <span className="font-medium leading-tight">{title}</span>
-                      <span className="text-xs text-muted-foreground">{desc}</span>
+                      <span className="font-medium leading-tight">{t(title)}</span>
+                      <span className="text-xs text-muted-foreground">{t(desc)}</span>
                     </label>
                   ))}
                 </RadioGroup>
@@ -111,9 +114,9 @@ export function RegisterForm() {
           name="full_name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Full name</FormLabel>
+              <FormLabel>{t("fullName")}</FormLabel>
               <FormControl>
-                <Input autoComplete="name" placeholder="Jane Doe" {...field} />
+                <Input autoComplete="name" placeholder={t("fullNamePh")} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -125,7 +128,7 @@ export function RegisterForm() {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel>{ta("email")}</FormLabel>
                 <FormControl>
                   <Input type="email" autoComplete="email" placeholder="you@example.com" {...field} />
                 </FormControl>
@@ -138,9 +141,9 @@ export function RegisterForm() {
             name="phone"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Phone (optional)</FormLabel>
+                <FormLabel>{t("phone")}</FormLabel>
                 <FormControl>
-                  <Input type="tel" autoComplete="tel" placeholder="+1 555 000 1234" {...field} value={field.value ?? ""} />
+                  <Input type="tel" autoComplete="tel" placeholder={t("phonePh")} {...field} value={field.value ?? ""} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -152,9 +155,9 @@ export function RegisterForm() {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Password</FormLabel>
+              <FormLabel>{ta("password")}</FormLabel>
               <FormControl>
-                <PasswordInput autoComplete="new-password" placeholder="At least 8 characters" {...field} />
+                <PasswordInput autoComplete="new-password" placeholder={t("passwordPh")} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -165,9 +168,9 @@ export function RegisterForm() {
           name="confirm_password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Confirm password</FormLabel>
+              <FormLabel>{t("confirm")}</FormLabel>
               <FormControl>
-                <PasswordInput autoComplete="new-password" placeholder="Repeat password" {...field} />
+                <PasswordInput autoComplete="new-password" placeholder={t("confirmPh")} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -175,12 +178,12 @@ export function RegisterForm() {
         />
         <Button type="submit" className="w-full" size="lg" disabled={form.formState.isSubmitting}>
           {form.formState.isSubmitting && <Loader2 className="animate-spin" />}
-          Create account
+          {t("submit")}
         </Button>
         <p className="text-center text-sm text-muted-foreground">
-          Already have an account?{" "}
+          {t("have")}{" "}
           <Link className="font-semibold text-primary hover:underline" href="/login">
-            Sign in
+            {t("signIn")}
           </Link>
         </p>
       </form>

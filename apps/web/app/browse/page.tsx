@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Search } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 import { getCategories, searchServices, categoryName } from "@/app/lib/queries";
 import { getAuth } from "@/app/lib/guards";
 import { getFavoriteIds, safely } from "@/app/lib/queries-extra";
@@ -22,6 +23,7 @@ type SP = Record<string, string | string[] | undefined>;
 
 export default async function BrowsePage({ searchParams }: { searchParams: Promise<SP> }) {
   const sp = await searchParams;
+  const t = await getTranslations("Browse");
   const { filters, values } = parseBrowseParams(sp);
   const { supabase, user } = await getAuth();
 
@@ -45,8 +47,8 @@ export default async function BrowsePage({ searchParams }: { searchParams: Promi
   return (
     <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6">
       <PageHeader
-        title={filters.category ? categoryName(categories, filters.category) : "Browse services"}
-        description={`${result.total} ${result.total === 1 ? "service" : "services"} found${filters.lat != null ? " near you" : ""}`}
+        title={filters.category ? categoryName(categories, filters.category) : t("title")}
+        description={`${t("found", { count: result.total })}${filters.lat != null ? ` ${t("nearYou")}` : ""}`}
       />
       <div className="grid gap-6 lg:grid-cols-[300px_1fr]">
         <aside className="lg:sticky lg:top-20 lg:self-start">
@@ -60,14 +62,14 @@ export default async function BrowsePage({ searchParams }: { searchParams: Promi
           )}
           {loadError && (
             <div role="alert" className="mb-4 rounded-lg border border-destructive/30 bg-destructive/5 p-3 text-sm text-destructive">
-              Could not load services: {loadError}
+              {t("loadError", { message: loadError })}
             </div>
           )}
           {result.services.length === 0 ? (
             <EmptyState
               icon={<Search className="size-5" />}
-              title="No services match your filters"
-              description="Try removing a filter, widening the search radius or searching for something different."
+              title={t("emptyTitle")}
+              description={t("emptyBody")}
             />
           ) : (
             <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">

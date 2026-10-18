@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 import { Search } from "lucide-react";
 import { PAGE_SIZE } from "@ucommerz/shared";
 import { getAuth } from "@/app/lib/guards";
@@ -29,6 +30,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function CategoryPage({ params, searchParams }: Props) {
   const { slug } = await params;
   const sp = await searchParams;
+  const t = await getTranslations("Categories");
+  const th = await getTranslations("Home");
   const category = await getCategoryBySlug(slug);
   if (!category) notFound();
 
@@ -48,11 +51,11 @@ export default async function CategoryPage({ params, searchParams }: Props) {
 
   return (
     <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6">
-      <nav className="mb-3 text-sm text-muted-foreground" aria-label="Breadcrumb">
-        <Link href="/categories" className="hover:text-foreground">Categories</Link>
+      <nav className="mb-3 text-sm text-muted-foreground" aria-label={t("breadcrumb")}>
+        <Link href="/categories" className="hover:text-foreground">{t("title")}</Link>
         {parent && (<> {" / "}<Link href={`/categories/${parent.slug}`} className="hover:text-foreground">{parent.name}</Link></>)}
       </nav>
-      <PageHeader title={category.name} description={category.description ?? `${result.total} services`} />
+      <PageHeader title={category.name} description={category.description ?? th("serviceCount", { count: result.total })} />
       {subs.length > 0 && (
         <div className="mb-6 flex flex-wrap gap-2">
           {subs.map((s) => (
@@ -68,7 +71,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
         </aside>
         <section className="min-w-0">
           {result.services.length === 0 ? (
-            <EmptyState icon={<Search className="size-5" />} title="No services in this category yet" description="Check back soon or browse all services." />
+            <EmptyState icon={<Search className="size-5" />} title={t("emptyCategoryTitle")} description={t("emptyCategoryBody")} />
           ) : (
             <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
               {result.services.map((s) => (

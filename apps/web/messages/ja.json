@@ -1,0 +1,105 @@
+{
+  "Lang": { "label": "言語" },
+  "Nav": {
+    "home": "ホーム", "browse": "サービスを探す", "categories": "カテゴリ",
+    "searchPlaceholder": "サービスを検索…", "searchLabel": "サービスを検索",
+    "messages": "メッセージ", "accountMenu": "アカウントメニュー", "toggleMenu": "メニューを切り替え", "mainNav": "メイン", "mobileNav": "モバイル",
+    "yourAccount": "アカウント", "dashboard": "ダッシュボード", "myBookings": "予約一覧", "favorites": "お気に入り",
+    "providerDashboard": "提供者ダッシュボード", "profile": "プロフィール", "providerSettings": "提供者設定",
+    "adminPanel": "管理パネル", "manageCategories": "カテゴリ管理", "signOut": "ログアウト", "signedOut": "ログアウトしました",
+    "signIn": "ログイン", "getStarted": "はじめる"
+  },
+  "Footer": {
+    "tagline": "UCOMMERZ は、信頼できる透明なサービスのために、お客様と認証済みの地元プロをつなぎます。",
+    "marketplace": "マーケットプレイス", "home": "ホーム", "browse": "サービスを探す", "allCategories": "すべてのカテゴリ", "becomeProvider": "提供者になる",
+    "popular": "人気カテゴリ", "webSoftware": "Web・ソフトウェア", "homeServices": "ホームサービス", "photography": "写真撮影",
+    "forPros": "プロの方へ", "join": "マーケットプレイスに参加", "portal": "提供者ポータル", "signIn": "ログイン",
+    "rights": "© {year} UCOMMERZ サービスマーケットプレイス。All rights reserved.", "legal": "プライバシーポリシー · 利用規約"
+  },
+  "Home": {
+    "badge": "次世代のオンデマンド・サービスマーケット",
+    "heroTitle1": "信頼できる専門家を予約", "heroTitle2": "あらゆるサービスのために。",
+    "heroBody": "認証済みの地元プロに直接連絡し、事前に料金を比較し、柔軟に予約を調整。サービスの依頼を一か所で安全に管理できます。",
+    "explore": "マーケットを見る", "becomeProvider": "サービス提供者になる",
+    "verified": "認証済みプロ", "secure": "安全なアカウント", "reviews": "本物のレビュー",
+    "findPro": "プロを探す", "live": "ライブマーケット", "popularNow": "今の人気",
+    "popularFallback": "電気工事、Web開発…", "statsLabel": "公開中のサービス · 認証済み提供者",
+    "featuredCategories": "注目のカテゴリ",
+    "browseByExpertise": "専門分野から探す", "categoriesTitle": "サービスカテゴリとサブカテゴリ", "viewAll": "すべて見る",
+    "serviceCount": "{count, plural, other {#件のサービス}}",
+    "browseLocal": "地元のプロを探す", "browseCategory": "カテゴリを見る",
+    "topRated": "高評価", "featuredTitle": "注目のプロフェッショナルサービス", "exploreAll": "すべて見る",
+    "noServices": "まだサービスがありません — 最初の<link>出品者</link>になりましょう。",
+    "coverage": "対応エリア", "nearbyTitle": "近くのサービスを探す", "searchNearMe": "現在地周辺を検索",
+    "verifiedTalent": "認証済み人材", "topPros": "認証済みトッププロ", "providerFallback": "提供者",
+    "proFallback": "UCOMMERZ のプロ", "viewProfile": "プロフィールと料金を見る", "verifiedLabel": "認証済み",
+    "howBadge": "かんたん3ステップ", "howTitle": "UCOMMERZ のしくみ",
+    "howSub": "検索から完了まで、認証済みの専門家をスムーズかつ確実に予約できます。",
+    "step1Title": "探して比較", "step1Body": "明確な料金、評価、場所、絞り込みでサービスを探せます。",
+    "step2Title": "予約してチャット", "step2Body": "希望の日時を選び、提供者に直接メッセージを送れます。",
+    "step3Title": "完了してレビュー", "step3Body": "進捗を確認し、リマインダーを受け取り、完了後にレビューを投稿します。",
+    "growKicker": "UCOMMERZ で成長しよう", "ctaTitle": "あなたのサービスを多くのお客様に届けましょう",
+    "ctaBody": "プロフィールを作成し、サービスを掲載して、予約・メッセージ・リマインダーを1つのダッシュボードで管理できます。", "startFree": "無料で始める"
+  },
+  "Browse": {
+    "title": "サービスを探す",
+    "found": "{count, plural, other {#件のサービスが見つかりました}}", "nearYou": "お近く",
+    "loadError": "サービスを読み込めませんでした：{message}",
+    "emptyTitle": "条件に一致するサービスがありません", "emptyBody": "絞り込みを外すか、検索範囲を広げるか、別のキーワードをお試しください。"
+  },
+  "Filters": {
+    "searchPlaceholder": "サービス、スキル、場所を検索…", "searchLabel": "サービスを検索", "clearSearch": "検索をクリア", "search": "検索",
+    "filters": "絞り込み", "active": "{count}件適用中", "sortBy": "並べ替え", "featured": "注目", "topRated": "高評価",
+    "priceLow": "価格の安い順", "priceHigh": "価格の高い順", "newest": "新着順",
+    "category": "カテゴリ", "allCategories": "すべてのカテゴリ", "priceRange": "価格帯", "min": "最小", "max": "最大",
+    "minPrice": "最低価格", "maxPrice": "最高価格", "ratingType": "評価とタイプ", "minRating": "最低評価",
+    "anyRating": "指定なし", "ratingUp": "{value} 以上", "remoteOnly": "リモート対応のみ",
+    "distance": "距離", "radius": "検索半径", "nearMe": "現在地周辺", "updateLocation": "位置情報を更新", "clearLocation": "位置情報をクリア",
+    "apply": "絞り込みを適用", "reset": "リセット",
+    "geoUnsupported": "お使いのブラウザは位置情報に対応していません。", "geoShowing": "お近くのサービスを表示しています。",
+    "geoDenied": "位置情報の許可が拒否されました。", "geoFailed": "位置情報を取得できませんでした。"
+  },
+  "Card": {
+    "featured": "注目", "by": "{name}", "provider": "提供者", "remote": "リモート", "startingAt": "料金", "general": "一般",
+    "units": { "hour": "1時間あたり", "day": "1日あたり", "session": "1回あたり", "project": "1案件あたり" }
+  },
+  "Pagination": { "label": "ページ送り", "previous": "前へ", "next": "次へ", "pageOf": "{page} / {pages} ページ" },
+  "Categories": {
+    "title": "カテゴリ", "description": "どんな仕事にも最適な専門家が見つかります。", "manage": "カテゴリの追加 / 管理",
+    "emptyTitle": "カテゴリはまだありません", "emptyBody": "カテゴリが作成されるとここに表示されます。",
+    "breadcrumb": "パンくずリスト", "emptyCategoryTitle": "このカテゴリにはまだサービスがありません", "emptyCategoryBody": "後ほど再度ご確認いただくか、すべてのサービスをご覧ください。"
+  },
+  "Auth": {
+    "headline1": "信頼できる", "headline2": "地元の専門家のマーケット",
+    "point1": "認証済みの提供者、本物のレビュー", "point2": "明確な料金と柔軟なスケジュール", "point3": "チャット・予約・管理をひとつに",
+    "help": "お困りですか？アカウントなしで<link>サービスを見る</link>こともできます。",
+    "email": "メールアドレス", "password": "パスワード", "showPassword": "パスワードを表示", "hidePassword": "パスワードを隠す"
+  },
+  "Login": {
+    "title": "おかえりなさい", "subtitle": "ログインして予約を管理し、信頼できるプロを見つけましょう。",
+    "errorTitle": "ログインできませんでした", "forgot": "パスワードをお忘れですか？", "submit": "ログイン", "newTo": "UCOMMERZ は初めてですか？", "create": "アカウントを作成",
+    "suspended": "このアカウントは停止されています。サポートにお問い合わせください。",
+    "profileMissing": "プロフィールを読み込めませんでした。もう一度ログインしてください。",
+    "authCallback": "確認リンクが無効か、期限切れです。ログインするか、新しいリンクをリクエストしてください。"
+  },
+  "Register": {
+    "title": "アカウントを作成", "subtitle": "信頼できる専門家に依頼する、またはあなたのサービスを提供しましょう。",
+    "iWant": "目的を選択…", "hire": "依頼したい", "hireDesc": "サービスを探して予約", "offer": "サービスを提供したい", "offerDesc": "見つけてもらい予約を獲得",
+    "both": "両方", "bothDesc": "依頼も提供も",
+    "fullName": "氏名", "fullNamePh": "山田 花子", "phone": "電話番号（任意）", "phonePh": "090-1234-5678",
+    "passwordPh": "8文字以上", "confirm": "パスワード（確認）", "confirmPh": "もう一度入力",
+    "submit": "アカウントを作成", "have": "すでにアカウントをお持ちですか？", "signIn": "ログイン",
+    "checkInbox": "受信トレイをご確認ください", "sentTo": "<strong>{email}</strong> に確認リンクを送信しました。リンクをクリックしてアカウントを有効化し、ログインしてください。",
+    "resend": "メールを再送", "goSignIn": "ログインへ"
+  },
+  "Forgot": {
+    "title": "パスワードの再設定", "subtitle": "メールアドレスを入力すると、新しいパスワードを設定するリンクをお送りします。",
+    "submit": "再設定リンクを送信", "remembered": "思い出しましたか？", "signIn": "ログイン",
+    "sentTitle": "再設定リンクを送信しました", "sentBody": "そのメールアドレスのアカウントが存在する場合、まもなく新しいパスワードを設定するリンクが届きます。", "back": "ログインに戻る"
+  },
+  "Reset": {
+    "title": "新しいパスワードを設定", "subtitle": "他で使っていない強力なパスワードを設定してください。",
+    "newPassword": "新しいパスワード", "confirmNew": "新しいパスワード（確認）", "submit": "パスワードを更新",
+    "invalid": "この再設定リンクは無効か、期限切れです。続けるには新しいリンクをリクエストしてください。", "request": "新しいリンクをリクエスト"
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "Lang": { "label": "Language" },
+  "Nav": {
+    "home": "Home", "browse": "Browse Services", "categories": "Categories",
+    "searchPlaceholder": "Search services…", "searchLabel": "Search services",
+    "messages": "Messages", "accountMenu": "Account menu", "toggleMenu": "Toggle menu", "mainNav": "Main", "mobileNav": "Mobile",
+    "yourAccount": "Your account", "dashboard": "Dashboard", "myBookings": "My bookings", "favorites": "Favorites",
+    "providerDashboard": "Provider dashboard", "profile": "Profile", "providerSettings": "Provider settings",
+    "adminPanel": "Admin panel", "manageCategories": "Manage categories", "signOut": "Sign out", "signedOut": "Signed out",
+    "signIn": "Sign in", "getStarted": "Get started"
+  },
+  "Footer": {
+    "tagline": "UCOMMERZ connects clients with verified local professionals for trusted, transparent service.",
+    "marketplace": "Marketplace", "home": "Home", "browse": "Browse Services", "allCategories": "All Categories", "becomeProvider": "Become a Provider",
+    "popular": "Popular categories", "webSoftware": "Web & Software", "homeServices": "Home Services", "photography": "Photography",
+    "forPros": "For professionals", "join": "Join the marketplace", "portal": "Provider portal", "signIn": "Sign in",
+    "rights": "© {year} UCOMMERZ Service Marketplace. All rights reserved.", "legal": "Privacy Policy · Terms of Service"
+  },
+  "Home": {
+    "badge": "Next-gen on-demand service marketplace",
+    "heroTitle1": "Book trusted experts", "heroTitle2": "for every service you need.",
+    "heroBody": "Connect directly with verified local professionals, compare upfront pricing, schedule flexible appointments, and manage service requests securely in one place.",
+    "explore": "Explore marketplace", "becomeProvider": "Become a service provider",
+    "verified": "Verified professionals", "secure": "Secure accounts", "reviews": "Authentic reviews",
+    "findPro": "Find a professional", "live": "Live marketplace", "popularNow": "Popular right now",
+    "popularFallback": "Electrical work, web development…", "statsLabel": "Active services · verified providers",
+    "featuredCategories": "Featured categories",
+    "browseByExpertise": "Browse by expertise", "categoriesTitle": "Service categories & subcategories", "viewAll": "View all",
+    "serviceCount": "{count, plural, one {# service} other {# services}}",
+    "browseLocal": "Browse local professionals", "browseCategory": "Browse category",
+    "topRated": "Top rated", "featuredTitle": "Featured professional services", "exploreAll": "Explore all",
+    "noServices": "No services yet — be the first to <link>offer one</link>.",
+    "coverage": "Geographical coverage", "nearbyTitle": "Explore nearby services", "searchNearMe": "Search near me",
+    "verifiedTalent": "Verified talent", "topPros": "Top verified professionals", "providerFallback": "Provider",
+    "proFallback": "Professional on UCOMMERZ", "viewProfile": "View profile & rates", "verifiedLabel": "Verified",
+    "howBadge": "Effortless 3-step process", "howTitle": "How UCOMMERZ works",
+    "howSub": "From search to project completion, booking verified specialists is smooth and guaranteed.",
+    "step1Title": "Discover & compare", "step1Body": "Explore services with transparent rates, client ratings, locations and filters.",
+    "step2Title": "Book & chat instantly", "step2Body": "Select your preferred appointment date and message the provider directly.",
+    "step3Title": "Job done & reviewed", "step3Body": "Track progress, get reminders, then leave a review once the work is complete.",
+    "growKicker": "Grow with UCOMMERZ", "ctaTitle": "Offer your services to thousands of customers",
+    "ctaBody": "Create a profile, list your services and manage bookings, messages and reminders in one dashboard.", "startFree": "Start for free"
+  },
+  "Browse": {
+    "title": "Browse services",
+    "found": "{count, plural, one {# service found} other {# services found}}", "nearYou": "near you",
+    "loadError": "Could not load services: {message}",
+    "emptyTitle": "No services match your filters", "emptyBody": "Try removing a filter, widening the search radius or searching for something different."
+  },
+  "Filters": {
+    "searchPlaceholder": "Search services, skills or places…", "searchLabel": "Search services", "clearSearch": "Clear search", "search": "Search",
+    "filters": "Filters", "active": "{count} active", "sortBy": "Sort by", "featured": "Featured", "topRated": "Top rated",
+    "priceLow": "Price: low to high", "priceHigh": "Price: high to low", "newest": "Newest",
+    "category": "Category", "allCategories": "All categories", "priceRange": "Price range", "min": "Min", "max": "Max",
+    "minPrice": "Minimum price", "maxPrice": "Maximum price", "ratingType": "Rating & type", "minRating": "Minimum rating",
+    "anyRating": "Any rating", "ratingUp": "{value} & up", "remoteOnly": "Remote services only",
+    "distance": "Distance", "radius": "Search radius", "nearMe": "Near me", "updateLocation": "Update location", "clearLocation": "Clear location",
+    "apply": "Apply filters", "reset": "Reset",
+    "geoUnsupported": "Geolocation is not supported by your browser.", "geoShowing": "Showing services near you.",
+    "geoDenied": "Location permission was denied.", "geoFailed": "Could not get your location."
+  },
+  "Card": {
+    "featured": "Featured", "by": "by {name}", "provider": "Provider", "remote": "Remote", "startingAt": "Starting at", "general": "General",
+    "units": { "hour": "per hour", "day": "per day", "session": "per session", "project": "per project" }
+  },
+  "Pagination": { "label": "Pagination", "previous": "Previous", "next": "Next", "pageOf": "Page {page} of {pages}" },
+  "Categories": {
+    "title": "Categories", "description": "Find the right expert for any job.", "manage": "Add / manage categories",
+    "emptyTitle": "No categories yet", "emptyBody": "Categories will appear here once they are created.",
+    "breadcrumb": "Breadcrumb", "emptyCategoryTitle": "No services in this category yet", "emptyCategoryBody": "Check back soon or browse all services."
+  },
+  "Auth": {
+    "headline1": "The marketplace for", "headline2": "trusted local experts",
+    "point1": "Verified providers, authentic reviews", "point2": "Transparent pricing and flexible scheduling", "point3": "Chat, book and manage everything in one place",
+    "help": "Need help? <link>Browse services</link> without an account.",
+    "email": "Email", "password": "Password", "showPassword": "Show password", "hidePassword": "Hide password"
+  },
+  "Login": {
+    "title": "Welcome back", "subtitle": "Sign in to manage bookings and discover trusted professionals.",
+    "errorTitle": "Couldn't sign you in", "forgot": "Forgot password?", "submit": "Sign in", "newTo": "New to UCOMMERZ?", "create": "Create an account",
+    "suspended": "This account has been suspended. Contact support for help.",
+    "profileMissing": "We couldn't load your profile. Please sign in again.",
+    "authCallback": "That confirmation link is invalid or has expired. Please sign in or request a new one."
+  },
+  "Register": {
+    "title": "Create your account", "subtitle": "Hire trusted experts or start offering your own services.",
+    "iWant": "I want to…", "hire": "I want to hire", "hireDesc": "Find and book services", "offer": "I offer services", "offerDesc": "Get discovered and booked",
+    "both": "Both", "bothDesc": "Hire and provide",
+    "fullName": "Full name", "fullNamePh": "Jane Doe", "phone": "Phone (optional)", "phonePh": "+1 555 000 1234",
+    "passwordPh": "At least 8 characters", "confirm": "Confirm password", "confirmPh": "Repeat password",
+    "submit": "Create account", "have": "Already have an account?", "signIn": "Sign in",
+    "checkInbox": "Check your inbox", "sentTo": "We sent a verification link to <strong>{email}</strong>. Click it to activate your account, then sign in.",
+    "resend": "Resend email", "goSignIn": "Go to sign in"
+  },
+  "Forgot": {
+    "title": "Reset your password", "subtitle": "Enter your email and we'll send you a link to choose a new password.",
+    "submit": "Send reset link", "remembered": "Remembered it?", "signIn": "Sign in",
+    "sentTitle": "Reset link sent", "sentBody": "If an account exists for that email, you'll receive a link to choose a new password shortly.", "back": "Back to sign in"
+  },
+  "Reset": {
+    "title": "Choose a new password", "subtitle": "Pick a strong password you haven't used elsewhere.",
+    "newPassword": "New password", "confirmNew": "Confirm new password", "submit": "Update password",
+    "invalid": "This reset link is invalid or has expired. Request a new one to continue.", "request": "Request a new link"
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "Lang": { "label": "语言" },
+  "Nav": {
+    "home": "首页", "browse": "浏览服务", "categories": "分类",
+    "searchPlaceholder": "搜索服务…", "searchLabel": "搜索服务",
+    "messages": "消息", "accountMenu": "账户菜单", "toggleMenu": "切换菜单", "mainNav": "主导航", "mobileNav": "移动端导航",
+    "yourAccount": "我的账户", "dashboard": "控制台", "myBookings": "我的预订", "favorites": "收藏",
+    "providerDashboard": "服务商控制台", "profile": "个人资料", "providerSettings": "服务商设置",
+    "adminPanel": "管理后台", "manageCategories": "管理分类", "signOut": "退出登录", "signedOut": "已退出登录",
+    "signIn": "登录", "getStarted": "立即开始"
+  },
+  "Footer": {
+    "tagline": "UCOMMERZ 连接客户与经过认证的本地专业人士，提供值得信赖、透明的服务。",
+    "marketplace": "服务市场", "home": "首页", "browse": "浏览服务", "allCategories": "全部分类", "becomeProvider": "成为服务商",
+    "popular": "热门分类", "webSoftware": "网站与软件", "homeServices": "家政服务", "photography": "摄影",
+    "forPros": "面向专业人士", "join": "加入服务市场", "portal": "服务商入口", "signIn": "登录",
+    "rights": "© {year} UCOMMERZ 服务市场。保留所有权利。", "legal": "隐私政策 · 服务条款"
+  },
+  "Home": {
+    "badge": "新一代按需服务市场",
+    "heroTitle1": "预约值得信赖的专家", "heroTitle2": "满足您的每一项服务需求。",
+    "heroBody": "直接联系经过认证的本地专业人士，提前比较价格，灵活安排预约，并在一个平台上安全地管理服务请求。",
+    "explore": "探索服务市场", "becomeProvider": "成为服务提供者",
+    "verified": "认证专业人士", "secure": "账户安全", "reviews": "真实评价",
+    "findPro": "查找专业人士", "live": "实时市场", "popularNow": "当前热门",
+    "popularFallback": "电工服务、网站开发…", "statsLabel": "在线服务 · 认证服务商",
+    "featuredCategories": "精选分类",
+    "browseByExpertise": "按专业领域浏览", "categoriesTitle": "服务分类与子分类", "viewAll": "查看全部",
+    "serviceCount": "{count, plural, other {# 项服务}}",
+    "browseLocal": "浏览本地专业人士", "browseCategory": "浏览分类",
+    "topRated": "高评分", "featuredTitle": "精选专业服务", "exploreAll": "查看全部",
+    "noServices": "暂无服务 — 成为第一个<link>发布服务</link>的人。",
+    "coverage": "地域覆盖", "nearbyTitle": "探索附近的服务", "searchNearMe": "搜索我附近",
+    "verifiedTalent": "认证人才", "topPros": "顶级认证专业人士", "providerFallback": "服务商",
+    "proFallback": "UCOMMERZ 专业人士", "viewProfile": "查看资料与价格", "verifiedLabel": "已认证",
+    "howBadge": "轻松三步流程", "howTitle": "UCOMMERZ 如何运作",
+    "howSub": "从搜索到项目完成，预约认证专家流畅且有保障。",
+    "step1Title": "发现并比较", "step1Body": "通过透明价格、客户评分、位置和筛选条件浏览服务。",
+    "step2Title": "即时预约与沟通", "step2Body": "选择合适的预约日期，并直接联系服务商。",
+    "step3Title": "完成并评价", "step3Body": "跟踪进度、接收提醒，工作完成后留下评价。",
+    "growKicker": "与 UCOMMERZ 共同成长", "ctaTitle": "将您的服务提供给成千上万的客户",
+    "ctaBody": "创建资料、发布服务，并在一个控制台中管理预订、消息和提醒。", "startFree": "免费开始"
+  },
+  "Browse": {
+    "title": "浏览服务",
+    "found": "{count, plural, other {找到 # 项服务}}", "nearYou": "在您附近",
+    "loadError": "无法加载服务：{message}",
+    "emptyTitle": "没有符合筛选条件的服务", "emptyBody": "请尝试移除筛选条件、扩大搜索半径或搜索其他内容。"
+  },
+  "Filters": {
+    "searchPlaceholder": "搜索服务、技能或地点…", "searchLabel": "搜索服务", "clearSearch": "清除搜索", "search": "搜索",
+    "filters": "筛选", "active": "{count} 项已启用", "sortBy": "排序方式", "featured": "精选", "topRated": "高评分",
+    "priceLow": "价格：从低到高", "priceHigh": "价格：从高到低", "newest": "最新",
+    "category": "分类", "allCategories": "全部分类", "priceRange": "价格范围", "min": "最低", "max": "最高",
+    "minPrice": "最低价格", "maxPrice": "最高价格", "ratingType": "评分与类型", "minRating": "最低评分",
+    "anyRating": "不限评分", "ratingUp": "{value} 及以上", "remoteOnly": "仅限远程服务",
+    "distance": "距离", "radius": "搜索半径", "nearMe": "我附近", "updateLocation": "更新位置", "clearLocation": "清除位置",
+    "apply": "应用筛选", "reset": "重置",
+    "geoUnsupported": "您的浏览器不支持地理定位。", "geoShowing": "正在显示您附近的服务。",
+    "geoDenied": "位置权限被拒绝。", "geoFailed": "无法获取您的位置。"
+  },
+  "Card": {
+    "featured": "精选", "by": "由 {name} 提供", "provider": "服务商", "remote": "远程", "startingAt": "起价", "general": "通用",
+    "units": { "hour": "每小时", "day": "每天", "session": "每次", "project": "每项目" }
+  },
+  "Pagination": { "label": "分页", "previous": "上一页", "next": "下一页", "pageOf": "第 {page} 页，共 {pages} 页" },
+  "Categories": {
+    "title": "分类", "description": "为任何工作找到合适的专家。", "manage": "添加 / 管理分类",
+    "emptyTitle": "暂无分类", "emptyBody": "分类创建后将显示在这里。",
+    "breadcrumb": "面包屑导航", "emptyCategoryTitle": "此分类下暂无服务", "emptyCategoryBody": "请稍后再来，或浏览全部服务。"
+  },
+  "Auth": {
+    "headline1": "值得信赖的", "headline2": "本地专家服务市场",
+    "point1": "认证服务商，真实评价", "point2": "价格透明，时间灵活", "point3": "聊天、预约、管理，一站式完成",
+    "help": "需要帮助？无需账户即可<link>浏览服务</link>。",
+    "email": "邮箱", "password": "密码", "showPassword": "显示密码", "hidePassword": "隐藏密码"
+  },
+  "Login": {
+    "title": "欢迎回来", "subtitle": "登录以管理预订并发现值得信赖的专业人士。",
+    "errorTitle": "无法登录", "forgot": "忘记密码？", "submit": "登录", "newTo": "初次使用 UCOMMERZ？", "create": "创建账户",
+    "suspended": "此账户已被停用。请联系客服获取帮助。",
+    "profileMissing": "无法加载您的资料，请重新登录。",
+    "authCallback": "该确认链接无效或已过期。请登录或重新申请。"
+  },
+  "Register": {
+    "title": "创建您的账户", "subtitle": "聘请值得信赖的专家，或开始提供您自己的服务。",
+    "iWant": "我想…", "hire": "我想聘请服务", "hireDesc": "查找并预约服务", "offer": "我提供服务", "offerDesc": "被发现并获得预约",
+    "both": "两者皆是", "bothDesc": "既聘请也提供",
+    "fullName": "姓名", "fullNamePh": "张三", "phone": "电话（选填）", "phonePh": "+86 138 0000 0000",
+    "passwordPh": "至少 8 个字符", "confirm": "确认密码", "confirmPh": "再次输入密码",
+    "submit": "创建账户", "have": "已有账户？", "signIn": "登录",
+    "checkInbox": "请查收邮件", "sentTo": "我们已向 <strong>{email}</strong> 发送了验证链接。点击链接激活账户，然后登录。",
+    "resend": "重新发送邮件", "goSignIn": "前往登录"
+  },
+  "Forgot": {
+    "title": "重置密码", "subtitle": "输入您的邮箱，我们会发送设置新密码的链接。",
+    "submit": "发送重置链接", "remembered": "想起来了？", "signIn": "登录",
+    "sentTitle": "重置链接已发送", "sentBody": "如果该邮箱对应的账户存在，您很快会收到设置新密码的链接。", "back": "返回登录"
+  },
+  "Reset": {
+    "title": "设置新密码", "subtitle": "请选择一个未在其他地方使用过的强密码。",
+    "newPassword": "新密码", "confirmNew": "确认新密码", "submit": "更新密码",
+    "invalid": "此重置链接无效或已过期。请重新申请以继续。", "request": "重新申请链接"
+  }
+}

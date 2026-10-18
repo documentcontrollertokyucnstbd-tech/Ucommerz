@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
@@ -12,6 +13,7 @@ import { resetPasswordAction } from "@/app/actions/auth";
 import { toastAction } from "@/app/lib/toast-action";
 
 export function ResetPasswordForm() {
+  const t = useTranslations("Reset");
   const router = useRouter();
   const form = useForm<ResetPasswordInput>({
     resolver: zodResolver(resetPasswordSchema),
@@ -34,7 +36,7 @@ export function ResetPasswordForm() {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>New password</FormLabel>
+              <FormLabel>{t("newPassword")}</FormLabel>
               <FormControl>
                 <PasswordInput autoComplete="new-password" {...field} />
               </FormControl>
@@ -47,7 +49,7 @@ export function ResetPasswordForm() {
           name="confirm_password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Confirm new password</FormLabel>
+              <FormLabel>{t("confirmNew")}</FormLabel>
               <FormControl>
                 <PasswordInput autoComplete="new-password" {...field} />
               </FormControl>
@@ -57,7 +59,7 @@ export function ResetPasswordForm() {
         />
         <Button type="submit" className="w-full" size="lg" disabled={form.formState.isSubmitting}>
           {form.formState.isSubmitting && <Loader2 className="animate-spin" />}
-          Update password
+          {t("submit")}
         </Button>
       </form>
     </Form>

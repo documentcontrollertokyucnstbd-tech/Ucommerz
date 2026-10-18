@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
@@ -14,6 +15,8 @@ import { loginAction } from "@/app/actions/auth";
 import { toastAction } from "@/app/lib/toast-action";
 
 export function LoginForm({ next }: { next?: string }) {
+  const t = useTranslations("Login");
+  const ta = useTranslations("Auth");
   const router = useRouter();
   const form = useForm<LoginInput>({
     resolver: zodResolver(loginSchema),
@@ -36,7 +39,7 @@ export function LoginForm({ next }: { next?: string }) {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>{ta("email")}</FormLabel>
               <FormControl>
                 <Input type="email" autoComplete="email" placeholder="you@example.com" {...field} />
               </FormControl>
@@ -50,9 +53,9 @@ export function LoginForm({ next }: { next?: string }) {
           render={({ field }) => (
             <FormItem>
               <div className="flex items-center justify-between">
-                <FormLabel>Password</FormLabel>
+                <FormLabel>{ta("password")}</FormLabel>
                 <Link href="/forgot-password" className="text-xs font-medium text-primary hover:underline">
-                  Forgot password?
+                  {t("forgot")}
                 </Link>
               </div>
               <FormControl>
@@ -64,12 +67,12 @@ export function LoginForm({ next }: { next?: string }) {
         />
         <Button type="submit" className="w-full" size="lg" disabled={form.formState.isSubmitting}>
           {form.formState.isSubmitting && <Loader2 className="animate-spin" />}
-          Sign in
+          {t("submit")}
         </Button>
         <p className="text-center text-sm text-muted-foreground">
-          New to UCOMMERZ?{" "}
+          {t("newTo")}{" "}
           <Link className="font-semibold text-primary hover:underline" href={next ? `/register?next=${encodeURIComponent(next)}` : "/register"}>
-            Create an account
+            {t("create")}
           </Link>
         </p>
       </form>

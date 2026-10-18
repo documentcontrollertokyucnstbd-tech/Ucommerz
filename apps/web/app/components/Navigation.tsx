@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState, useTransition, type FormEvent } from "react";
 import toast from "react-hot-toast";
+import { useTranslations } from "next-intl";
 import {
   FolderTree,
   Heart,
@@ -35,6 +36,7 @@ import {
 } from "@/app/components/ui/dropdown-menu";
 import { Logo } from "@/app/components/Logo";
 import { ThemeToggle } from "@/app/components/ThemeToggle";
+import { LanguageSwitcher } from "@/app/components/LanguageSwitcher";
 import { Notifications } from "@/app/components/Notifications";
 import { signOutAction } from "@/app/actions/auth";
 import { cn, initials } from "@/app/lib/utils";
@@ -49,12 +51,13 @@ export type NavUser = {
 };
 
 const NAV = [
-  { label: "Home", href: "/" },
-  { label: "Browse Services", href: "/browse" },
-  { label: "Categories", href: "/categories" },
-];
+  { key: "home", href: "/" },
+  { key: "browse", href: "/browse" },
+  { key: "categories", href: "/categories" },
+] as const;
 
 export function Navigation({ user }: { user: NavUser | null }) {
+  const t = useTranslations("Nav");
   const router = useRouter();
   const pathname = usePathname() ?? "/";
   const [open, setOpen] = useState(false);
@@ -95,7 +98,7 @@ export function Navigation({ user }: { user: NavUser | null }) {
 
   function signOut() {
     startTransition(async () => {
-      toast.success("Signed out");
+      toast.success(t("signedOut"));
       await signOutAction();
     });
   }
@@ -105,7 +108,7 @@ export function Navigation({ user }: { user: NavUser | null }) {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-6">
           <Logo />
-          <nav className="hidden items-center gap-1 md:flex" aria-label="Main">
+          <nav className="hidden items-center gap-1 md:flex" aria-label={t("mainNav")}>
             {NAV.map((item) => {
               const active = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
               return (
@@ -117,8 +120,8 @@ export function Navigation({ user }: { user: NavUser | null }) {
                     active ? "bg-accent text-foreground" : "text-muted-foreground",
                   )}
                 >
-                  {item.label === "Home" && <Home className="size-4" />}
-                  {item.label}
+                  {item.key === "home" && <Home className="size-4" />}
+                  {t(item.key)}
                 </Link>
               );
             })}
@@ -126,31 +129,32 @@ export function Navigation({ user }: { user: NavUser | null }) {
         </div>
 
         <form onSubmit={onSearch} className="relative hidden max-w-xs flex-1 lg:block" role="search">
-          <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+          <Search className="pointer-events-none absolute start-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
           <Input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search services…"
-            aria-label="Search services"
-            className="h-9 rounded-full pl-9"
+            placeholder={t("searchPlaceholder")}
+            aria-label={t("searchLabel")}
+            className="h-9 rounded-full ps-9"
           />
         </form>
 
         <div className="flex items-center gap-1.5">
           <Button asChild variant="ghost" size="icon" className="lg:hidden">
-            <Link href="/browse" aria-label="Search services">
+            <Link href="/browse" aria-label={t("searchLabel")}>
               <Search className="size-5" />
             </Link>
           </Button>
+          <LanguageSwitcher />
           <ThemeToggle />
 
           {user ? (
             <>
               {!staff && <Button asChild variant="ghost" size="icon" className="relative hidden sm:inline-flex">
-                <Link href="/dashboard/messages" aria-label="Messages">
+                <Link href="/dashboard/messages" aria-label={t("messages")}>
                   <MessageSquare className="size-5" />
                   {unreadMessages > 0 && (
-                    <Badge className="absolute -right-1 -top-1 h-4 min-w-4 justify-center px-1 text-[10px]">
+                    <Badge className="absolute -end-1 -top-1 h-4 min-w-4 justify-center px-1 text-[10px]">
                       {unreadMessages > 9 ? "9+" : unreadMessages}
                     </Badge>
                   )}
@@ -159,7 +163,7 @@ export function Navigation({ user }: { user: NavUser | null }) {
               <Notifications userId={user.id} />
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="h-10 gap-2 rounded-full px-1.5 sm:pr-3" aria-label="Account menu">
+                  <Button variant="ghost" className="h-10 gap-2 rounded-full px-1.5 sm:pr-3" aria-label={t("accountMenu")}>
                     <Avatar className="size-8">
                       <AvatarImage src={user.avatar_url ?? undefined} alt={user.full_name ?? "Account"} />
                       <AvatarFallback>{initials(user.full_name ?? user.email)}</AvatarFallback>
@@ -169,7 +173,7 @@ export function Navigation({ user }: { user: NavUser | null }) {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-60">
                   <DropdownMenuLabel className="flex flex-col gap-0.5">
-                    <span className="truncate">{user.full_name ?? "Your account"}</span>
+                    <span className="truncate">{user.full_name ?? t("yourAccount")}</span>
                     <span className="truncate text-xs font-normal text-muted-foreground">{user.email}</span>
                     <Badge variant="muted" className="mt-1 w-fit">{user.role.toLowerCase()}</Badge>
                   </DropdownMenuLabel>
@@ -177,48 +181,48 @@ export function Navigation({ user }: { user: NavUser | null }) {
                   {!staff && (
                     <>
                   <DropdownMenuItem asChild>
-                    <Link href="/dashboard"><LayoutDashboard /> Dashboard</Link>
+                    <Link href="/dashboard"><LayoutDashboard /> {t("dashboard")}</Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
-                    <Link href="/dashboard/bookings"><Briefcase /> My bookings</Link>
+                    <Link href="/dashboard/bookings"><Briefcase /> {t("myBookings")}</Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
                     <Link href="/dashboard/messages">
-                      <MessageSquare /> Messages
-                      {unreadMessages > 0 && <Badge className="ml-auto h-4 px-1.5 text-[10px]">{unreadMessages}</Badge>}
+                      <MessageSquare /> {t("messages")}
+                      {unreadMessages > 0 && <Badge className="ms-auto h-4 px-1.5 text-[10px]">{unreadMessages}</Badge>}
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
-                    <Link href="/dashboard/favorites"><Heart /> Favorites</Link>
+                    <Link href="/dashboard/favorites"><Heart /> {t("favorites")}</Link>
                   </DropdownMenuItem>
                   {isProvider && (
                     <DropdownMenuItem asChild>
-                      <Link href="/dashboard/provider-dashboard"><Briefcase /> Provider dashboard</Link>
+                      <Link href="/dashboard/provider-dashboard"><Briefcase /> {t("providerDashboard")}</Link>
                     </DropdownMenuItem>
                   )}
                     </>
                   )}
                   <DropdownMenuItem asChild>
-                    <Link href="/profile"><User /> Profile</Link>
+                    <Link href="/profile"><User /> {t("profile")}</Link>
                   </DropdownMenuItem>
                   {isProvider && !staff && (
                     <DropdownMenuItem asChild>
-                      <Link href="/dashboard/provider-settings"><Settings /> Provider settings</Link>
+                      <Link href="/dashboard/provider-settings"><Settings /> {t("providerSettings")}</Link>
                     </DropdownMenuItem>
                   )}
                   {isStaffRole(user.role) && (
                     <DropdownMenuItem asChild>
-                      <Link href="/admin"><ShieldCheck /> Admin panel</Link>
+                      <Link href="/admin"><ShieldCheck /> {t("adminPanel")}</Link>
                     </DropdownMenuItem>
                   )}
                   {user.role === "SUPERADMIN" && (
                     <DropdownMenuItem asChild>
-                      <Link href="/admin/categories"><FolderTree /> Manage categories</Link>
+                      <Link href="/admin/categories"><FolderTree /> {t("manageCategories")}</Link>
                     </DropdownMenuItem>
                   )}
                   <DropdownMenuSeparator />
                   <DropdownMenuItem variant="destructive" disabled={pending} onSelect={signOut}>
-                    <LogOut /> Sign out
+                    <LogOut /> {t("signOut")}
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
@@ -226,10 +230,10 @@ export function Navigation({ user }: { user: NavUser | null }) {
           ) : (
             <div className="hidden items-center gap-2 sm:flex">
               <Button asChild variant="outline" size="sm">
-                <Link href="/login">Sign in</Link>
+                <Link href="/login">{t("signIn")}</Link>
               </Button>
               <Button asChild size="sm">
-                <Link href="/register">Get started</Link>
+                <Link href="/register">{t("getStarted")}</Link>
               </Button>
             </div>
           )}
@@ -238,7 +242,7 @@ export function Navigation({ user }: { user: NavUser | null }) {
             variant="ghost"
             size="icon"
             className="md:hidden"
-            aria-label="Toggle menu"
+            aria-label={t("toggleMenu")}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
           >
@@ -249,10 +253,10 @@ export function Navigation({ user }: { user: NavUser | null }) {
 
       {open && (
         <div className="border-t border-border bg-background/95 md:hidden">
-          <nav className="flex flex-col gap-1 px-4 py-3" aria-label="Mobile">
+          <nav className="flex flex-col gap-1 px-4 py-3" aria-label={t("mobileNav")}>
             <form onSubmit={onSearch} className="relative mb-2" role="search">
-              <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
-              <Input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search services…" className="pl-9" />
+              <Search className="pointer-events-none absolute start-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+              <Input value={query} onChange={(e) => setQuery(e.target.value)} placeholder={t("searchPlaceholder")} aria-label={t("searchLabel")} className="ps-9" />
             </form>
             {NAV.map((item) => (
               <Link
@@ -261,7 +265,7 @@ export function Navigation({ user }: { user: NavUser | null }) {
                 onClick={() => setOpen(false)}
                 className="rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-accent hover:text-foreground"
               >
-                {item.label}
+                {t(item.key)}
               </Link>
             ))}
             {user ? (
@@ -270,15 +274,15 @@ export function Navigation({ user }: { user: NavUser | null }) {
                 onClick={() => setOpen(false)}
                 className="rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-accent hover:text-foreground"
               >
-                Dashboard
+                {t("dashboard")}
               </Link>
             ) : (
               <div className="mt-2 flex gap-2">
                 <Button asChild variant="outline" size="sm" className="flex-1">
-                  <Link href="/login" onClick={() => setOpen(false)}>Sign in</Link>
+                  <Link href="/login" onClick={() => setOpen(false)}>{t("signIn")}</Link>
                 </Button>
                 <Button asChild size="sm" className="flex-1">
-                  <Link href="/register" onClick={() => setOpen(false)}>Get started</Link>
+                  <Link href="/register" onClick={() => setOpen(false)}>{t("getStarted")}</Link>
                 </Button>
               </div>
             )}

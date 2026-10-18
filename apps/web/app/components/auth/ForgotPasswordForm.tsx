@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2, MailCheck } from "lucide-react";
@@ -14,6 +15,8 @@ import { forgotPasswordAction } from "@/app/actions/auth";
 import { toastAction } from "@/app/lib/toast-action";
 
 export function ForgotPasswordForm() {
+  const t = useTranslations("Forgot");
+  const ta = useTranslations("Auth");
   const [sent, setSent] = useState(false);
   const form = useForm<ForgotPasswordInput>({
     resolver: zodResolver(forgotPasswordSchema),
@@ -30,11 +33,11 @@ export function ForgotPasswordForm() {
       <div className="space-y-4">
         <Alert variant="success">
           <MailCheck />
-          <AlertTitle>Reset link sent</AlertTitle>
-          <AlertDescription>If an account exists for that email, you&apos;ll receive a link to choose a new password shortly.</AlertDescription>
+          <AlertTitle>{t("sentTitle")}</AlertTitle>
+          <AlertDescription>{t("sentBody")}</AlertDescription>
         </Alert>
         <Button asChild variant="outline" className="w-full">
-          <Link href="/login">Back to sign in</Link>
+          <Link href="/login">{t("back")}</Link>
         </Button>
       </div>
     );
@@ -48,7 +51,7 @@ export function ForgotPasswordForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>{ta("email")}</FormLabel>
               <FormControl>
                 <Input type="email" autoComplete="email" placeholder="you@example.com" {...field} />
               </FormControl>
@@ -58,12 +61,12 @@ export function ForgotPasswordForm() {
         />
         <Button type="submit" className="w-full" size="lg" disabled={form.formState.isSubmitting}>
           {form.formState.isSubmitting && <Loader2 className="animate-spin" />}
-          Send reset link
+          {t("submit")}
         </Button>
         <p className="text-center text-sm text-muted-foreground">
-          Remembered it?{" "}
+          {t("remembered")}{" "}
           <Link className="font-semibold text-primary hover:underline" href="/login">
-            Sign in
+            {t("signIn")}
           </Link>
         </p>
       </form>

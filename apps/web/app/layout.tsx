@@ -1,5 +1,8 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import { Inter, Plus_Jakarta_Sans, Noto_Sans_Bengali, Noto_Sans_Devanagari, Noto_Naskh_Arabic } from "next/font/google";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getMessages } from "next-intl/server";
+import { LOCALE_META, isLocale } from "@/app/i18n/config";
 import { Providers } from "@/app/components/Providers";
 import { ChromeGate } from "@/app/components/ChromeGate";
 import { SiteHeader } from "@/app/components/SiteHeader";
@@ -9,6 +12,10 @@ import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 const plusJakarta = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-plus-jakarta", display: "swap" });
+// Script fonts are only downloaded by the browser when a page actually contains those characters.
+const notoBengali = Noto_Sans_Bengali({ subsets: ["bengali"], weight: ["400", "500", "600", "700", "800"], variable: "--font-noto-bengali", display: "swap", preload: false });
+const notoDevanagari = Noto_Sans_Devanagari({ subsets: ["devanagari"], weight: ["400", "500", "600", "700", "800"], variable: "--font-noto-devanagari", display: "swap", preload: false });
+const notoArabic = Noto_Naskh_Arabic({ subsets: ["arabic"], weight: ["400", "500", "600", "700"], variable: "--font-noto-arabic", display: "swap", preload: false });
 
 const siteUrl = getSiteUrl();
 
@@ -49,15 +56,25 @@ export const viewport: Viewport = {
   ],
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const locale = await getLocale();
+  const messages = await getMessages();
+  const dir = isLocale(locale) ? LOCALE_META[locale].dir : "ltr";
   return (
-    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${plusJakarta.variable} bg-background`}>
+    <html
+      lang={locale}
+      dir={dir}
+      suppressHydrationWarning
+      className={`${inter.variable} ${plusJakarta.variable} ${notoBengali.variable} ${notoDevanagari.variable} ${notoArabic.variable} bg-background`}
+    >
       <body className="min-h-screen font-sans antialiased">
-        <Providers>
-          <ChromeGate header={<SiteHeader />} footer={<Footer />}>
-            {children}
-          </ChromeGate>
-        </Providers>
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <Providers>
+            <ChromeGate header={<SiteHeader />} footer={<Footer />}>
+              {children}
+            </ChromeGate>
+          </Providers>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

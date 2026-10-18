@@ -1,0 +1,105 @@
+{
+  "Lang": { "label": "Idioma" },
+  "Nav": {
+    "home": "Inicio", "browse": "Explorar servicios", "categories": "Categorías",
+    "searchPlaceholder": "Buscar servicios…", "searchLabel": "Buscar servicios",
+    "messages": "Mensajes", "accountMenu": "Menú de la cuenta", "toggleMenu": "Alternar menú", "mainNav": "Principal", "mobileNav": "Móvil",
+    "yourAccount": "Tu cuenta", "dashboard": "Panel", "myBookings": "Mis reservas", "favorites": "Favoritos",
+    "providerDashboard": "Panel de proveedor", "profile": "Perfil", "providerSettings": "Ajustes de proveedor",
+    "adminPanel": "Panel de administración", "manageCategories": "Gestionar categorías", "signOut": "Cerrar sesión", "signedOut": "Sesión cerrada",
+    "signIn": "Iniciar sesión", "getStarted": "Empezar"
+  },
+  "Footer": {
+    "tagline": "UCOMMERZ conecta a clientes con profesionales locales verificados para un servicio confiable y transparente.",
+    "marketplace": "Marketplace", "home": "Inicio", "browse": "Explorar servicios", "allCategories": "Todas las categorías", "becomeProvider": "Hazte proveedor",
+    "popular": "Categorías populares", "webSoftware": "Web y software", "homeServices": "Servicios del hogar", "photography": "Fotografía",
+    "forPros": "Para profesionales", "join": "Únete al marketplace", "portal": "Portal de proveedores", "signIn": "Iniciar sesión",
+    "rights": "© {year} UCOMMERZ Service Marketplace. Todos los derechos reservados.", "legal": "Política de privacidad · Términos del servicio"
+  },
+  "Home": {
+    "badge": "Marketplace de servicios bajo demanda de nueva generación",
+    "heroTitle1": "Reserva expertos de confianza", "heroTitle2": "para cada servicio que necesites.",
+    "heroBody": "Conecta directamente con profesionales locales verificados, compara precios por adelantado, programa citas flexibles y gestiona tus solicitudes de forma segura en un solo lugar.",
+    "explore": "Explorar el marketplace", "becomeProvider": "Ofrece tus servicios",
+    "verified": "Profesionales verificados", "secure": "Cuentas seguras", "reviews": "Reseñas auténticas",
+    "findPro": "Encuentra un profesional", "live": "Marketplace en vivo", "popularNow": "Popular ahora",
+    "popularFallback": "Trabajos eléctricos, desarrollo web…", "statsLabel": "Servicios activos · proveedores verificados",
+    "featuredCategories": "Categorías destacadas",
+    "browseByExpertise": "Explorar por especialidad", "categoriesTitle": "Categorías y subcategorías de servicios", "viewAll": "Ver todo",
+    "serviceCount": "{count, plural, one {# servicio} other {# servicios}}",
+    "browseLocal": "Explorar profesionales locales", "browseCategory": "Explorar categoría",
+    "topRated": "Mejor valorados", "featuredTitle": "Servicios profesionales destacados", "exploreAll": "Ver todo",
+    "noServices": "Aún no hay servicios — sé el primero en <link>ofrecer uno</link>.",
+    "coverage": "Cobertura geográfica", "nearbyTitle": "Explora servicios cercanos", "searchNearMe": "Buscar cerca de mí",
+    "verifiedTalent": "Talento verificado", "topPros": "Mejores profesionales verificados", "providerFallback": "Proveedor",
+    "proFallback": "Profesional en UCOMMERZ", "viewProfile": "Ver perfil y tarifas", "verifiedLabel": "Verificado",
+    "howBadge": "Proceso sencillo en 3 pasos", "howTitle": "Cómo funciona UCOMMERZ",
+    "howSub": "Desde la búsqueda hasta la finalización del proyecto, reservar especialistas verificados es fácil y seguro.",
+    "step1Title": "Descubre y compara", "step1Body": "Explora servicios con tarifas transparentes, valoraciones de clientes, ubicaciones y filtros.",
+    "step2Title": "Reserva y chatea al instante", "step2Body": "Elige la fecha que prefieras y escribe directamente al proveedor.",
+    "step3Title": "Trabajo hecho y reseña", "step3Body": "Sigue el progreso, recibe recordatorios y deja una reseña cuando el trabajo termine.",
+    "growKicker": "Crece con UCOMMERZ", "ctaTitle": "Ofrece tus servicios a miles de clientes",
+    "ctaBody": "Crea un perfil, publica tus servicios y gestiona reservas, mensajes y recordatorios en un solo panel.", "startFree": "Empieza gratis"
+  },
+  "Browse": {
+    "title": "Explorar servicios",
+    "found": "{count, plural, one {# servicio encontrado} other {# servicios encontrados}}", "nearYou": "cerca de ti",
+    "loadError": "No se pudieron cargar los servicios: {message}",
+    "emptyTitle": "Ningún servicio coincide con tus filtros", "emptyBody": "Prueba a quitar un filtro, ampliar el radio de búsqueda o buscar otra cosa."
+  },
+  "Filters": {
+    "searchPlaceholder": "Busca servicios, habilidades o lugares…", "searchLabel": "Buscar servicios", "clearSearch": "Borrar búsqueda", "search": "Buscar",
+    "filters": "Filtros", "active": "{count} activos", "sortBy": "Ordenar por", "featured": "Destacados", "topRated": "Mejor valorados",
+    "priceLow": "Precio: de menor a mayor", "priceHigh": "Precio: de mayor a menor", "newest": "Más recientes",
+    "category": "Categoría", "allCategories": "Todas las categorías", "priceRange": "Rango de precio", "min": "Mín.", "max": "Máx.",
+    "minPrice": "Precio mínimo", "maxPrice": "Precio máximo", "ratingType": "Valoración y tipo", "minRating": "Valoración mínima",
+    "anyRating": "Cualquier valoración", "ratingUp": "{value} o más", "remoteOnly": "Solo servicios remotos",
+    "distance": "Distancia", "radius": "Radio de búsqueda", "nearMe": "Cerca de mí", "updateLocation": "Actualizar ubicación", "clearLocation": "Borrar ubicación",
+    "apply": "Aplicar filtros", "reset": "Restablecer",
+    "geoUnsupported": "Tu navegador no admite la geolocalización.", "geoShowing": "Mostrando servicios cerca de ti.",
+    "geoDenied": "Se denegó el permiso de ubicación.", "geoFailed": "No se pudo obtener tu ubicación."
+  },
+  "Card": {
+    "featured": "Destacado", "by": "por {name}", "provider": "Proveedor", "remote": "Remoto", "startingAt": "Desde", "general": "General",
+    "units": { "hour": "por hora", "day": "por día", "session": "por sesión", "project": "por proyecto" }
+  },
+  "Pagination": { "label": "Paginación", "previous": "Anterior", "next": "Siguiente", "pageOf": "Página {page} de {pages}" },
+  "Categories": {
+    "title": "Categorías", "description": "Encuentra al experto adecuado para cualquier trabajo.", "manage": "Añadir / gestionar categorías",
+    "emptyTitle": "Aún no hay categorías", "emptyBody": "Las categorías aparecerán aquí cuando se creen.",
+    "breadcrumb": "Ruta de navegación", "emptyCategoryTitle": "Aún no hay servicios en esta categoría", "emptyCategoryBody": "Vuelve pronto o explora todos los servicios."
+  },
+  "Auth": {
+    "headline1": "El marketplace de", "headline2": "expertos locales de confianza",
+    "point1": "Proveedores verificados, reseñas auténticas", "point2": "Precios transparentes y horarios flexibles", "point3": "Chatea, reserva y gestiona todo en un solo lugar",
+    "help": "¿Necesitas ayuda? <link>Explora servicios</link> sin cuenta.",
+    "email": "Correo electrónico", "password": "Contraseña", "showPassword": "Mostrar contraseña", "hidePassword": "Ocultar contraseña"
+  },
+  "Login": {
+    "title": "Te damos la bienvenida", "subtitle": "Inicia sesión para gestionar reservas y descubrir profesionales de confianza.",
+    "errorTitle": "No pudimos iniciar tu sesión", "forgot": "¿Olvidaste tu contraseña?", "submit": "Iniciar sesión", "newTo": "¿Nuevo en UCOMMERZ?", "create": "Crear una cuenta",
+    "suspended": "Esta cuenta ha sido suspendida. Contacta con soporte para obtener ayuda.",
+    "profileMissing": "No pudimos cargar tu perfil. Inicia sesión de nuevo.",
+    "authCallback": "El enlace de confirmación no es válido o ha caducado. Inicia sesión o solicita uno nuevo."
+  },
+  "Register": {
+    "title": "Crea tu cuenta", "subtitle": "Contrata expertos de confianza o empieza a ofrecer tus propios servicios.",
+    "iWant": "Quiero…", "hire": "Quiero contratar", "hireDesc": "Buscar y reservar servicios", "offer": "Ofrezco servicios", "offerDesc": "Que me encuentren y me reserven",
+    "both": "Ambas", "bothDesc": "Contratar y ofrecer",
+    "fullName": "Nombre completo", "fullNamePh": "Juan Pérez", "phone": "Teléfono (opcional)", "phonePh": "+34 600 000 000",
+    "passwordPh": "Al menos 8 caracteres", "confirm": "Confirmar contraseña", "confirmPh": "Repite la contraseña",
+    "submit": "Crear cuenta", "have": "¿Ya tienes una cuenta?", "signIn": "Iniciar sesión",
+    "checkInbox": "Revisa tu bandeja de entrada", "sentTo": "Enviamos un enlace de verificación a <strong>{email}</strong>. Haz clic en él para activar tu cuenta y luego inicia sesión.",
+    "resend": "Reenviar correo", "goSignIn": "Ir a iniciar sesión"
+  },
+  "Forgot": {
+    "title": "Restablece tu contraseña", "subtitle": "Introduce tu correo y te enviaremos un enlace para elegir una nueva contraseña.",
+    "submit": "Enviar enlace", "remembered": "¿La recordaste?", "signIn": "Iniciar sesión",
+    "sentTitle": "Enlace enviado", "sentBody": "Si existe una cuenta con ese correo, recibirás en breve un enlace para elegir una nueva contraseña.", "back": "Volver a iniciar sesión"
+  },
+  "Reset": {
+    "title": "Elige una nueva contraseña", "subtitle": "Elige una contraseña segura que no hayas usado en otro sitio.",
+    "newPassword": "Nueva contraseña", "confirmNew": "Confirmar nueva contraseña", "submit": "Actualizar contraseña",
+    "invalid": "Este enlace no es válido o ha caducado. Solicita uno nuevo para continuar.", "request": "Solicitar un nuevo enlace"
+  }
+}

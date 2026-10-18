@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
 
@@ -16,6 +17,7 @@ export function Pagination({
   basePath: string;
   params?: Record<string, string | undefined>;
 }) {
+  const t = useTranslations("Pagination");
   const pages = Math.max(1, Math.ceil(total / pageSize));
   if (pages <= 1) return null;
 
@@ -28,30 +30,30 @@ export function Pagination({
   };
 
   return (
-    <nav className="mt-8 flex items-center justify-center gap-3" aria-label="Pagination">
+    <nav className="mt-8 flex items-center justify-center gap-3" aria-label={t("label")}>
       {page > 1 ? (
         <Button asChild variant="outline" size="sm">
           <Link href={href(page - 1)}>
-            <ChevronLeft /> Previous
+            <ChevronLeft className="rtl-flip" /> {t("previous")}
           </Link>
         </Button>
       ) : (
         <Button variant="outline" size="sm" disabled>
-          <ChevronLeft /> Previous
+          <ChevronLeft className="rtl-flip" /> {t("previous")}
         </Button>
       )}
       <span className="text-sm text-muted-foreground">
-        Page {page} of {pages}
+        {t("pageOf", { page, pages })}
       </span>
       {page < pages ? (
         <Button asChild variant="outline" size="sm">
           <Link href={href(page + 1)}>
-            Next <ChevronRight />
+            {t("next")} <ChevronRight className="rtl-flip" />
           </Link>
         </Button>
       ) : (
         <Button variant="outline" size="sm" disabled>
-          Next <ChevronRight />
+          {t("next")} <ChevronRight className="rtl-flip" />
         </Button>
       )}
     </nav>
