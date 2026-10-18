@@ -10,6 +10,9 @@ export async function safely<T>(loader: () => Promise<T>, fallback: T | null): P
   try {
     return await loader();
   } catch (error) {
+    // Never swallow Next.js control-flow errors (dynamic rendering, redirects, 404s).
+    const digest = (error as { digest?: unknown } | null)?.digest;
+    if (typeof digest === "string" && (digest === "DYNAMIC_SERVER_USAGE" || digest === "BAILOUT_TO_CLIENT_SIDE_RENDERING" || digest.startsWith("NEXT_"))) throw error;
     console.error("[safely]", error);
     return fallback;
   }

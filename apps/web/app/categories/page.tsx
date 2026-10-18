@@ -18,6 +18,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/categories" },
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function CategoriesPage() {
   const t = await getTranslations("Categories");
   const th = await getTranslations("Home");
