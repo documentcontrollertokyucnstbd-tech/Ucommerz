@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import { AlertTriangle, CalendarClock, CheckCircle2, ClipboardList, DollarSign, Heart, MessageSquare, Plus, Star, Wrench } from "lucide-react";
 import type { BookingWithRelations } from "@ucommerz/shared";
 import { requireUser, canBook, canProvide } from "@/app/lib/guards";
@@ -7,7 +8,8 @@ import { getProviderStats } from "@/app/lib/analytics-service";
 import { fetchActivity } from "@/app/lib/activity-service";
 import { safely } from "@/app/lib/queries-extra";
 import { BOOKING_SELECT } from "@/app/lib/booking-select";
-import { first, formatCurrency, formatDateTime } from "@/app/lib/utils";
+import { first } from "@/app/lib/utils";
+import { getFormat } from "@/app/lib/format-server";
 import { PageHeader } from "@/app/components/PageHeader";
 import { StatCard } from "@/app/components/StatCard";
 import { StatusBadge } from "@/app/components/StatusBadge";
@@ -16,10 +18,14 @@ import { Alert, AlertDescription, AlertTitle } from "@/app/components/ui/alert";
 import { Button } from "@/app/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/app/components/ui/card";
 
-export const metadata: Metadata = { title: "Overview" };
-
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("DashHome");
+  return { title: t("metaTitle") };
+}
 
 export default async function DashboardHome({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
+  const f = await getFormat();
+  const t = await getTranslations("DashHome");
   const sp = await searchParams;
   const { profile, supabase } = await requireUser("/dashboard");
   const asProvider = canProvide(profile);
@@ -52,12 +58,12 @@ export default async function DashboardHome({ searchParams }: { searchParams: Pr
   return (
     <div className="space-y-6">
       <PageHeader
-        title={`Welcome back, ${profile.full_name?.split(" ")[0] ?? "there"}`}
-        description="Here's what's happening on your account."
+        title={t("welcome", { name: profile.full_name?.split(" ")[0] ?? t("welcomeFallback") })}
+        description={t("desc")}
         actions={
           <>
-            {asSeeker && <Button asChild variant="outline"><Link href="/browse">Find services</Link></Button>}
-            {asProvider && <Button asChild><Link href="/dashboard/my-services/create"><Plus /> New service</Link></Button>}
+            {asSeeker && <Button asChild variant="outline"><Link href="/browse">{t("findServices")}</Link></Button>}
+            {asProvider && <Button asChild><Link href="/dashboard/my-services/create"><Plus /> {t("newService")}</Link></Button>}
           </>
         }
       />
@@ -65,9 +71,9 @@ export default async function DashboardHome({ searchParams }: { searchParams: Pr
       {first(sp.denied) === "1" && (
         <Alert variant="warning">
           <AlertTriangle />
-          <AlertTitle>That page isn&apos;t available for your account type</AlertTitle>
+          <AlertTitle>{t("deniedTitle")}</AlertTitle>
           <AlertDescription>
-            Provider tools require a provider account. You can enable it from your <Link href="/profile" className="font-medium underline">profile</Link>.
+            {t.rich("deniedDesc", { link: (chunks) => <Link href="/profile" className="font-medium underline">{chunks}</Link> })}
           </AlertDescription>
         </Alert>
       )}
@@ -75,17 +81,17 @@ export default async function DashboardHome({ searchParams }: { searchParams: Pr
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {stats ? (
           <>
-            <StatCard label="Revenue (month)" value={formatCurrency(stats.monthRevenue)} hint={`${formatCurrency(stats.totalRevenue)} all time`} icon={<DollarSign className="size-5" />} tone="success" />
-            <StatCard label="Pending requests" value={stats.pendingBookings} hint={`${stats.upcomingBookings} upcoming`} icon={<ClipboardList className="size-5" />} tone="warning" />
-            <StatCard label="Active services" value={stats.activeServices} icon={<Wrench className="size-5" />} />
-            <StatCard label="Rating" value={stats.averageRating.toFixed(1)} hint={`${stats.totalReviews} reviews`} icon={<Star className="size-5" />} tone="info" />
+            <StatCard label={t("revenueMonth")} value={f.currency(stats.monthRevenue)} hint={t("allTime", { amount: f.currency(stats.totalRevenue) })} icon={<DollarSign className="size-5" />} tone="success" />
+            <StatCard label={t("pendingRequests")} value={stats.pendingBookings} hint={t("upcomingCount", { count: stats.upcomingBookings })} icon={<ClipboardList className="size-5" />} tone="warning" />
+            <StatCard label={t("activeServices")} value={stats.activeServices} icon={<Wrench className="size-5" />} />
+            <StatCard label={t("rating")} value={stats.averageRating.toFixed(1)} hint={t("reviewsCount", { count: stats.totalReviews })} icon={<Star className="size-5" />} tone="info" />
           </>
         ) : (
           <>
-            <StatCard label="My bookings" value={counts.bookings} icon={<ClipboardList className="size-5" />} />
-            <StatCard label="Favorites" value={counts.favorites} icon={<Heart className="size-5" />} tone="destructive" />
-            <StatCard label="Unread messages" value={counts.unread} icon={<MessageSquare className="size-5" />} tone="info" />
-            <StatCard label="Upcoming" value={upcoming.length} icon={<CalendarClock className="size-5" />} tone="success" />
+            <StatCard label={t("myBookings")} value={counts.bookings} icon={<ClipboardList className="size-5" />} />
+            <StatCard label={t("favorites")} value={counts.favorites} icon={<Heart className="size-5" />} tone="destructive" />
+            <StatCard label={t("unread")} value={counts.unread} icon={<MessageSquare className="size-5" />} tone="info" />
+            <StatCard label={t("upcoming")} value={upcoming.length} icon={<CalendarClock className="size-5" />} tone="success" />
           </>
         )}
       </div>
@@ -93,12 +99,12 @@ export default async function DashboardHome({ searchParams }: { searchParams: Pr
       <div className="grid gap-6 lg:grid-cols-5">
         <Card className="lg:col-span-3">
           <CardHeader className="flex-row items-center justify-between">
-            <CardTitle className="text-base">Upcoming bookings</CardTitle>
-            <Button asChild variant="ghost" size="sm"><Link href="/dashboard/bookings">View all</Link></Button>
+            <CardTitle className="text-base">{t("upcomingBookings")}</CardTitle>
+            <Button asChild variant="ghost" size="sm"><Link href="/dashboard/bookings">{t("viewAll")}</Link></Button>
           </CardHeader>
           <CardContent>
             {upcoming.length === 0 ? (
-              <p className="text-sm text-muted-foreground">Nothing scheduled. {asSeeker && <Link href="/browse" className="font-medium text-primary hover:underline">Browse services</Link>}</p>
+              <p className="text-sm text-muted-foreground">{t("nothing")} {asSeeker && <Link href="/browse" className="font-medium text-primary hover:underline">{t("browse")}</Link>}</p>
             ) : (
               <ul className="divide-y">
                 {upcoming.map((b) => {
@@ -107,8 +113,8 @@ export default async function DashboardHome({ searchParams }: { searchParams: Pr
                     <li key={b.id}>
                       <Link href={`/dashboard/bookings/${b.id}`} className="flex items-center justify-between gap-3 py-3 hover:bg-muted/40">
                         <div className="min-w-0">
-                          <p className="truncate text-sm font-medium">{b.service?.title ?? "Service"}</p>
-                          <p className="text-xs text-muted-foreground">{formatDateTime(b.booking_date)} · with {other?.full_name ?? "—"}</p>
+                          <p className="truncate text-sm font-medium">{b.service?.title ?? t("service")}</p>
+                          <p className="text-xs text-muted-foreground">{t("with", { date: f.dateTime(b.booking_date), name: other?.full_name ?? "—" })}</p>
                         </div>
                         <StatusBadge status={b.status} />
                       </Link>
@@ -121,14 +127,14 @@ export default async function DashboardHome({ searchParams }: { searchParams: Pr
         </Card>
         <Card className="lg:col-span-2">
           <CardHeader className="flex-row items-center justify-between">
-            <CardTitle className="text-base">Recent activity</CardTitle>
-            <Button asChild variant="ghost" size="sm"><Link href="/dashboard/history">History</Link></Button>
+            <CardTitle className="text-base">{t("recent")}</CardTitle>
+            <Button asChild variant="ghost" size="sm"><Link href="/dashboard/history">{t("history")}</Link></Button>
           </CardHeader>
           <CardContent><ActivityHistory logs={activity} /></CardContent>
         </Card>
       </div>
       {stats && stats.completedBookings > 0 && (
-        <p className="flex items-center gap-1.5 text-xs text-muted-foreground"><CheckCircle2 className="size-3.5 text-emerald-500" /> {stats.completedBookings} bookings completed so far.</p>
+        <p className="flex items-center gap-1.5 text-xs text-muted-foreground"><CheckCircle2 className="size-3.5 text-emerald-500" /> {t("completedSoFar", { count: stats.completedBookings })}</p>
       )}
     </div>
   );

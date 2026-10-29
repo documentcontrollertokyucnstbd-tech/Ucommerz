@@ -1,13 +1,15 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { Search } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
 
 /** Small GET-style search box that keeps the other query params. */
-export function AdminSearch({ basePath, params, placeholder = "Search…" }: { basePath: string; params: Record<string, string | undefined>; placeholder?: string }) {
+export function AdminSearch({ basePath, params, placeholder }: { basePath: string; params: Record<string, string | undefined>; placeholder?: string }) {
+  const t = useTranslations("AdmSearch");
   const router = useRouter();
   const [q, setQ] = useState(params.q ?? "");
   return (
@@ -23,10 +25,10 @@ export function AdminSearch({ basePath, params, placeholder = "Search…" }: { b
       }}
     >
       <div className="relative flex-1 sm:w-72 sm:flex-none">
-        <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
-        <Input value={q} onChange={(e) => setQ(e.target.value)} placeholder={placeholder} className="pl-9" aria-label="Search" />
+        <Search className="pointer-events-none absolute start-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+        <Input value={q} onChange={(e) => setQ(e.target.value)} placeholder={placeholder ?? t("placeholder")} className="ps-9" aria-label={t("label")} />
       </div>
-      <Button type="submit" variant="outline">Search</Button>
+      <Button type="submit" variant="outline">{t("submit")}</Button>
     </form>
   );
 }

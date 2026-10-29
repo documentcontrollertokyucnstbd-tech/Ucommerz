@@ -1,11 +1,13 @@
 import { isStaffRole } from "@ucommerz/shared";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import { ClipboardList } from "lucide-react";
 import { BOOKING_STATUSES, PAGE_SIZE, type BookingWithRelations } from "@ucommerz/shared";
 import { requireUser } from "@/app/lib/guards";
 import { BOOKING_SELECT } from "@/app/lib/booking-select";
-import { first, formatCurrency, formatDateTime, parsePositiveInt } from "@/app/lib/utils";
+import { first, parsePositiveInt } from "@/app/lib/utils";
+import { getFormat } from "@/app/lib/format-server";
 import { serviceImage, avatarOf } from "@/app/lib/media";
 import { PageHeader } from "@/app/components/PageHeader";
 import { EmptyState } from "@/app/components/EmptyState";
@@ -15,11 +17,17 @@ import { PackageBookingActions } from "@/app/components/PackageBookingActions";
 import { Card } from "@/app/components/ui/card";
 import { cn } from "@/app/lib/utils";
 
-export const metadata: Metadata = { title: "Bookings" };
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("DashBookings");
+  return { title: t("metaTitle") };
+}
 
 type SP = Record<string, string | string[] | undefined>;
 
 export default async function BookingsPage({ searchParams }: { searchParams: Promise<SP> }) {
+  const f = await getFormat();
+  const t = await getTranslations("DashBookings");
+  const ts = await getTranslations("Status");
   const sp = await searchParams;
   const { profile, supabase } = await requireUser("/dashboard/bookings");
   const tab = first(sp.tab) === "packages" ? "packages" : "services";
@@ -63,28 +71,28 @@ export default async function BookingsPage({ searchParams }: { searchParams: Pro
 
   return (
     <div className="space-y-5">
-      <PageHeader title="Bookings" description={view === "provider" ? "Requests from your customers." : "Services you've booked."} />
+      <PageHeader title={t("title")} description={view === "provider" ? t("descProvider") : t("descCustomer")} />
       <div className="flex flex-wrap items-center gap-2">
         {showSwitch && (
           <>
-            <Link href={href({ as: "customer", page: undefined })} className={chip(view === "customer")}>As customer</Link>
-            <Link href={href({ as: "provider", page: undefined })} className={chip(view === "provider")}>As provider</Link>
+            <Link href={href({ as: "customer", page: undefined })} className={chip(view === "customer")}>{t("asCustomer")}</Link>
+            <Link href={href({ as: "provider", page: undefined })} className={chip(view === "provider")}>{t("asProvider")}</Link>
             <span className="mx-1 h-4 w-px bg-border" />
           </>
         )}
-        <Link href={href({ tab: "services", page: undefined })} className={chip(tab === "services")}>Services</Link>
-        <Link href={href({ tab: "packages", page: undefined })} className={chip(tab === "packages")}>Packages</Link>
+        <Link href={href({ tab: "services", page: undefined })} className={chip(tab === "services")}>{t("tabServices")}</Link>
+        <Link href={href({ tab: "packages", page: undefined })} className={chip(tab === "packages")}>{t("tabPackages")}</Link>
       </div>
       <div className="flex flex-wrap gap-2">
-        <Link href={href({ status: undefined, page: undefined })} className={chip(!status)}>All</Link>
+        <Link href={href({ status: undefined, page: undefined })} className={chip(!status)}>{t("all")}</Link>
         {BOOKING_STATUSES.map((s) => (
-          <Link key={s} href={href({ status: s, page: undefined })} className={chip(status === s)}>{s.replace("_", " ").toLowerCase().replace(/^\w/, (c) => c.toUpperCase())}</Link>
+          <Link key={s} href={href({ status: s, page: undefined })} className={chip(status === s)}>{ts(s)}</Link>
         ))}
       </div>
 
       {tab === "services" ? (
         rows.length === 0 ? (
-          <EmptyState icon={<ClipboardList className="size-5" />} title="No bookings found" description={status ? "Try a different status filter." : view === "customer" ? "Browse services to make your first booking." : "Requests will appear here."} />
+          <EmptyState icon={<ClipboardList className="size-5" />} title={t("emptyTitle")} description={status ? t("emptyFilter") : view === "customer" ? t("emptyCustomer") : t("emptyProvider")} />
         ) : (
           <div className="grid gap-3">
             {rows.map((b) => {
@@ -94,13 +102,13 @@ export default async function BookingsPage({ searchParams }: { searchParams: Pro
                   <Card className="flex-row items-center gap-4 p-3 transition hover:shadow-md">
                     <img src={b.service ? serviceImage({ images: b.service.images, category: b.service.category }) : avatarOf(null)} alt="" className="size-16 shrink-0 rounded-lg object-cover" loading="lazy" />
                     <div className="min-w-0 flex-1">
-                      <p className="truncate font-semibold">{b.service?.title ?? "Service removed"}</p>
-                      <p className="text-xs text-muted-foreground">{view === "provider" ? "Customer" : "Provider"}: {other?.full_name ?? "—"}</p>
-                      <p className="text-xs text-muted-foreground">{formatDateTime(b.booking_date)} · {Number(b.duration)}h</p>
+                      <p className="truncate font-semibold">{b.service?.title ?? t("serviceRemoved")}</p>
+                      <p className="text-xs text-muted-foreground">{t(view === "provider" ? "customerLine" : "providerLine", { name: other?.full_name ?? "—" })}</p>
+                      <p className="text-xs text-muted-foreground">{t("durationLine", { date: f.dateTime(b.booking_date), hours: Number(b.duration) })}</p>
                     </div>
                     <div className="flex flex-col items-end gap-1.5">
                       <StatusBadge status={b.status} />
-                      <span className="text-sm font-bold text-primary">{formatCurrency(b.total_price)}</span>
+                      <span className="text-sm font-bold text-primary">{f.currency(b.total_price)}</span>
                     </div>
                   </Card>
                 </Link>
@@ -109,18 +117,18 @@ export default async function BookingsPage({ searchParams }: { searchParams: Pro
           </div>
         )
       ) : pkgRows.length === 0 ? (
-        <EmptyState icon={<ClipboardList className="size-5" />} title="No package bookings" />
+        <EmptyState icon={<ClipboardList className="size-5" />} title={t("noPackages")} />
       ) : (
         <div className="grid gap-3">
           {pkgRows.map((b) => (
             <Card key={b.id} className="flex-row flex-wrap items-center justify-between gap-3 p-4">
               <div className="min-w-0">
-                <p className="font-semibold">{b.pkg?.title ?? "Package"}</p>
-                <p className="text-xs text-muted-foreground">{view === "provider" ? `Customer: ${b.seeker?.full_name ?? "—"}` : `Provider: ${b.provider?.full_name ?? "—"}`} · {formatDateTime(b.booking_date)}</p>
+                <p className="font-semibold">{b.pkg?.title ?? t("package")}</p>
+                <p className="text-xs text-muted-foreground">{t("pkgLine", { who: view === "provider" ? t("customerLine", { name: b.seeker?.full_name ?? "—" }) : t("providerLine", { name: b.provider?.full_name ?? "—" }), date: f.dateTime(b.booking_date) })}</p>
                 {b.notes && <p className="mt-1 text-xs text-muted-foreground">“{b.notes}”</p>}
               </div>
               <div className="flex flex-col items-end gap-2">
-                <div className="flex items-center gap-2"><StatusBadge status={b.status} /><span className="text-sm font-bold text-primary">{formatCurrency(b.total_price)}</span></div>
+                <div className="flex items-center gap-2"><StatusBadge status={b.status} /><span className="text-sm font-bold text-primary">{f.currency(b.total_price)}</span></div>
                 <PackageBookingActions id={b.id} status={b.status} side={view === "provider" ? "provider" : "seeker"} />
               </div>
             </Card>

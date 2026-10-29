@@ -1,0 +1,203 @@
+{
+  "PubService": {
+    "notFound": "خدمت نہیں ملی",
+    "metaDescription": "UCOMMERZ پر {title} بُک کریں۔",
+    "breadcrumb": "راستہ",
+    "browse": "دیکھیں",
+    "photoAlt": "{title} کی تصویر {n}",
+    "remote": "ریموٹ",
+    "featured": "نمایاں",
+    "views": "{count, plural, one {# مشاہدہ} other {# مشاہدات}}",
+    "hoursShort": "گھنٹے",
+    "about": "اس خدمت کے بارے میں",
+    "area": "خدمت کا علاقہ",
+    "servesWithin": "{km} کلومیٹر کے اندر کسٹمرز کو خدمات فراہم کرتا ہے۔",
+    "reviewsHeading": "جائزے ({count})",
+    "notAccepting": "یہ خدمت فی الحال بکنگ قبول نہیں کر رہی۔",
+    "verified": "تصدیق شدہ",
+    "viewProfile": "پروفائل دیکھیں",
+    "message": "پیغام",
+    "similar": "ملتی جلتی خدمات"
+  },
+  "PubProvider": {
+    "notFound": "پروائیڈر نہیں ملا",
+    "metaDescription": "UCOMMERZ پر {name} کی خدمات بُک کریں۔",
+    "providerFallback": "پروائیڈر",
+    "verifiedProvider": "تصدیق شدہ پروائیڈر",
+    "verified": "تصدیق شدہ",
+    "joined": "شمولیت: {date}",
+    "website": "ویب سائٹ",
+    "message": "پیغام",
+    "editProfile": "پروفائل میں ترمیم کریں",
+    "shareTitle": "UCOMMERZ پر {name}",
+    "servicesHeading": "خدمات ({count})",
+    "noServices": "فی الحال کوئی فعال خدمت نہیں۔",
+    "packages": "پیکجز",
+    "save": "{percent}% بچائیں",
+    "serviceFallback": "خدمت",
+    "portfolio": "پورٹ فولیو",
+    "viewProject": "پروجیکٹ دیکھیں",
+    "reviewsHeading": "جائزے ({count})",
+    "skills": "مہارتیں",
+    "yearsShort": "{n} سال",
+    "certifications": "سرٹیفکیشنز",
+    "viewCertificate": "سرٹیفکیٹ دیکھیں"
+  },
+  "PubProfile": {
+    "title": "میرا پروفائل",
+    "viewPublic": "عوامی پروفائل دیکھیں",
+    "photo": "تصویر",
+    "details": "تفصیلات",
+    "detailsDesc": "اپنی معلومات اپ ٹو ڈیٹ رکھیں۔",
+    "accountType": "اکاؤنٹ کی قسم",
+    "seekerPrompt": "کیا آپ اپنی خدمات بھی پیش کرنا چاہتے ہیں؟ پروائیڈر ٹولز فعال کریں — یہ مفت ہے۔",
+    "providerPrompt": "کیا آپ دوسروں سے خدمات بُک کرنا چاہتے ہیں؟ کسٹمر فیچرز فعال کریں۔",
+    "becomeProvider": "پروائیڈر بنیں",
+    "enableCustomer": "کسٹمر فیچرز فعال کریں"
+  },
+  "PubErrors": {
+    "notFoundTitle": "صفحہ نہیں ملا",
+    "notFoundBody": "آپ جو صفحہ تلاش کر رہے ہیں وہ موجود نہیں یا منتقل ہو چکا ہے۔",
+    "backHome": "ہوم پر واپس جائیں",
+    "browseServices": "خدمات دیکھیں",
+    "loading": "لوڈ ہو رہا ہے",
+    "title": "کچھ غلط ہو گیا",
+    "body": "ایک غیر متوقع خرابی پیش آئی۔ آپ دوبارہ کوشش کر سکتے ہیں یا واپس جا سکتے ہیں۔",
+    "reference": "حوالہ: {digest}",
+    "tryAgain": "دوبارہ کوشش کریں",
+    "goHome": "ہوم پر جائیں"
+  },
+  "PubBooking": {
+    "signInPrompt": "اس خدمت کو بُک کرنے کے لیے سائن اِن کریں۔",
+    "signInToBook": "بُک کرنے کے لیے سائن اِن کریں",
+    "ownService": "یہ آپ کی اپنی خدمت ہے۔ اسے اپنے ڈیش بورڈ سے منظم کریں۔",
+    "providerOnly": "آپ کا اکاؤنٹ پروائیڈر کے طور پر سیٹ ہے۔ خدمات بُک کرنے کے لیے اپنے <link>پروفائل</link> میں کسٹمر کا کردار فعال کریں۔",
+    "chooseDate": "تاریخ منتخب کریں",
+    "chooseTime": "وقت منتخب کریں",
+    "chooseFuture": "مستقبل کا وقت منتخب کریں",
+    "date": "تاریخ",
+    "pickDate": "تاریخ چنیں",
+    "startTime": "آغاز کا وقت",
+    "duration": "دورانیہ (گھنٹے)",
+    "notes": "پروائیڈر کے لیے نوٹس (اختیاری)",
+    "notesPlaceholder": "کوئی بھی مددگار تفصیل بتائیں…",
+    "estimatedTotal": "تخمینی کل",
+    "noCharge": "آن لائن آپ سے کوئی رقم نہیں لی جائے گی — پروائیڈر پہلے آپ کی درخواست کی تصدیق کرے گا۔",
+    "request": "بکنگ کی درخواست کریں"
+  },
+  "PubBookPackage": {
+    "requested": "پیکج کی درخواست بھیج دی گئی!",
+    "book": "پیکج بُک کریں",
+    "dialogTitle": "“{title}” بُک کریں",
+    "dialogDesc": "منتخب کریں کہ آپ کب شروع کرنا چاہتے ہیں۔ پروائیڈر آپ کی درخواست کی تصدیق کرے گا۔",
+    "when": "پسندیدہ تاریخ اور وقت",
+    "notes": "نوٹس (اختیاری)",
+    "request": "پیکج کی درخواست کریں"
+  },
+  "PubReviews": {
+    "none": "ابھی کوئی جائزہ نہیں۔",
+    "customer": "کسٹمر",
+    "professionalism": "پیشہ ورانہ رویہ",
+    "quality": "معیار",
+    "punctuality": "وقت کی پابندی",
+    "response": "پروائیڈر کا جواب"
+  },
+  "PubReviewForm": {
+    "criteria": {
+      "rating": "مجموعی",
+      "professionalism": "پیشہ ورانہ رویہ",
+      "quality": "کام کا معیار",
+      "punctuality": "وقت کی پابندی"
+    },
+    "selectRating": "ریٹنگ منتخب کریں",
+    "yourReview": "آپ کا جائزہ",
+    "placeholder": "آپ کا تجربہ کیسا رہا؟",
+    "submit": "جائزہ جمع کرائیں"
+  },
+  "PubStars": {
+    "rated": "5 میں سے {value} ریٹنگ",
+    "ratedWithCount": "{count, plural, one {# جائزے} other {# جائزوں}} کی بنیاد پر 5 میں سے {value} ریٹنگ",
+    "rating": "ریٹنگ",
+    "starsLabel": "{count, plural, one {# ستارہ} other {# ستارے}}"
+  },
+  "PubFavorite": {
+    "signIn": "پسندیدہ محفوظ کرنے کے لیے سائن اِن کریں۔",
+    "failed": "پسندیدہ اپ ڈیٹ نہیں ہو سکا۔ براہِ کرم دوبارہ کوشش کریں۔",
+    "remove": "پسندیدہ سے ہٹائیں",
+    "save": "پسندیدہ میں محفوظ کریں",
+    "saved": "محفوظ",
+    "saveShort": "محفوظ کریں"
+  },
+  "PubShare": {
+    "label": "شیئر کریں",
+    "copied": "لنک کلپ بورڈ پر کاپی ہو گیا",
+    "copyFailed": "لنک کاپی نہیں ہو سکا۔ اسے ایڈریس بار سے کاپی کر لیں۔"
+  },
+  "PubReport": {
+    "label": "رپورٹ کریں",
+    "title": {
+      "SERVICE": "اس خدمت کی رپورٹ کریں",
+      "REVIEW": "اس جائزے کی رپورٹ کریں",
+      "USER": "اس صارف کی رپورٹ کریں",
+      "MESSAGE": "اس پیغام کی رپورٹ کریں"
+    },
+    "description": "ہمیں بتائیں کیا مسئلہ ہے۔ رپورٹس کا جائزہ ہماری ماڈریشن ٹیم لیتی ہے۔",
+    "reason": "وجہ",
+    "selectReason": "وجہ منتخب کریں",
+    "other": "دیگر",
+    "details": "تفصیلات (اختیاری)",
+    "detailsPlaceholder": "تحقیق میں مدد دینے والی کوئی بھی بات شامل کریں…",
+    "cancel": "منسوخ کریں",
+    "submit": "رپورٹ جمع کرائیں"
+  },
+  "PubMap": {
+    "viewDetails": "تفصیلات دیکھیں",
+    "loadFailed": "نقشہ اس وقت لوڈ نہیں ہو سکا۔",
+    "noKey": "نقشہ دکھانے کے لیے NEXT_PUBLIC_GOOGLE_MAPS_API_KEY شامل کریں۔",
+    "openInGoogle": "گوگل میپس میں کھولیں",
+    "label": "نقشہ"
+  },
+  "PubLocation": {
+    "placeholder": "شہر، پتہ یا علاقہ",
+    "enterAddress": "پہلے کوئی پتہ درج کریں۔",
+    "noKey": "گوگل میپس کی کلید کنفیگر نہیں ہے۔",
+    "notFound": "یہ پتہ نہیں مل سکا۔",
+    "found": "مقام مل گیا۔",
+    "geocodeFailed": "جیو کوڈنگ ناکام ہو گئی۔ دوبارہ کوشش کریں۔",
+    "unsupported": "آپ کا براؤزر جیو لوکیشن کو سپورٹ نہیں کرتا۔",
+    "usingCurrent": "آپ کا موجودہ مقام استعمال کیا جا رہا ہے۔",
+    "denied": "مقام کی اجازت مسترد کر دی گئی۔",
+    "couldNotLocate": "آپ کا مقام حاصل نہیں ہو سکا۔",
+    "findOnMap": "نقشے پر تلاش کریں",
+    "useMyLocation": "میرا مقام استعمال کریں"
+  },
+  "PubAvatar": {
+    "uploadFailed": "اپ لوڈ ناکام ہو گیا",
+    "photoAlt": "پروفائل تصویر",
+    "uploadLabel": "پروفائل تصویر اپ لوڈ کریں",
+    "change": "تصویر تبدیل کریں",
+    "remove": "ہٹائیں",
+    "hint": "JPG، PNG، WebP یا GIF · زیادہ سے زیادہ 3 MB"
+  },
+  "PubProfileForm": {
+    "fullName": "پورا نام",
+    "phone": "فون",
+    "about": "آپ کے بارے میں",
+    "aboutHint": "آپ کے عوامی پروفائل پر دکھایا جاتا ہے۔",
+    "location": "مقام",
+    "locationHint": "قریبی خدمات کی تلاش اور نقشوں کے لیے استعمال ہوتا ہے۔",
+    "website": "ویب سائٹ",
+    "save": "تبدیلیاں محفوظ کریں"
+  },
+  "PubNotify": {
+    "title": "اطلاعات",
+    "labelUnread": "اطلاعات ({count} غیر پڑھی)",
+    "markAllRead": "سب پڑھی ہوئی کریں",
+    "caughtUp": "آپ سب دیکھ چکے ہیں۔",
+    "history": "سرگرمی کی تاریخ دیکھیں"
+  },
+  "PubEnableRole": {
+    "providerEnabled": "پروائیڈر ٹولز فعال ہو گئے!",
+    "customerEnabled": "کسٹمر فیچرز فعال ہو گئے!"
+  }
+}

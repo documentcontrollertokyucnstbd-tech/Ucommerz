@@ -1,19 +1,25 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { CheckCircle2, ShieldAlert, XCircle } from "lucide-react";
 import { requireSuperAdmin } from "@/app/lib/guards";
 import { hasServiceRole } from "@/app/lib/supabase/admin";
 import { isEmailConfigured } from "@/app/lib/email-service";
-import { formatDateTime } from "@/app/lib/utils";
+import { getFormat } from "@/app/lib/format-server";
 import { PageHeader } from "@/app/components/PageHeader";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/app/components/ui/card";
 import type { AdminLog } from "@ucommerz/shared";
 
-export const metadata: Metadata = { title: "Security" };
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("AdmSecurity");
+  return { title: t("metaTitle") };
+}
 
 const csv = (v?: string) => (v ?? "").split(",").map((s) => s.trim()).filter(Boolean);
 
 export default async function SecurityPage() {
+  const f = await getFormat();
   const { supabase } = await requireSuperAdmin();
+  const t = await getTranslations("AdmSecurity");
   const [suspended, admins, recent] = await Promise.all([
     supabase.from("users").select("id", { count: "exact", head: true }).eq("is_active", false),
     supabase.from("users").select("id, full_name, email").in("role", ["ADMIN", "SUPERADMIN"]),
@@ -22,16 +28,16 @@ export default async function SecurityPage() {
   const whitelist = csv(process.env.ADMIN_IP_WHITELIST);
   const blacklist = csv(process.env.ADMIN_IP_BLACKLIST);
   const checks = [
-    { ok: hasServiceRole(), label: "Service role key configured", hint: "Needed for role changes, user deletion, auto-confirm and cron." },
-    { ok: Boolean(process.env.SESSION_SECRET), label: "SESSION_SECRET set", hint: "Protects the reminder cron endpoint." },
-    { ok: isEmailConfigured(), label: "Resend API key configured", hint: "Transactional emails." },
-    { ok: process.env.ENFORCE_ADMIN_IP_WHITELIST === "true" && whitelist.length > 0, label: "Admin IP allow-list enforced", hint: "Set ENFORCE_ADMIN_IP_WHITELIST=true and ADMIN_IP_WHITELIST=ip1,ip2." },
+    { ok: hasServiceRole(), label: t("serviceRole"), hint: t("serviceRoleHint") },
+    { ok: Boolean(process.env.SESSION_SECRET), label: t("sessionSecret"), hint: t("sessionSecretHint") },
+    { ok: isEmailConfigured(), label: t("resendKey"), hint: t("resendKeyHint") },
+    { ok: process.env.ENFORCE_ADMIN_IP_WHITELIST === "true" && whitelist.length > 0, label: t("ipAllowList"), hint: t("ipAllowListHint") },
   ];
   return (
     <div className="max-w-4xl space-y-6">
-      <PageHeader title="Security" description="Hardening status and recent administrative activity." />
+      <PageHeader title={t("title")} description={t("description")} />
       <Card>
-        <CardHeader><CardTitle className="text-base">Checklist</CardTitle><CardDescription>Configuration that affects platform security.</CardDescription></CardHeader>
+        <CardHeader><CardTitle className="text-base">{t("checklist")}</CardTitle><CardDescription>{t("checklistDesc")}</CardDescription></CardHeader>
         <CardContent>
           <ul className="space-y-3">
             {checks.map((c) => (
@@ -45,16 +51,16 @@ export default async function SecurityPage() {
       </Card>
       <div className="grid gap-6 md:grid-cols-2">
         <Card>
-          <CardHeader><CardTitle className="text-base">Access control</CardTitle></CardHeader>
+          <CardHeader><CardTitle className="text-base">{t("accessControl")}</CardTitle></CardHeader>
           <CardContent className="space-y-2 text-sm">
-            <p><span className="text-muted-foreground">Suspended accounts:</span> {suspended.count ?? 0}</p>
-            <p><span className="text-muted-foreground">Blocked admin IPs:</span> {blacklist.length}</p>
-            <p><span className="text-muted-foreground">Allow-listed admin IPs:</span> {whitelist.length}</p>
-            <p className="pt-1 text-xs text-muted-foreground">API requests are rate-limited per IP; Server Actions apply additional per-action limits. Row Level Security is enabled on every table.</p>
+            <p><span className="text-muted-foreground">{t("suspendedAccounts")}</span> {suspended.count ?? 0}</p>
+            <p><span className="text-muted-foreground">{t("blockedIps")}</span> {blacklist.length}</p>
+            <p><span className="text-muted-foreground">{t("allowedIps")}</span> {whitelist.length}</p>
+            <p className="pt-1 text-xs text-muted-foreground">{t("accessNote")}</p>
           </CardContent>
         </Card>
         <Card>
-          <CardHeader><CardTitle className="flex items-center gap-2 text-base"><ShieldAlert className="size-4" /> Administrators</CardTitle></CardHeader>
+          <CardHeader><CardTitle className="flex items-center gap-2 text-base"><ShieldAlert className="size-4" /> {t("administrators")}</CardTitle></CardHeader>
           <CardContent>
             <ul className="space-y-1.5 text-sm">
               {((admins.data as { id: string; full_name: string | null; email: string }[] | null) ?? []).map((a) => <li key={a.id}>{a.full_name ?? a.email} <span className="text-xs text-muted-foreground">{a.email}</span></li>)}
@@ -63,10 +69,10 @@ export default async function SecurityPage() {
         </Card>
       </div>
       <Card>
-        <CardHeader><CardTitle className="text-base">Recent admin actions</CardTitle></CardHeader>
+        <CardHeader><CardTitle className="text-base">{t("recentActions")}</CardTitle></CardHeader>
         <CardContent>
           <ul className="divide-y text-sm">
-            {((recent.data as AdminLog[] | null) ?? []).map((l) => <li key={l.id} className="flex justify-between py-2"><span>{l.action.replace(/_/g, " ").toLowerCase()} <span className="text-xs text-muted-foreground">· {l.ip_address ?? "—"}</span></span><span className="text-xs text-muted-foreground">{formatDateTime(l.created_at)}</span></li>)}
+            {((recent.data as AdminLog[] | null) ?? []).map((l) => <li key={l.id} className="flex justify-between py-2"><span>{l.action.replace(/_/g, " ").toLowerCase()} <span className="text-xs text-muted-foreground">· {l.ip_address ?? "—"}</span></span><span className="text-xs text-muted-foreground">{f.dateTime(l.created_at)}</span></li>)}
           </ul>
         </CardContent>
       </Card>

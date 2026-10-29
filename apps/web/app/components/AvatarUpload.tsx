@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { Camera, Loader2, Trash2 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/app/components/ui/avatar";
 import { Button } from "@/app/components/ui/button";
@@ -14,6 +15,7 @@ import { initials } from "@/app/lib/utils";
 import toast from "react-hot-toast";
 
 export function AvatarUpload({ userId, name, url }: { userId: string; name: string | null; url: string | null }) {
+  const t = useTranslations("PubAvatar");
   const router = useRouter();
   const input = useRef<HTMLInputElement>(null);
   const [busy, setBusy] = useState(false);
@@ -31,7 +33,7 @@ export function AvatarUpload({ userId, name, url }: { userId: string; name: stri
       const res = await toastAction(updateAvatarAction(publicUrl));
       if (res.ok) router.refresh();
     } catch (e) {
-      toast.error(e instanceof Error ? e.message : "Upload failed");
+      toast.error(e instanceof Error ? e.message : t("uploadFailed"));
     } finally {
       setBusy(false);
       if (input.current) input.current.value = "";
@@ -48,20 +50,20 @@ export function AvatarUpload({ userId, name, url }: { userId: string; name: stri
   return (
     <div className="flex items-center gap-4">
       <Avatar className="size-20">
-        <AvatarImage src={avatarOf(url)} alt={name ?? "Profile photo"} />
+        <AvatarImage src={avatarOf(url)} alt={name ?? t("photoAlt")} />
         <AvatarFallback className="text-lg">{initials(name)}</AvatarFallback>
       </Avatar>
       <div className="flex flex-col gap-2">
-        <input ref={input} type="file" accept="image/jpeg,image/png,image/webp,image/gif" className="sr-only" onChange={(e) => onFile(e.target.files?.[0])} aria-label="Upload profile photo" />
+        <input ref={input} type="file" accept="image/jpeg,image/png,image/webp,image/gif" className="sr-only" onChange={(e) => onFile(e.target.files?.[0])} aria-label={t("uploadLabel")} />
         <Button type="button" variant="outline" size="sm" disabled={busy} onClick={() => input.current?.click()}>
-          {busy ? <Loader2 className="animate-spin" /> : <Camera />} Change photo
+          {busy ? <Loader2 className="animate-spin" /> : <Camera />} {t("change")}
         </Button>
         {url && (
           <Button type="button" variant="ghost" size="sm" disabled={busy} onClick={remove}>
-            <Trash2 /> Remove
+            <Trash2 /> {t("remove")}
           </Button>
         )}
-        <p className="text-xs text-muted-foreground">JPG, PNG, WebP or GIF · max 3 MB</p>
+        <p className="text-xs text-muted-foreground">{t("hint")}</p>
       </div>
     </div>
   );

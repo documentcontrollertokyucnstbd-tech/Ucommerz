@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { Badge } from "@/app/components/ui/badge";
 
 type Variant = "default" | "secondary" | "destructive" | "outline" | "success" | "warning" | "info" | "muted";
@@ -24,9 +25,12 @@ const MAP: Record<string, Variant> = {
 };
 
 export function StatusBadge({ status, className }: { status: string; className?: string }) {
+  const t = useTranslations("Status");
   return (
     <Badge variant={MAP[status] ?? "outline"} className={className}>
-      {status.replace(/_/g, " ").toLowerCase().replace(/^\w/, (c) => c.toUpperCase())}
+      {t.has(status)
+        ? t(status)
+        : status.replace(/_/g, " ").toLowerCase().replace(/^\w/, (c) => c.toUpperCase())}
     </Badge>
   );
 }

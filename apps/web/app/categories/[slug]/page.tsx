@@ -18,11 +18,12 @@ type Props = { params: Promise<{ slug: string }>; searchParams: Promise<SearchPa
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
+  const t = await getTranslations("Meta");
   const category = await safely(() => getCategoryBySlug(slug), null);
-  if (!category) return { title: "Category not found" };
+  if (!category) return { title: t("categoryNotFound") };
   return {
     title: category.name,
-    description: category.description ?? `Browse ${category.name} services on UCOMMERZ.`,
+    description: category.description ?? t("categoryDesc", { name: category.name }),
     alternates: { canonical: `/categories/${category.slug}` },
   };
 }

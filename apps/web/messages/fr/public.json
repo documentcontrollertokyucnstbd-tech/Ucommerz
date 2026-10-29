@@ -1,0 +1,203 @@
+{
+  "PubService": {
+    "notFound": "Service introuvable",
+    "metaDescription": "Réservez {title} sur UCOMMERZ.",
+    "breadcrumb": "Fil d'Ariane",
+    "browse": "Parcourir",
+    "photoAlt": "{title}, photo {n}",
+    "remote": "À distance",
+    "featured": "À la une",
+    "views": "{count, plural, one {# vue} other {# vues}}",
+    "hoursShort": "h",
+    "about": "À propos de ce service",
+    "area": "Zone d'intervention",
+    "servesWithin": "Intervient auprès des clients dans un rayon de {km} km.",
+    "reviewsHeading": "Avis ({count})",
+    "notAccepting": "Ce service n'accepte pas de réservations pour le moment.",
+    "verified": "Vérifié",
+    "viewProfile": "Voir le profil",
+    "message": "Message",
+    "similar": "Services similaires"
+  },
+  "PubProvider": {
+    "notFound": "Prestataire introuvable",
+    "metaDescription": "Réservez les services de {name} sur UCOMMERZ.",
+    "providerFallback": "Prestataire",
+    "verifiedProvider": "Prestataire vérifié",
+    "verified": "Vérifié",
+    "joined": "Inscrit le {date}",
+    "website": "Site web",
+    "message": "Message",
+    "editProfile": "Modifier le profil",
+    "shareTitle": "{name} sur UCOMMERZ",
+    "servicesHeading": "Services ({count})",
+    "noServices": "Aucun service actif pour le moment.",
+    "packages": "Forfaits",
+    "save": "Économisez {percent} %",
+    "serviceFallback": "Service",
+    "portfolio": "Portfolio",
+    "viewProject": "Voir le projet",
+    "reviewsHeading": "Avis ({count})",
+    "skills": "Compétences",
+    "yearsShort": "{n} ans",
+    "certifications": "Certifications",
+    "viewCertificate": "Voir le certificat"
+  },
+  "PubProfile": {
+    "title": "Mon profil",
+    "viewPublic": "Voir le profil public",
+    "photo": "Photo",
+    "details": "Informations",
+    "detailsDesc": "Gardez vos informations à jour.",
+    "accountType": "Type de compte",
+    "seekerPrompt": "Vous souhaitez aussi proposer vos services ? Activez les outils prestataire, c'est gratuit.",
+    "providerPrompt": "Vous souhaitez réserver des services ? Activez les fonctionnalités client.",
+    "becomeProvider": "Devenir prestataire",
+    "enableCustomer": "Activer les fonctionnalités client"
+  },
+  "PubErrors": {
+    "notFoundTitle": "Page introuvable",
+    "notFoundBody": "La page que vous cherchez n'existe pas ou a été déplacée.",
+    "backHome": "Retour à l'accueil",
+    "browseServices": "Parcourir les services",
+    "loading": "Chargement",
+    "title": "Une erreur est survenue",
+    "body": "Une erreur inattendue s'est produite. Vous pouvez réessayer ou revenir en arrière.",
+    "reference": "Référence : {digest}",
+    "tryAgain": "Réessayer",
+    "goHome": "Aller à l'accueil"
+  },
+  "PubBooking": {
+    "signInPrompt": "Connectez-vous pour réserver ce service.",
+    "signInToBook": "Se connecter pour réserver",
+    "ownService": "Ce service est le vôtre. Gérez-le depuis votre tableau de bord.",
+    "providerOnly": "Votre compte est configuré en tant que prestataire. Activez le rôle client dans votre <link>profil</link> pour réserver des services.",
+    "chooseDate": "Choisissez une date",
+    "chooseTime": "Choisissez une heure",
+    "chooseFuture": "Choisissez une heure à venir",
+    "date": "Date",
+    "pickDate": "Sélectionner une date",
+    "startTime": "Heure de début",
+    "duration": "Durée (heures)",
+    "notes": "Notes pour le prestataire (facultatif)",
+    "notesPlaceholder": "Ajoutez tout détail utile…",
+    "estimatedTotal": "Total estimé",
+    "noCharge": "Aucun paiement en ligne : le prestataire confirmera d'abord votre demande.",
+    "request": "Demander une réservation"
+  },
+  "PubBookPackage": {
+    "requested": "Forfait demandé !",
+    "book": "Réserver le forfait",
+    "dialogTitle": "Réserver « {title} »",
+    "dialogDesc": "Choisissez quand vous souhaitez commencer. Le prestataire confirmera votre demande.",
+    "when": "Date et heure souhaitées",
+    "notes": "Notes (facultatif)",
+    "request": "Demander le forfait"
+  },
+  "PubReviews": {
+    "none": "Aucun avis pour le moment.",
+    "customer": "Client",
+    "professionalism": "Professionnalisme",
+    "quality": "Qualité",
+    "punctuality": "Ponctualité",
+    "response": "Réponse du prestataire"
+  },
+  "PubReviewForm": {
+    "criteria": {
+      "rating": "Globale",
+      "professionalism": "Professionnalisme",
+      "quality": "Qualité du travail",
+      "punctuality": "Ponctualité"
+    },
+    "selectRating": "Sélectionnez une note",
+    "yourReview": "Votre avis",
+    "placeholder": "Comment s'est passée votre expérience ?",
+    "submit": "Publier l'avis"
+  },
+  "PubStars": {
+    "rated": "Noté {value} sur 5",
+    "ratedWithCount": "Noté {value} sur 5 d'après {count, plural, one {# avis} other {# avis}}",
+    "rating": "Note",
+    "starsLabel": "{count, plural, one {# étoile} other {# étoiles}}"
+  },
+  "PubFavorite": {
+    "signIn": "Connectez-vous pour enregistrer des favoris.",
+    "failed": "Impossible de mettre à jour les favoris. Veuillez réessayer.",
+    "remove": "Retirer des favoris",
+    "save": "Ajouter aux favoris",
+    "saved": "Enregistré",
+    "saveShort": "Enregistrer"
+  },
+  "PubShare": {
+    "label": "Partager",
+    "copied": "Lien copié dans le presse-papiers",
+    "copyFailed": "Impossible de copier le lien. Copiez-le depuis la barre d'adresse."
+  },
+  "PubReport": {
+    "label": "Signaler",
+    "title": {
+      "SERVICE": "Signaler ce service",
+      "REVIEW": "Signaler cet avis",
+      "USER": "Signaler cet utilisateur",
+      "MESSAGE": "Signaler ce message"
+    },
+    "description": "Dites-nous ce qui ne va pas. Les signalements sont examinés par notre équipe de modération.",
+    "reason": "Motif",
+    "selectReason": "Sélectionnez un motif",
+    "other": "Autre",
+    "details": "Détails (facultatif)",
+    "detailsPlaceholder": "Ajoutez tout élément utile à notre enquête…",
+    "cancel": "Annuler",
+    "submit": "Envoyer le signalement"
+  },
+  "PubMap": {
+    "viewDetails": "Voir les détails",
+    "loadFailed": "Impossible de charger la carte pour le moment.",
+    "noKey": "Ajoutez NEXT_PUBLIC_GOOGLE_MAPS_API_KEY pour afficher la carte.",
+    "openInGoogle": "Ouvrir dans Google Maps",
+    "label": "Carte"
+  },
+  "PubLocation": {
+    "placeholder": "Ville, adresse ou zone",
+    "enterAddress": "Saisissez d'abord une adresse.",
+    "noKey": "La clé Google Maps n'est pas configurée.",
+    "notFound": "Adresse introuvable.",
+    "found": "Lieu trouvé.",
+    "geocodeFailed": "Échec du géocodage. Veuillez réessayer.",
+    "unsupported": "Votre navigateur ne prend pas en charge la géolocalisation.",
+    "usingCurrent": "Utilisation de votre position actuelle.",
+    "denied": "L'autorisation de localisation a été refusée.",
+    "couldNotLocate": "Impossible d'obtenir votre position.",
+    "findOnMap": "Trouver sur la carte",
+    "useMyLocation": "Utiliser ma position"
+  },
+  "PubAvatar": {
+    "uploadFailed": "Échec du téléversement",
+    "photoAlt": "Photo de profil",
+    "uploadLabel": "Téléverser une photo de profil",
+    "change": "Changer la photo",
+    "remove": "Supprimer",
+    "hint": "JPG, PNG, WebP ou GIF · 3 Mo max."
+  },
+  "PubProfileForm": {
+    "fullName": "Nom complet",
+    "phone": "Téléphone",
+    "about": "À propos de vous",
+    "aboutHint": "Affiché sur votre profil public.",
+    "location": "Localisation",
+    "locationHint": "Utilisée pour la recherche de services à proximité et les cartes.",
+    "website": "Site web",
+    "save": "Enregistrer les modifications"
+  },
+  "PubNotify": {
+    "title": "Notifications",
+    "labelUnread": "Notifications ({count} non lues)",
+    "markAllRead": "Tout marquer comme lu",
+    "caughtUp": "Vous êtes à jour.",
+    "history": "Voir l'historique d'activité"
+  },
+  "PubEnableRole": {
+    "providerEnabled": "Outils prestataire activés !",
+    "customerEnabled": "Fonctionnalités client activées !"
+  }
+}

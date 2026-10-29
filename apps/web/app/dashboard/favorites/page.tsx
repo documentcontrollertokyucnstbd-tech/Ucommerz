@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Heart } from "lucide-react";
 import type { ServiceWithProvider } from "@ucommerz/shared";
+import { getTranslations } from "next-intl/server";
 import { requireSeeker } from "@/app/lib/guards";
 import { SERVICE_WITH_PROVIDER, getCategories, categoryName } from "@/app/lib/queries";
 import { safely } from "@/app/lib/queries-extra";
@@ -10,9 +11,13 @@ import { EmptyState } from "@/app/components/EmptyState";
 import { ServiceCard } from "@/app/components/ServiceCard";
 import { Button } from "@/app/components/ui/button";
 
-export const metadata: Metadata = { title: "Favorites" };
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("DashFavorites");
+  return { title: t("metaTitle") };
+}
 
 export default async function FavoritesPage() {
+  const t = await getTranslations("DashFavorites");
   const { profile, supabase } = await requireSeeker("/dashboard/favorites");
   const [categories, { data }] = await Promise.all([
     safely(getCategories, []),
@@ -24,9 +29,9 @@ export default async function FavoritesPage() {
 
   return (
     <div>
-      <PageHeader title="Favorites" description="Services you've saved for later." />
+      <PageHeader title={t("title")} description={t("desc")} />
       {services.length === 0 ? (
-        <EmptyState icon={<Heart className="size-5" />} title="No favorites yet" description="Tap the heart on any service to save it here." action={<Button asChild><Link href="/browse">Browse services</Link></Button>} />
+        <EmptyState icon={<Heart className="size-5" />} title={t("emptyTitle")} description={t("emptyDesc")} action={<Button asChild><Link href="/browse">{t("browse")}</Link></Button>} />
       ) : (
         <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
           {services.map((s) => <ServiceCard key={s.id} service={s} categoryLabel={categoryName(categories, s.category)} showFavorite favorite />)}

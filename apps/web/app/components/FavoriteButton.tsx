@@ -3,6 +3,7 @@
 import { usePathname, useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 import toast from "react-hot-toast";
+import { useTranslations } from "next-intl";
 import { Heart } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
 import { toggleFavoriteAction } from "@/app/actions/favorites";
@@ -19,6 +20,7 @@ export function FavoriteButton({
   variant?: "default" | "floating";
   className?: string;
 }) {
+  const t = useTranslations("PubFavorite");
   const router = useRouter();
   const pathname = usePathname();
   const [favorite, setFavorite] = useState(initialFavorite);
@@ -33,7 +35,7 @@ export function FavoriteButton({
         if (!res.ok) {
           setFavorite(previous);
           if (res.error === "AUTH_REQUIRED") {
-            toast.error("Please sign in to save favorites.");
+            toast.error(t("signIn"));
             router.push(`/login?next=${encodeURIComponent(pathname ?? "/")}`);
           } else {
             toast.error(res.error);
@@ -44,7 +46,7 @@ export function FavoriteButton({
         if (res.message) toast.success(res.message);
       } catch {
         setFavorite(previous);
-        toast.error("Couldn't update favorites. Please try again.");
+        toast.error(t("failed"));
       }
     });
   }
@@ -56,7 +58,7 @@ export function FavoriteButton({
         onClick={toggle}
         disabled={pending}
         aria-pressed={favorite}
-        aria-label={favorite ? "Remove from favorites" : "Save to favorites"}
+        aria-label={favorite ? t("remove") : t("save")}
         className={cn(
           "glass flex size-9 items-center justify-center rounded-full transition hover:scale-105 disabled:opacity-60",
           className,
@@ -70,7 +72,7 @@ export function FavoriteButton({
   return (
     <Button type="button" variant="outline" size="sm" onClick={toggle} disabled={pending} aria-pressed={favorite} className={className}>
       <Heart className={cn(favorite && "fill-rose-500 text-rose-500")} />
-      {favorite ? "Saved" : "Save"}
+      {favorite ? t("saved") : t("saveShort")}
     </Button>
   );
 }

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useQuery } from "@tanstack/react-query";
@@ -27,7 +28,7 @@ import { toastAction } from "@/app/lib/toast-action";
 export function ReportButton({
   targetType,
   targetId,
-  label = "Report",
+  label: labelProp,
   size = "sm",
   variant = "ghost",
   signedIn = true,
@@ -39,6 +40,8 @@ export function ReportButton({
   variant?: "ghost" | "outline";
   signedIn?: boolean;
 }) {
+  const t = useTranslations("PubReport");
+  const label = labelProp ?? t("label");
   const router = useRouter();
   const supabase = useSupabase();
   const [open, setOpen] = useState(false);
@@ -84,8 +87,8 @@ export function ReportButton({
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Report this {targetType.toLowerCase()}</DialogTitle>
-          <DialogDescription>Tell us what&apos;s wrong. Reports are reviewed by our moderation team.</DialogDescription>
+          <DialogTitle>{t(`title.${targetType}`)}</DialogTitle>
+          <DialogDescription>{t("description")}</DialogDescription>
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -94,11 +97,11 @@ export function ReportButton({
               name="reason"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Reason</FormLabel>
+                  <FormLabel>{t("reason")}</FormLabel>
                   <Select value={field.value} onValueChange={field.onChange}>
                     <FormControl>
                       <SelectTrigger className="w-full">
-                        <SelectValue placeholder="Select a reason" />
+                        <SelectValue placeholder={t("selectReason")} />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
@@ -107,7 +110,7 @@ export function ReportButton({
                           {r.reason}
                         </SelectItem>
                       ))}
-                      <SelectItem value="Other">Other</SelectItem>
+                      <SelectItem value="Other">{t("other")}</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />
@@ -119,9 +122,9 @@ export function ReportButton({
               name="description"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Details (optional)</FormLabel>
+                  <FormLabel>{t("details")}</FormLabel>
                   <FormControl>
-                    <Textarea rows={4} placeholder="Add anything that helps us investigate…" {...field} value={field.value ?? ""} />
+                    <Textarea rows={4} placeholder={t("detailsPlaceholder")} {...field} value={field.value ?? ""} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -129,11 +132,11 @@ export function ReportButton({
             />
             <DialogFooter>
               <Button type="button" variant="outline" onClick={() => setOpen(false)}>
-                Cancel
+                {t("cancel")}
               </Button>
               <Button type="submit" disabled={form.formState.isSubmitting}>
                 {form.formState.isSubmitting && <Loader2 className="animate-spin" />}
-                Submit report
+                {t("submit")}
               </Button>
             </DialogFooter>
           </form>

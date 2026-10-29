@@ -17,8 +17,21 @@ function merge(base: Messages, over: Messages): Messages {
   return out;
 }
 
+/** Extra message files per language (messages/<locale>/<name>.json), merged on top of messages/<locale>.json. */
+const PARTS = ["public", "dashboard", "admin", "common"] as const;
+
+async function part(locale: Locale, name: (typeof PARTS)[number]): Promise<Messages> {
+  try {
+    return (await import(`../../messages/${locale}/${name}.json`)).default as Messages;
+  } catch {
+    return {};
+  }
+}
+
 async function load(locale: Locale): Promise<Messages> {
-  return (await import(`../../messages/${locale}.json`)).default as Messages;
+  let out = (await import(`../../messages/${locale}.json`)).default as Messages;
+  for (const name of PARTS) out = merge(out, await part(locale, name));
+  return out;
 }
 
 export default getRequestConfig(async () => {

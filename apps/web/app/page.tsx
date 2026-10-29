@@ -1,15 +1,14 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { HomeSections } from "@/app/components/HomeSections";
 import { getAuth } from "@/app/lib/guards";
 import { getCategoryTree, getFeaturedProviders, getFeaturedServices } from "@/app/lib/queries";
 import { getFavoriteIds, getPlatformCounts, safely } from "@/app/lib/queries-extra";
 
-export const metadata: Metadata = {
-  title: { absolute: "UCOMMERZ — Book Trusted Experts for Every Service" },
-  description:
-    "Find and book verified local professionals: home services, web development, photography, cleaning, consulting and more.",
-  alternates: { canonical: "/" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("Meta");
+  return { title: { absolute: t("siteTitle") }, description: t("homeDesc"), alternates: { canonical: "/" } };
+}
 
 export const dynamic = "force-dynamic";
 

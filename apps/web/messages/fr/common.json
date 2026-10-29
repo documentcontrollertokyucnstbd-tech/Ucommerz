@@ -1,0 +1,45 @@
+{
+  "Status": {
+    "PENDING": "En attente",
+    "CONFIRMED": "Confirmée",
+    "IN_PROGRESS": "En cours",
+    "COMPLETED": "Terminée",
+    "CANCELLED": "Annulée",
+    "DISPUTED": "Contestée",
+    "ACTIVE": "Actif",
+    "INACTIVE": "Inactif",
+    "REJECTED": "Refusée",
+    "UNDER_REVIEW": "En cours d'examen",
+    "RESOLVED": "Résolu",
+    "DISMISSED": "Rejeté",
+    "SENT": "Envoyé",
+    "FAILED": "Échec"
+  },
+  "Role": {
+    "SEEKER": "Client",
+    "PROVIDER": "Prestataire",
+    "BOTH": "Client et prestataire",
+    "ADMIN": "Administrateur",
+    "SUPERADMIN": "Super administrateur"
+  },
+  "Meta": {
+    "siteTitle": "UCOMMERZ — Réservez des experts de confiance pour chaque service",
+    "siteDesc": "UCOMMERZ est la place de marché de services à la demande qui met en relation clients et professionnels locaux vérifiés. Comparez les tarifs à l'avance, planifiez des rendez-vous flexibles et gérez vos demandes en toute sécurité.",
+    "ogDesc": "Contactez des professionnels locaux vérifiés et réservez en toute confiance.",
+    "ogAlt": "UCOMMERZ — Réservez des experts de confiance pour chaque service",
+    "twDesc": "Réservez des experts de confiance pour chaque service.",
+    "homeDesc": "Trouvez et réservez des professionnels locaux vérifiés : services à domicile, développement web, photographie, ménage, conseil et plus encore.",
+    "browseTitle": "Parcourir les services",
+    "browseDesc": "Recherchez et filtrez des prestataires de confiance par catégorie, prix, note et distance.",
+    "categoriesTitle": "Catégories",
+    "categoriesDesc": "Découvrez toutes les catégories de services sur UCOMMERZ.",
+    "categoryNotFound": "Catégorie introuvable",
+    "categoryDesc": "Parcourez les services {name} sur UCOMMERZ.",
+    "loginTitle": "Connexion",
+    "loginDesc": "Connectez-vous à UCOMMERZ pour gérer vos réservations et messages.",
+    "registerTitle": "Créez votre compte",
+    "registerDesc": "Rejoignez UCOMMERZ en tant que client ou prestataire de services.",
+    "forgotTitle": "Mot de passe oublié",
+    "resetTitle": "Choisissez un nouveau mot de passe"
+  }
+}

@@ -6,37 +6,55 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function formatCurrency(value: number | string | null | undefined, currency = "USD"): string {
+/** Maps the app's language codes to BCP-47 tags for Intl (Latin digits for Arabic to keep prices/dates readable). */
+const INTL_TAGS: Record<string, string> = {
+  en: "en-US",
+  bn: "bn-BD",
+  hi: "hi-IN",
+  ur: "ur-PK",
+  zh: "zh-CN",
+  ja: "ja-JP",
+  ru: "ru-RU",
+  ar: "ar-u-nu-latn",
+  es: "es-ES",
+  fr: "fr-FR",
+};
+
+export function intlTag(locale?: string): string {
+  return INTL_TAGS[locale ?? "en"] ?? "en-US";
+}
+
+export function formatCurrency(value: number | string | null | undefined, currency = "USD", locale?: string): string {
   const n = Number(value ?? 0);
-  return new Intl.NumberFormat("en-US", {
+  return new Intl.NumberFormat(intlTag(locale), {
     style: "currency",
     currency,
     maximumFractionDigits: n % 1 === 0 ? 0 : 2,
   }).format(Number.isFinite(n) ? n : 0);
 }
 
-export function formatDate(value: string | Date | null | undefined, opts?: Intl.DateTimeFormatOptions): string {
+export function formatDate(value: string | Date | null | undefined, opts?: Intl.DateTimeFormatOptions, locale?: string): string {
   if (!value) return "—";
   const d = typeof value === "string" ? new Date(value) : value;
   if (Number.isNaN(d.getTime())) return "—";
-  return new Intl.DateTimeFormat("en-US", opts ?? { dateStyle: "medium" }).format(d);
+  return new Intl.DateTimeFormat(intlTag(locale), opts ?? { dateStyle: "medium" }).format(d);
 }
 
-export function formatDateTime(value: string | Date | null | undefined): string {
-  return formatDate(value, { dateStyle: "medium", timeStyle: "short" });
+export function formatDateTime(value: string | Date | null | undefined, locale?: string): string {
+  return formatDate(value, { dateStyle: "medium", timeStyle: "short" }, locale);
 }
 
-export function formatRelative(value: string | Date | null | undefined): string {
+export function formatRelative(value: string | Date | null | undefined, locale?: string): string {
   if (!value) return "";
   const d = typeof value === "string" ? new Date(value) : value;
   const diff = (d.getTime() - Date.now()) / 1000;
   const abs = Math.abs(diff);
-  const rtf = new Intl.RelativeTimeFormat("en", { numeric: "auto" });
+  const rtf = new Intl.RelativeTimeFormat(intlTag(locale), { numeric: "auto" });
   if (abs < 60) return rtf.format(Math.round(diff), "second");
   if (abs < 3600) return rtf.format(Math.round(diff / 60), "minute");
   if (abs < 86400) return rtf.format(Math.round(diff / 3600), "hour");
   if (abs < 86400 * 30) return rtf.format(Math.round(diff / 86400), "day");
-  return formatDate(d);
+  return formatDate(d, undefined, locale);
 }
 
 export function initials(name: string | null | undefined): string {

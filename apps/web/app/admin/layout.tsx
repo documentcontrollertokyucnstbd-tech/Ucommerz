@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import type { ReactNode } from "react";
 import { requireAdmin } from "@/app/lib/guards";
 import { AdminNav } from "@/app/components/AdminNav";
 
-export const metadata: Metadata = { title: { default: "Admin", template: "%s · Admin" }, robots: { index: false, follow: false } };
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("AdmLayout");
+  return { title: { default: t("title"), template: t("titleTemplate") }, robots: { index: false, follow: false } };
+}
 
 export default async function AdminLayout({ children }: { children: ReactNode }) {
   const { supabase, profile } = await requireAdmin();

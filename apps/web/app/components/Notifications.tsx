@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useTransition } from "react";
 import toast from "react-hot-toast";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
@@ -20,9 +21,12 @@ import {
 import { useSupabase } from "@/app/hooks/useSupabase";
 import { useRealtimeNotifications } from "@/app/hooks/useRealtimeNotifications";
 import { markNotificationsReadAction } from "@/app/actions/notifications";
-import { cn, formatRelative } from "@/app/lib/utils";
+import { cn } from "@/app/lib/utils";
+import { useFormat } from "@/app/lib/use-format";
 
 export function Notifications({ userId }: { userId: string }) {
+  const t = useTranslations("PubNotify");
+  const f = useFormat();
   const supabase = useSupabase();
   const queryClient = useQueryClient();
   const router = useRouter();
@@ -66,25 +70,25 @@ export function Notifications({ userId }: { userId: string }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" className="relative" aria-label={`Notifications${unread ? ` (${unread} unread)` : ""}`}>
+        <Button variant="ghost" size="icon" className="relative" aria-label={unread ? t("labelUnread", { count: unread }) : t("title")}>
           <Bell className="size-5" />
           {unread > 0 && (
-            <Badge className="absolute -right-1 -top-1 h-4 min-w-4 justify-center px-1 text-[10px]">{unread > 9 ? "9+" : unread}</Badge>
+            <Badge className="absolute -end-1 -top-1 h-4 min-w-4 justify-center px-1 text-[10px]">{unread > 9 ? "9+" : unread}</Badge>
           )}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[22rem] max-w-[calc(100vw-1.5rem)] p-0">
         <DropdownMenuLabel className="flex items-center justify-between px-3 py-2.5">
-          <span className="font-semibold">Notifications</span>
+          <span className="font-semibold">{t("title")}</span>
           {unread > 0 && (
             <Button variant="ghost" size="xs" disabled={pending} onClick={() => markRead()}>
-              <CheckCheck /> Mark all read
+              <CheckCheck /> {t("markAllRead")}
             </Button>
           )}
         </DropdownMenuLabel>
         <DropdownMenuSeparator className="m-0" />
         {notifications.length === 0 ? (
-          <div className="px-4 py-10 text-center text-sm text-muted-foreground">You&apos;re all caught up.</div>
+          <div className="px-4 py-10 text-center text-sm text-muted-foreground">{t("caughtUp")}</div>
         ) : (
           <ScrollArea className="h-80">
             <ul className="divide-y divide-border">
@@ -94,7 +98,7 @@ export function Notifications({ userId }: { userId: string }) {
                     type="button"
                     onClick={() => open(n)}
                     className={cn(
-                      "flex w-full gap-3 px-3 py-3 text-left transition-colors hover:bg-accent focus-visible:bg-accent focus-visible:outline-none",
+                      "flex w-full gap-3 px-3 py-3 text-start transition-colors hover:bg-accent focus-visible:bg-accent focus-visible:outline-none",
                       !n.is_read && "bg-primary/5",
                     )}
                   >
@@ -102,7 +106,7 @@ export function Notifications({ userId }: { userId: string }) {
                     <span className="min-w-0 flex-1">
                       <span className="block truncate text-sm font-medium">{n.title}</span>
                       {n.message && <span className="mt-0.5 line-clamp-2 block text-xs text-muted-foreground">{n.message}</span>}
-                      <span className="mt-1 block text-[11px] text-muted-foreground">{formatRelative(n.created_at)}</span>
+                      <span className="mt-1 block text-[11px] text-muted-foreground">{f.relative(n.created_at)}</span>
                     </span>
                   </button>
                 </li>
@@ -113,7 +117,7 @@ export function Notifications({ userId }: { userId: string }) {
         <DropdownMenuSeparator className="m-0" />
         <div className="p-1.5">
           <Button asChild variant="ghost" size="sm" className="w-full">
-            <Link href="/dashboard/history">View activity history</Link>
+            <Link href="/dashboard/history">{t("history")}</Link>
           </Button>
         </div>
       </DropdownMenuContent>

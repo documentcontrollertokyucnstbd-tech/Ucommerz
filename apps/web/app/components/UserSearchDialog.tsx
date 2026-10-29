@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { useQuery } from "@tanstack/react-query";
 import { Loader2, Search, UserPlus } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/app/components/ui/avatar";
@@ -15,6 +16,7 @@ export type PickedUser = { id: string; full_name: string | null; avatar_url: str
 
 export function UserSearchDialog({ meId, onPick }: { meId: string; onPick: (u: PickedUser) => void }) {
   const supabase = useSupabase();
+  const t = useTranslations("AdmUserSearch");
   const [open, setOpen] = useState(false);
   const [term, setTerm] = useState("");
   const [debounced, setDebounced] = useState("");
@@ -44,20 +46,20 @@ export function UserSearchDialog({ meId, onPick }: { meId: string; onPick: (u: P
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button type="button" size="sm" variant="outline"><UserPlus /> New</Button>
+        <Button type="button" size="sm" variant="outline"><UserPlus /> {t("new")}</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Start a conversation</DialogTitle>
-          <DialogDescription>Search people by name.</DialogDescription>
+          <DialogTitle>{t("title")}</DialogTitle>
+          <DialogDescription>{t("description")}</DialogDescription>
         </DialogHeader>
         <div className="relative">
-          <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
-          <Input autoFocus className="pl-9" placeholder="Type at least 2 characters…" value={term} onChange={(e) => setTerm(e.target.value)} />
+          <Search className="pointer-events-none absolute start-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+          <Input autoFocus className="ps-9" placeholder={t("placeholder")} value={term} onChange={(e) => setTerm(e.target.value)} />
         </div>
         <div className="min-h-24">
-          {isFetching && <p className="flex items-center gap-2 text-sm text-muted-foreground"><Loader2 className="size-4 animate-spin" /> Searching…</p>}
-          {!isFetching && debounced.length >= 2 && data.length === 0 && <p className="text-sm text-muted-foreground">No one found.</p>}
+          {isFetching && <p className="flex items-center gap-2 text-sm text-muted-foreground"><Loader2 className="size-4 animate-spin" /> {t("searching")}</p>}
+          {!isFetching && debounced.length >= 2 && data.length === 0 && <p className="text-sm text-muted-foreground">{t("noOne")}</p>}
           <ul className="space-y-1">
             {data.map((u) => (
               <li key={u.id}>
@@ -68,10 +70,10 @@ export function UserSearchDialog({ meId, onPick }: { meId: string; onPick: (u: P
                     setOpen(false);
                     setTerm("");
                   }}
-                  className="flex w-full items-center gap-3 rounded-lg p-2 text-left transition hover:bg-accent"
+                  className="flex w-full items-center gap-3 rounded-lg p-2 text-start transition hover:bg-accent"
                 >
                   <Avatar className="size-9"><AvatarImage src={avatarOf(u.avatar_url)} alt="" /><AvatarFallback>{initials(u.full_name)}</AvatarFallback></Avatar>
-                  <span className="text-sm font-medium">{u.full_name ?? "User"}</span>
+                  <span className="text-sm font-medium">{u.full_name ?? t("user")}</span>
                 </button>
               </li>
             ))}

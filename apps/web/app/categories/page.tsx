@@ -12,11 +12,10 @@ import { Stagger, StaggerItem } from "@/app/components/motion";
 import type { CategoryNode } from "@ucommerz/shared";
 import { LayoutGrid } from "lucide-react";
 
-export const metadata: Metadata = {
-  title: "Categories",
-  description: "Explore every service category on UCOMMERZ.",
-  alternates: { canonical: "/categories" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("Meta");
+  return { title: t("categoriesTitle"), description: t("categoriesDesc"), alternates: { canonical: "/categories" } };
+}
 
 export const dynamic = "force-dynamic";
 

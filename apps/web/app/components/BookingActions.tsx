@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { BellRing, Check, Loader2, Play, ShieldAlert, X, CheckCheck } from "lucide-react";
 import toast from "react-hot-toast";
 import { BOOKING_STATUSES, PROVIDER_BOOKING_TRANSITIONS, SEEKER_BOOKING_TRANSITIONS, type BookingStatus } from "@ucommerz/shared";
@@ -13,16 +14,17 @@ import { toastAction } from "@/app/lib/toast-action";
 
 type Side = "provider" | "seeker" | "admin";
 
-const META: Record<BookingStatus, { label: string; icon: typeof Check; variant: "default" | "outline" | "destructive" }> = {
-  PENDING: { label: "Pending", icon: Check, variant: "outline" },
-  CONFIRMED: { label: "Accept", icon: Check, variant: "default" },
-  IN_PROGRESS: { label: "Start", icon: Play, variant: "default" },
-  COMPLETED: { label: "Mark completed", icon: CheckCheck, variant: "default" },
-  CANCELLED: { label: "Cancel", icon: X, variant: "destructive" },
-  DISPUTED: { label: "Open dispute", icon: ShieldAlert, variant: "outline" },
+const META: Record<BookingStatus, { icon: typeof Check; variant: "default" | "outline" | "destructive" }> = {
+  PENDING: { icon: Check, variant: "outline" },
+  CONFIRMED: { icon: Check, variant: "default" },
+  IN_PROGRESS: { icon: Play, variant: "default" },
+  COMPLETED: { icon: CheckCheck, variant: "default" },
+  CANCELLED: { icon: X, variant: "destructive" },
+  DISPUTED: { icon: ShieldAlert, variant: "outline" },
 };
 
 export function BookingActions({ bookingId, status, side, canRemind }: { bookingId: string; status: BookingStatus; side: Side; canRemind?: boolean }) {
+  const t = useTranslations("DashBookingActions");
   const router = useRouter();
   const [busy, setBusy] = useState<string | null>(null);
   const [dialog, setDialog] = useState<BookingStatus | null>(null);
@@ -51,10 +53,10 @@ export function BookingActions({ bookingId, status, side, canRemind }: { booking
         body: JSON.stringify({ booking_id: bookingId }),
       });
       const json = (await res.json().catch(() => ({}))) as { ok?: boolean; message?: string; error?: string };
-      if (res.ok && json.ok) toast.success(json.message ?? "Reminder sent.");
-      else toast.error(json.error ?? "Could not send the reminder.");
+      if (res.ok && json.ok) toast.success(json.message ?? t("reminderSent"));
+      else toast.error(json.error ?? t("reminderFailed"));
     } catch {
-      toast.error("Network error. Please try again.");
+      toast.error(t("networkError"));
     } finally {
       setBusy(null);
     }
@@ -69,7 +71,7 @@ export function BookingActions({ bookingId, status, side, canRemind }: { booking
       {allowed.map((s) => {
         const m = META[s];
         const Icon = m.icon;
-        const label = s === "CANCELLED" && side === "provider" && status === "PENDING" ? "Decline" : m.label;
+        const label = s === "CANCELLED" && side === "provider" && status === "PENDING" ? t("actions.DECLINE") : t(`actions.${s}`);
         return (
           <Button key={s} type="button" variant={m.variant} size="sm" disabled={busy !== null} onClick={() => (needsReason(s) ? setDialog(s) : run(s))}>
             {busy === s ? <Loader2 className="animate-spin" /> : <Icon />} {label}
@@ -78,20 +80,20 @@ export function BookingActions({ bookingId, status, side, canRemind }: { booking
       })}
       {canRemind && (
         <Button type="button" variant="outline" size="sm" disabled={busy !== null} onClick={remind}>
-          {busy === "remind" ? <Loader2 className="animate-spin" /> : <BellRing />} Send reminder
+          {busy === "remind" ? <Loader2 className="animate-spin" /> : <BellRing />} {t("sendReminder")}
         </Button>
       )}
       <Dialog open={dialog !== null} onOpenChange={(o) => !o && setDialog(null)}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>{dialog === "DISPUTED" ? "Open a dispute" : "Cancel this booking?"}</DialogTitle>
-            <DialogDescription>{dialog === "DISPUTED" ? "Describe the problem. Our team will review it." : "Let the other party know why (optional)."}</DialogDescription>
+            <DialogTitle>{dialog === "DISPUTED" ? t("disputeTitle") : t("cancelTitle")}</DialogTitle>
+            <DialogDescription>{dialog === "DISPUTED" ? t("disputeDesc") : t("cancelDesc")}</DialogDescription>
           </DialogHeader>
-          <Textarea rows={4} value={reason} onChange={(e) => setReason(e.target.value)} placeholder="Reason…" />
+          <Textarea rows={4} value={reason} onChange={(e) => setReason(e.target.value)} placeholder={t("reasonPlaceholder")} />
           <DialogFooter>
-            <Button type="button" variant="outline" onClick={() => setDialog(null)}>Back</Button>
+            <Button type="button" variant="outline" onClick={() => setDialog(null)}>{t("back")}</Button>
             <Button type="button" variant={dialog === "CANCELLED" ? "destructive" : "default"} disabled={busy !== null || (dialog === "DISPUTED" && reason.trim().length < 5)} onClick={() => dialog && run(dialog, reason)}>
-              {busy && <Loader2 className="animate-spin" />} Confirm
+              {busy && <Loader2 className="animate-spin" />} {t("confirm")}
             </Button>
           </DialogFooter>
         </DialogContent>

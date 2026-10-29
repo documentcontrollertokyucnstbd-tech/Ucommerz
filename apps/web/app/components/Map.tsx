@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { ExternalLink, MapPin } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { hasMapsKey, loadGoogleMaps } from "@/app/lib/google-maps-loader";
 import { cn } from "@/app/lib/utils";
 
@@ -33,6 +34,7 @@ function esc(s: string) {
 
 /** Google Map with markers, info windows and an optional service-radius circle. Falls back gracefully without an API key. */
 export function Map({ markers, center, zoom = 12, height = 320, radiusKm, className, onPick }: Props) {
+  const t = useTranslations("PubMap");
   const ref = useRef<HTMLDivElement>(null);
   const [status, setStatus] = useState<"loading" | "ready" | "error">(hasMapsKey() ? "loading" : "error");
   const pickRef = useRef(onPick);
@@ -69,7 +71,7 @@ export function Map({ markers, center, zoom = 12, height = 320, radiusKm, classN
           bounds.extend({ lat: m.lat, lng: m.lng });
           listeners.push(
             marker.addListener("click", () => {
-              const link = m.href ? `<a href="${esc(m.href)}" style="color:#4f46e5;font-weight:600">View details</a>` : "";
+              const link = m.href ? `<a href="${esc(m.href)}" style="color:#4f46e5;font-weight:600">${esc(t("viewDetails"))}</a>` : "";
               info.setContent(
                 `<div style="font-family:system-ui,sans-serif;max-width:220px;color:#0f172a"><strong>${esc(m.title)}</strong>${
                   m.subtitle ? `<div style="font-size:12px;color:#475569;margin:2px 0 6px">${esc(m.subtitle)}</div>` : ""
@@ -127,7 +129,7 @@ export function Map({ markers, center, zoom = 12, height = 320, radiusKm, classN
         className={cn("flex flex-col items-center justify-center gap-2 rounded-xl border bg-muted/50 p-4 text-center text-sm text-muted-foreground", className)}
       >
         <MapPin className="size-6 text-primary" />
-        <p>{hasMapsKey() ? "The map couldn't be loaded right now." : "Add NEXT_PUBLIC_GOOGLE_MAPS_API_KEY to show the map."}</p>
+        <p>{hasMapsKey() ? t("loadFailed") : t("noKey")}</p>
         {first && (
           <a
             className="inline-flex items-center gap-1 font-medium text-primary hover:underline"
@@ -135,7 +137,7 @@ export function Map({ markers, center, zoom = 12, height = 320, radiusKm, classN
             target="_blank"
             rel="noopener noreferrer"
           >
-            Open in Google Maps <ExternalLink className="size-3.5" />
+            {t("openInGoogle")} <ExternalLink className="size-3.5" />
           </a>
         )}
       </div>
@@ -144,7 +146,7 @@ export function Map({ markers, center, zoom = 12, height = 320, radiusKm, classN
 
   return (
     <div style={{ height }} className={cn("relative overflow-hidden rounded-xl border bg-muted", className)}>
-      <div ref={ref} className="size-full" aria-label="Map" />
+      <div ref={ref} className="size-full" aria-label={t("label")} />
       {status === "loading" && <div className="absolute inset-0 animate-pulse bg-muted" />}
     </div>
   );

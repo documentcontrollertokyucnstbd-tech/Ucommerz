@@ -2,6 +2,7 @@
 
 import { Share2 } from "lucide-react";
 import toast from "react-hot-toast";
+import { useTranslations } from "next-intl";
 import { Button } from "@/app/components/ui/button";
 
 type Props = {
@@ -16,7 +17,9 @@ type Props = {
 };
 
 /** Web Share API with a clipboard fallback and toast feedback. */
-export function ShareButton({ title, text, url, label = "Share", variant = "outline", size = "sm", className }: Props) {
+export function ShareButton({ title, text, url, label: labelProp, variant = "outline", size = "sm", className }: Props) {
+  const t = useTranslations("PubShare");
+  const label = labelProp ?? t("label");
   async function share() {
     const shareUrl = url
       ? url.startsWith("http")
@@ -36,9 +39,9 @@ export function ShareButton({ title, text, url, label = "Share", variant = "outl
 
     try {
       await navigator.clipboard.writeText(shareUrl);
-      toast.success("Link copied to clipboard");
+      toast.success(t("copied"));
     } catch {
-      toast.error("Couldn't copy the link. Copy it from the address bar instead.");
+      toast.error(t("copyFailed"));
     }
   }
 

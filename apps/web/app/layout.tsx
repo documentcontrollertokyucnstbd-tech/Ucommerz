@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Plus_Jakarta_Sans, Noto_Sans_Bengali, Noto_Sans_Devanagari, Noto_Naskh_Arabic } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
-import { getLocale, getMessages } from "next-intl/server";
+import { getLocale, getMessages, getTranslations } from "next-intl/server";
 import { LOCALE_META, isLocale } from "@/app/i18n/config";
 import { Providers } from "@/app/components/Providers";
 import { ChromeGate } from "@/app/components/ChromeGate";
@@ -19,25 +19,26 @@ const notoArabic = Noto_Naskh_Arabic({ subsets: ["arabic"], weight: ["400", "500
 
 const siteUrl = getSiteUrl();
 
-export const metadata: Metadata = {
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("Meta");
+  return {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "UCOMMERZ — Book Trusted Experts for Every Service",
+    default: t("siteTitle"),
     template: "%s · UCOMMERZ",
   },
-  description:
-    "UCOMMERZ is the on-demand service marketplace connecting clients with verified local professionals. Compare upfront pricing, schedule flexible appointments and manage service requests securely.",
+  description: t("siteDesc"),
   keywords: ["service marketplace", "hire professionals", "book services", "verified providers", "freelancers"],
   applicationName: "UCOMMERZ",
   openGraph: {
     type: "website",
     siteName: "UCOMMERZ",
-    title: "UCOMMERZ — Book Trusted Experts for Every Service",
-    description: "Connect with verified local professionals and book with confidence.",
+    title: t("siteTitle"),
+    description: t("ogDesc"),
     url: siteUrl,
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "UCOMMERZ — Book trusted experts for every service" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: t("ogAlt") }],
   },
-  twitter: { card: "summary_large_image", title: "UCOMMERZ", description: "Book trusted experts for every service.", images: ["/og-image.png"] },
+  twitter: { card: "summary_large_image", title: "UCOMMERZ", description: t("twDesc"), images: ["/og-image.png"] },
   icons: {
     icon: [
       { url: "/icon-light-32x32.png", media: "(prefers-color-scheme: light)" },
@@ -46,7 +47,8 @@ export const metadata: Metadata = {
     ],
     apple: "/apple-icon.png",
   },
-};
+  };
+}
 
 export const viewport: Viewport = {
   colorScheme: "light dark",

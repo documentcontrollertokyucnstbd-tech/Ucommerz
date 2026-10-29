@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { Loader2, Package } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
@@ -12,6 +13,7 @@ import { createPackageBookingAction } from "@/app/actions/bookings";
 import { toastAction } from "@/app/lib/toast-action";
 
 export function BookPackageButton({ packageId, title, state }: { packageId: string; title: string; state: "guest" | "owner" | "ready" }) {
+  const t = useTranslations("PubBookPackage");
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [when, setWhen] = useState("");
@@ -23,7 +25,7 @@ export function BookPackageButton({ packageId, title, state }: { packageId: stri
   async function submit() {
     if (!when) return;
     setBusy(true);
-    const res = await toastAction(createPackageBookingAction({ package_id: packageId, booking_date: new Date(when).toISOString(), notes }), "Package requested!");
+    const res = await toastAction(createPackageBookingAction({ package_id: packageId, booking_date: new Date(when).toISOString(), notes }), t("requested"));
     setBusy(false);
     if (res.ok) {
       setOpen(false);
@@ -44,26 +46,26 @@ export function BookPackageButton({ packageId, title, state }: { packageId: stri
       }}
     >
       <DialogTrigger asChild>
-        <Button size="sm" type="button"><Package /> Book package</Button>
+        <Button size="sm" type="button"><Package /> {t("book")}</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Book “{title}”</DialogTitle>
-          <DialogDescription>Choose when you&apos;d like to start. The provider will confirm your request.</DialogDescription>
+          <DialogTitle>{t("dialogTitle", { title })}</DialogTitle>
+          <DialogDescription>{t("dialogDesc")}</DialogDescription>
         </DialogHeader>
         <div className="grid gap-4">
           <div className="grid gap-2">
-            <Label htmlFor="pkg-when">Preferred date & time</Label>
+            <Label htmlFor="pkg-when">{t("when")}</Label>
             <Input id="pkg-when" type="datetime-local" value={when} onChange={(e) => setWhen(e.target.value)} />
           </div>
           <div className="grid gap-2">
-            <Label htmlFor="pkg-notes">Notes (optional)</Label>
+            <Label htmlFor="pkg-notes">{t("notes")}</Label>
             <Textarea id="pkg-notes" rows={3} value={notes} onChange={(e) => setNotes(e.target.value)} />
           </div>
         </div>
         <DialogFooter>
           <Button type="button" onClick={submit} disabled={busy || !when}>
-            {busy && <Loader2 className="animate-spin" />} Request package
+            {busy && <Loader2 className="animate-spin" />} {t("request")}
           </Button>
         </DialogFooter>
       </DialogContent>

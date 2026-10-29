@@ -1,0 +1,45 @@
+{
+  "Status": {
+    "PENDING": "Pending",
+    "CONFIRMED": "Confirmed",
+    "IN_PROGRESS": "In progress",
+    "COMPLETED": "Completed",
+    "CANCELLED": "Cancelled",
+    "DISPUTED": "Disputed",
+    "ACTIVE": "Active",
+    "INACTIVE": "Inactive",
+    "REJECTED": "Rejected",
+    "UNDER_REVIEW": "Under review",
+    "RESOLVED": "Resolved",
+    "DISMISSED": "Dismissed",
+    "SENT": "Sent",
+    "FAILED": "Failed"
+  },
+  "Role": {
+    "SEEKER": "Customer",
+    "PROVIDER": "Provider",
+    "BOTH": "Customer & provider",
+    "ADMIN": "Admin",
+    "SUPERADMIN": "Super admin"
+  },
+  "Meta": {
+    "siteTitle": "UCOMMERZ — Book Trusted Experts for Every Service",
+    "siteDesc": "UCOMMERZ is the on-demand service marketplace connecting clients with verified local professionals. Compare upfront pricing, schedule flexible appointments and manage service requests securely.",
+    "ogDesc": "Connect with verified local professionals and book with confidence.",
+    "ogAlt": "UCOMMERZ — Book trusted experts for every service",
+    "twDesc": "Book trusted experts for every service.",
+    "homeDesc": "Find and book verified local professionals: home services, web development, photography, cleaning, consulting and more.",
+    "browseTitle": "Browse services",
+    "browseDesc": "Search and filter trusted service providers by category, price, rating and distance.",
+    "categoriesTitle": "Categories",
+    "categoriesDesc": "Explore every service category on UCOMMERZ.",
+    "categoryNotFound": "Category not found",
+    "categoryDesc": "Browse {name} services on UCOMMERZ.",
+    "loginTitle": "Sign in",
+    "loginDesc": "Sign in to manage your bookings and messages on UCOMMERZ.",
+    "registerTitle": "Create your account",
+    "registerDesc": "Join UCOMMERZ as a customer or a service provider.",
+    "forgotTitle": "Forgot password",
+    "resetTitle": "Choose a new password"
+  }
+}

@@ -1,0 +1,203 @@
+{
+  "PubService": {
+    "notFound": "サービスが見つかりません",
+    "metaDescription": "UCOMMERZ で {title} を予約。",
+    "breadcrumb": "パンくずリスト",
+    "browse": "サービスを探す",
+    "photoAlt": "{title} の写真 {n}",
+    "remote": "リモート",
+    "featured": "注目",
+    "views": "{count, plural, one {#回表示} other {#回表示}}",
+    "hoursShort": "時間",
+    "about": "サービスについて",
+    "area": "対応エリア",
+    "servesWithin": "{km} km 圏内のお客様に対応します。",
+    "reviewsHeading": "レビュー（{count}）",
+    "notAccepting": "このサービスは現在、予約を受け付けていません。",
+    "verified": "認証済み",
+    "viewProfile": "プロフィールを見る",
+    "message": "メッセージ",
+    "similar": "類似のサービス"
+  },
+  "PubProvider": {
+    "notFound": "提供者が見つかりません",
+    "metaDescription": "UCOMMERZ で {name} のサービスを予約。",
+    "providerFallback": "提供者",
+    "verifiedProvider": "認証済み提供者",
+    "verified": "認証済み",
+    "joined": "{date} に登録",
+    "website": "ウェブサイト",
+    "message": "メッセージ",
+    "editProfile": "プロフィールを編集",
+    "shareTitle": "UCOMMERZ の {name}",
+    "servicesHeading": "サービス（{count}）",
+    "noServices": "現在、公開中のサービスはありません。",
+    "packages": "パッケージ",
+    "save": "{percent}% お得",
+    "serviceFallback": "サービス",
+    "portfolio": "ポートフォリオ",
+    "viewProject": "プロジェクトを見る",
+    "reviewsHeading": "レビュー（{count}）",
+    "skills": "スキル",
+    "yearsShort": "{n}年",
+    "certifications": "資格・認定",
+    "viewCertificate": "証明書を見る"
+  },
+  "PubProfile": {
+    "title": "マイプロフィール",
+    "viewPublic": "公開プロフィールを見る",
+    "photo": "写真",
+    "details": "詳細",
+    "detailsDesc": "情報を最新の状態に保ちましょう。",
+    "accountType": "アカウント種別",
+    "seekerPrompt": "ご自身のサービスも提供しませんか？提供者ツールを無料で有効にできます。",
+    "providerPrompt": "他の提供者のサービスも予約しませんか？お客様向け機能を有効にしましょう。",
+    "becomeProvider": "提供者になる",
+    "enableCustomer": "お客様向け機能を有効にする"
+  },
+  "PubErrors": {
+    "notFoundTitle": "ページが見つかりません",
+    "notFoundBody": "お探しのページは存在しないか、移動しました。",
+    "backHome": "ホームに戻る",
+    "browseServices": "サービスを探す",
+    "loading": "読み込み中",
+    "title": "問題が発生しました",
+    "body": "予期しないエラーが発生しました。もう一度お試しいただくか、前のページに戻ってください。",
+    "reference": "参照番号：{digest}",
+    "tryAgain": "もう一度試す",
+    "goHome": "ホームへ"
+  },
+  "PubBooking": {
+    "signInPrompt": "このサービスを予約するにはログインしてください。",
+    "signInToBook": "ログインして予約",
+    "ownService": "これはご自身のサービスです。ダッシュボードから管理できます。",
+    "providerOnly": "お使いのアカウントは提供者として設定されています。サービスを予約するには、<link>プロフィール</link>でお客様ロールを有効にしてください。",
+    "chooseDate": "日付を選択してください",
+    "chooseTime": "時間を選択してください",
+    "chooseFuture": "未来の時間を選択してください",
+    "date": "日付",
+    "pickDate": "日付を選択",
+    "startTime": "開始時間",
+    "duration": "所要時間（時間）",
+    "notes": "提供者へのメモ（任意）",
+    "notesPlaceholder": "参考になる詳細をご記入ください…",
+    "estimatedTotal": "見積合計",
+    "noCharge": "オンラインでの請求はありません。提供者がご依頼を確認してから確定します。",
+    "request": "予約をリクエスト"
+  },
+  "PubBookPackage": {
+    "requested": "パッケージをリクエストしました！",
+    "book": "パッケージを予約",
+    "dialogTitle": "「{title}」を予約",
+    "dialogDesc": "開始希望日時を選択してください。提供者がご依頼を確認します。",
+    "when": "希望日時",
+    "notes": "メモ（任意）",
+    "request": "パッケージをリクエスト"
+  },
+  "PubReviews": {
+    "none": "レビューはまだありません。",
+    "customer": "お客様",
+    "professionalism": "プロ意識",
+    "quality": "品質",
+    "punctuality": "時間厳守",
+    "response": "提供者からの返信"
+  },
+  "PubReviewForm": {
+    "criteria": {
+      "rating": "総合",
+      "professionalism": "プロ意識",
+      "quality": "仕事の品質",
+      "punctuality": "時間厳守"
+    },
+    "selectRating": "評価を選択してください",
+    "yourReview": "あなたのレビュー",
+    "placeholder": "いかがでしたか？",
+    "submit": "レビューを投稿"
+  },
+  "PubStars": {
+    "rated": "5段階中{value}の評価",
+    "ratedWithCount": "{count, plural, one {#件のレビュー} other {#件のレビュー}}から、5段階中{value}の評価",
+    "rating": "評価",
+    "starsLabel": "{count, plural, one {星#つ} other {星#つ}}"
+  },
+  "PubFavorite": {
+    "signIn": "お気に入りに保存するにはログインしてください。",
+    "failed": "お気に入りを更新できませんでした。もう一度お試しください。",
+    "remove": "お気に入りから削除",
+    "save": "お気に入りに保存",
+    "saved": "保存済み",
+    "saveShort": "保存"
+  },
+  "PubShare": {
+    "label": "共有",
+    "copied": "リンクをクリップボードにコピーしました",
+    "copyFailed": "リンクをコピーできませんでした。アドレスバーからコピーしてください。"
+  },
+  "PubReport": {
+    "label": "報告",
+    "title": {
+      "SERVICE": "このサービスを報告",
+      "REVIEW": "このレビューを報告",
+      "USER": "このユーザーを報告",
+      "MESSAGE": "このメッセージを報告"
+    },
+    "description": "問題の内容をお知らせください。報告は審査チームが確認します。",
+    "reason": "理由",
+    "selectReason": "理由を選択してください",
+    "other": "その他",
+    "details": "詳細（任意）",
+    "detailsPlaceholder": "調査に役立つ情報があればご記入ください…",
+    "cancel": "キャンセル",
+    "submit": "報告を送信"
+  },
+  "PubMap": {
+    "viewDetails": "詳細を見る",
+    "loadFailed": "現在、地図を読み込めません。",
+    "noKey": "地図を表示するには NEXT_PUBLIC_GOOGLE_MAPS_API_KEY を追加してください。",
+    "openInGoogle": "Google マップで開く",
+    "label": "地図"
+  },
+  "PubLocation": {
+    "placeholder": "市区町村、住所、エリア",
+    "enterAddress": "先に住所を入力してください。",
+    "noKey": "Google マップのキーが設定されていません。",
+    "notFound": "その住所が見つかりませんでした。",
+    "found": "場所が見つかりました。",
+    "geocodeFailed": "住所の検索に失敗しました。もう一度お試しください。",
+    "unsupported": "お使いのブラウザは位置情報に対応していません。",
+    "usingCurrent": "現在地を使用しています。",
+    "denied": "位置情報の許可が拒否されました。",
+    "couldNotLocate": "位置情報を取得できませんでした。",
+    "findOnMap": "地図で探す",
+    "useMyLocation": "現在地を使う"
+  },
+  "PubAvatar": {
+    "uploadFailed": "アップロードに失敗しました",
+    "photoAlt": "プロフィール写真",
+    "uploadLabel": "プロフィール写真をアップロード",
+    "change": "写真を変更",
+    "remove": "削除",
+    "hint": "JPG、PNG、WebP、GIF · 最大 3 MB"
+  },
+  "PubProfileForm": {
+    "fullName": "氏名",
+    "phone": "電話番号",
+    "about": "自己紹介",
+    "aboutHint": "公開プロフィールに表示されます。",
+    "location": "所在地",
+    "locationHint": "近くのサービス検索や地図に使用されます。",
+    "website": "ウェブサイト",
+    "save": "変更を保存"
+  },
+  "PubNotify": {
+    "title": "通知",
+    "labelUnread": "通知（未読 {count} 件）",
+    "markAllRead": "すべて既読にする",
+    "caughtUp": "すべて確認済みです。",
+    "history": "アクティビティ履歴を見る"
+  },
+  "PubEnableRole": {
+    "providerEnabled": "提供者ツールを有効にしました！",
+    "customerEnabled": "お客様向け機能を有効にしました！"
+  }
+}

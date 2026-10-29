@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Plus, Wrench } from "lucide-react";
 import type { Service } from "@ucommerz/shared";
+import { getTranslations } from "next-intl/server";
 import { requireProvider } from "@/app/lib/guards";
 import { getCategories, categoryName } from "@/app/lib/queries";
 import { safely } from "@/app/lib/queries-extra";
-import { formatCurrency } from "@/app/lib/utils";
+import { getFormat } from "@/app/lib/format-server";
 import { serviceImage } from "@/app/lib/media";
 import { PageHeader } from "@/app/components/PageHeader";
 import { EmptyState } from "@/app/components/EmptyState";
@@ -14,9 +15,14 @@ import { ServiceRowActions } from "@/app/components/ServiceRowActions";
 import { Button } from "@/app/components/ui/button";
 import { Card } from "@/app/components/ui/card";
 
-export const metadata: Metadata = { title: "My services" };
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("DashServices");
+  return { title: t("metaTitle") };
+}
 
 export default async function MyServicesPage() {
+  const f = await getFormat();
+  const t = await getTranslations("DashServices");
   const { profile, supabase } = await requireProvider("/dashboard/my-services");
   const [categories, { data }] = await Promise.all([
     safely(getCategories, []),
@@ -26,9 +32,9 @@ export default async function MyServicesPage() {
 
   return (
     <div>
-      <PageHeader title="My services" description="Create and manage what you offer." actions={<Button asChild><Link href="/dashboard/my-services/create"><Plus /> New service</Link></Button>} />
+      <PageHeader title={t("title")} description={t("desc")} actions={<Button asChild><Link href="/dashboard/my-services/create"><Plus /> {t("new")}</Link></Button>} />
       {services.length === 0 ? (
-        <EmptyState icon={<Wrench className="size-5" />} title="No services yet" description="Publish your first service to start receiving bookings." action={<Button asChild><Link href="/dashboard/my-services/create">Create a service</Link></Button>} />
+        <EmptyState icon={<Wrench className="size-5" />} title={t("emptyTitle")} description={t("emptyDesc")} action={<Button asChild><Link href="/dashboard/my-services/create">{t("create")}</Link></Button>} />
       ) : (
         <div className="grid gap-3">
           {services.map((s) => (
@@ -40,10 +46,10 @@ export default async function MyServicesPage() {
                   <StatusBadge status={s.status} />
                 </div>
                 <p className="mt-0.5 text-xs text-muted-foreground">
-                  {categoryName(categories, s.category)} · {formatCurrency(s.price)}/{s.price_unit} · {s.views} views · ★ {Number(s.rating).toFixed(1)} ({s.total_reviews})
+                  {t("meta", { category: categoryName(categories, s.category), price: f.currency(s.price), unit: t.has(`units.${s.price_unit}`) ? t(`units.${s.price_unit}`) : s.price_unit, views: s.views, rating: Number(s.rating).toFixed(1), reviews: s.total_reviews })}
                 </p>
-                {s.status === "PENDING" && <p className="mt-1 text-xs text-amber-600 dark:text-amber-400">Awaiting admin approval</p>}
-                {s.status === "REJECTED" && <p className="mt-1 text-xs text-destructive">Rejected — edit and resubmit</p>}
+                {s.status === "PENDING" && <p className="mt-1 text-xs text-amber-600 dark:text-amber-400">{t("awaiting")}</p>}
+                {s.status === "REJECTED" && <p className="mt-1 text-xs text-destructive">{t("rejected")}</p>}
               </div>
               <ServiceRowActions id={s.id} status={s.status} title={s.title} />
             </Card>

@@ -1,19 +1,26 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Users } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 import { requireProvider } from "@/app/lib/guards";
 import { avatarOf } from "@/app/lib/media";
-import { formatCurrency, formatDate, initials } from "@/app/lib/utils";
+import { initials } from "@/app/lib/utils";
+import { getFormat } from "@/app/lib/format-server";
 import { PageHeader } from "@/app/components/PageHeader";
 import { EmptyState } from "@/app/components/EmptyState";
 import { Avatar, AvatarFallback, AvatarImage } from "@/app/components/ui/avatar";
 import { Card } from "@/app/components/ui/card";
 
-export const metadata: Metadata = { title: "Customers" };
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("DashCustomers");
+  return { title: t("metaTitle") };
+}
 
 type Row = { seeker_id: string; total_price: number; status: string; booking_date: string; seeker: { id: string; full_name: string | null; avatar_url: string | null } | null };
 
 export default async function CustomersPage() {
+  const f = await getFormat();
+  const t = await getTranslations("DashCustomers");
   const { profile, supabase } = await requireProvider("/dashboard/customers");
   const { data } = await supabase
     .from("bookings")
@@ -34,9 +41,9 @@ export default async function CustomersPage() {
 
   return (
     <div>
-      <PageHeader title="Customers" description="Everyone who has booked with you." />
+      <PageHeader title={t("title")} description={t("desc")} />
       {customers.length === 0 ? (
-        <EmptyState icon={<Users className="size-5" />} title="No customers yet" description="They'll appear here after their first booking." />
+        <EmptyState icon={<Users className="size-5" />} title={t("emptyTitle")} description={t("emptyDesc")} />
       ) : (
         <div className="grid gap-3 sm:grid-cols-2">
           {customers.map((c) => (
@@ -44,10 +51,10 @@ export default async function CustomersPage() {
               <Card className="flex-row items-center gap-3 p-4 transition hover:shadow-md">
                 <Avatar className="size-11"><AvatarImage src={avatarOf(c.avatar)} alt="" /><AvatarFallback>{initials(c.name)}</AvatarFallback></Avatar>
                 <div className="min-w-0 flex-1">
-                  <p className="truncate font-medium">{c.name ?? "Customer"}</p>
-                  <p className="text-xs text-muted-foreground">{c.bookings} booking{c.bookings === 1 ? "" : "s"} · last {formatDate(c.last)}</p>
+                  <p className="truncate font-medium">{c.name ?? t("customer")}</p>
+                  <p className="text-xs text-muted-foreground">{t("row", { count: c.bookings, date: f.date(c.last) })}</p>
                 </div>
-                <span className="text-sm font-semibold text-primary">{formatCurrency(c.spent)}</span>
+                <span className="text-sm font-semibold text-primary">{f.currency(c.spent)}</span>
               </Card>
             </Link>
           ))}

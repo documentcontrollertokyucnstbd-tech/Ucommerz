@@ -21,6 +21,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import type { UserRole } from "@ucommerz/shared";
+import { useTranslations } from "next-intl";
 import { cn } from "@/app/lib/utils";
 
 type Item = { href: string; label: string; icon: LucideIcon; roles?: readonly UserRole[] };
@@ -31,34 +32,35 @@ const SEEKER: readonly UserRole[] = ["SEEKER", "BOTH"];
 
 const GROUPS: Group[] = [
   {
-    title: "General",
+    title: "general",
     items: [
-      { href: "/dashboard", label: "Overview", icon: LayoutDashboard },
-      { href: "/dashboard/bookings", label: "Bookings", icon: ClipboardList },
-      { href: "/dashboard/calendar", label: "Calendar", icon: CalendarDays },
-      { href: "/dashboard/messages", label: "Messages", icon: MessageSquare },
-      { href: "/dashboard/favorites", label: "Favorites", icon: Heart, roles: SEEKER },
-      { href: "/dashboard/history", label: "History", icon: History },
-      { href: "/profile", label: "Profile", icon: UserCircle },
+      { href: "/dashboard", label: "overview", icon: LayoutDashboard },
+      { href: "/dashboard/bookings", label: "bookings", icon: ClipboardList },
+      { href: "/dashboard/calendar", label: "calendar", icon: CalendarDays },
+      { href: "/dashboard/messages", label: "messages", icon: MessageSquare },
+      { href: "/dashboard/favorites", label: "favorites", icon: Heart, roles: SEEKER },
+      { href: "/dashboard/history", label: "history", icon: History },
+      { href: "/profile", label: "profile", icon: UserCircle },
     ],
   },
   {
-    title: "Provider",
+    title: "provider",
     items: [
-      { href: "/dashboard/provider-dashboard", label: "Provider home", icon: Briefcase, roles: PROVIDER },
-      { href: "/dashboard/my-services", label: "My services", icon: Wrench, roles: PROVIDER },
-      { href: "/dashboard/my-packages", label: "Packages", icon: Package, roles: PROVIDER },
-      { href: "/dashboard/customers", label: "Customers", icon: Users, roles: PROVIDER },
-      { href: "/dashboard/provider-analytics", label: "Analytics", icon: BarChart3, roles: PROVIDER },
-      { href: "/dashboard/provider-profile", label: "Provider profile", icon: UserCircle, roles: PROVIDER },
-      { href: "/dashboard/message-templates", label: "Message templates", icon: FileText, roles: PROVIDER },
-      { href: "/dashboard/reminder-settings", label: "Reminders", icon: BellRing, roles: PROVIDER },
-      { href: "/dashboard/provider-settings", label: "Booking settings", icon: Settings, roles: PROVIDER },
+      { href: "/dashboard/provider-dashboard", label: "providerHome", icon: Briefcase, roles: PROVIDER },
+      { href: "/dashboard/my-services", label: "myServices", icon: Wrench, roles: PROVIDER },
+      { href: "/dashboard/my-packages", label: "packages", icon: Package, roles: PROVIDER },
+      { href: "/dashboard/customers", label: "customers", icon: Users, roles: PROVIDER },
+      { href: "/dashboard/provider-analytics", label: "analytics", icon: BarChart3, roles: PROVIDER },
+      { href: "/dashboard/provider-profile", label: "providerProfile", icon: UserCircle, roles: PROVIDER },
+      { href: "/dashboard/message-templates", label: "messageTemplates", icon: FileText, roles: PROVIDER },
+      { href: "/dashboard/reminder-settings", label: "reminders", icon: BellRing, roles: PROVIDER },
+      { href: "/dashboard/provider-settings", label: "bookingSettings", icon: Settings, roles: PROVIDER },
     ],
   },
 ];
 
 export function DashboardNav({ role }: { role: UserRole }) {
+  const t = useTranslations("DashNav");
   const pathname = usePathname();
   const groups = GROUPS.map((g) => ({ ...g, items: g.items.filter((i) => !i.roles || i.roles.includes(role)) })).filter((g) => g.items.length > 0);
   const isActive = (href: string) => (href === "/dashboard" ? pathname === href : pathname === href || pathname.startsWith(`${href}/`));
@@ -66,11 +68,11 @@ export function DashboardNav({ role }: { role: UserRole }) {
   return (
     <>
       {/* desktop sidebar */}
-      <nav aria-label="Dashboard" className="hidden w-60 shrink-0 lg:block">
+      <nav aria-label={t("aria")} className="hidden w-60 shrink-0 lg:block">
         <div className="glass-card sticky top-20 max-h-[calc(100dvh-6rem)] space-y-5 overflow-y-auto rounded-xl border p-3 scrollbar-thin">
           {groups.map((g) => (
             <div key={g.title}>
-              <p className="px-2 pb-1 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">{g.title}</p>
+              <p className="px-2 pb-1 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">{t(`groups.${g.title}`)}</p>
               <ul className="space-y-0.5">
                 {g.items.map((i) => (
                   <li key={i.href}>
@@ -83,7 +85,7 @@ export function DashboardNav({ role }: { role: UserRole }) {
                       )}
                     >
                       <i.icon className="size-4" />
-                      {i.label}
+                      {t(`items.${i.label}`)}
                     </Link>
                   </li>
                 ))}
@@ -93,7 +95,7 @@ export function DashboardNav({ role }: { role: UserRole }) {
         </div>
       </nav>
       {/* mobile scroller */}
-      <nav aria-label="Dashboard" className="-mx-4 mb-4 overflow-x-auto px-4 lg:hidden scrollbar-thin">
+      <nav aria-label={t("aria")} className="-mx-4 mb-4 overflow-x-auto px-4 lg:hidden scrollbar-thin">
         <ul className="flex gap-2 pb-2">
           {groups.flatMap((g) => g.items).map((i) => (
             <li key={i.href} className="shrink-0">
@@ -105,7 +107,7 @@ export function DashboardNav({ role }: { role: UserRole }) {
                 )}
               >
                 <i.icon className="size-3.5" />
-                {i.label}
+                {t(`items.${i.label}`)}
               </Link>
             </li>
           ))}

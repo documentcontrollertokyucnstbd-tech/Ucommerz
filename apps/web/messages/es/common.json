@@ -1,0 +1,45 @@
+{
+  "Status": {
+    "PENDING": "Pendiente",
+    "CONFIRMED": "Confirmada",
+    "IN_PROGRESS": "En curso",
+    "COMPLETED": "Completada",
+    "CANCELLED": "Cancelada",
+    "DISPUTED": "En disputa",
+    "ACTIVE": "Activo",
+    "INACTIVE": "Inactivo",
+    "REJECTED": "Rechazado",
+    "UNDER_REVIEW": "En revisión",
+    "RESOLVED": "Resuelta",
+    "DISMISSED": "Descartada",
+    "SENT": "Enviado",
+    "FAILED": "Fallido"
+  },
+  "Role": {
+    "SEEKER": "Cliente",
+    "PROVIDER": "Proveedor",
+    "BOTH": "Cliente y proveedor",
+    "ADMIN": "Administrador",
+    "SUPERADMIN": "Superadministrador"
+  },
+  "Meta": {
+    "siteTitle": "UCOMMERZ — Reserva expertos de confianza para cada servicio",
+    "siteDesc": "UCOMMERZ es el marketplace de servicios bajo demanda que conecta a clientes con profesionales locales verificados. Compara precios por adelantado, programa citas flexibles y gestiona solicitudes de forma segura.",
+    "ogDesc": "Conecta con profesionales locales verificados y reserva con confianza.",
+    "ogAlt": "UCOMMERZ — Reserva expertos de confianza para cada servicio",
+    "twDesc": "Reserva expertos de confianza para cada servicio.",
+    "homeDesc": "Encuentra y reserva profesionales locales verificados: servicios del hogar, desarrollo web, fotografía, limpieza, consultoría y más.",
+    "browseTitle": "Explorar servicios",
+    "browseDesc": "Busca y filtra proveedores de confianza por categoría, precio, valoración y distancia.",
+    "categoriesTitle": "Categorías",
+    "categoriesDesc": "Explora todas las categorías de servicios en UCOMMERZ.",
+    "categoryNotFound": "Categoría no encontrada",
+    "categoryDesc": "Explora servicios de {name} en UCOMMERZ.",
+    "loginTitle": "Iniciar sesión",
+    "loginDesc": "Inicia sesión en UCOMMERZ para gestionar tus reservas y mensajes.",
+    "registerTitle": "Crea tu cuenta",
+    "registerDesc": "Únete a UCOMMERZ como cliente o como proveedor de servicios.",
+    "forgotTitle": "Contraseña olvidada",
+    "resetTitle": "Elige una nueva contraseña"
+  }
+}

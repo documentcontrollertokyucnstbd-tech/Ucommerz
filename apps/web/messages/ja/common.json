@@ -1,0 +1,45 @@
+{
+  "Status": {
+    "PENDING": "保留中",
+    "CONFIRMED": "確認済み",
+    "IN_PROGRESS": "進行中",
+    "COMPLETED": "完了",
+    "CANCELLED": "キャンセル",
+    "DISPUTED": "異議申し立て中",
+    "ACTIVE": "有効",
+    "INACTIVE": "無効",
+    "REJECTED": "却下",
+    "UNDER_REVIEW": "審査中",
+    "RESOLVED": "解決済み",
+    "DISMISSED": "棄却",
+    "SENT": "送信済み",
+    "FAILED": "失敗"
+  },
+  "Role": {
+    "SEEKER": "お客様",
+    "PROVIDER": "提供者",
+    "BOTH": "お客様・提供者",
+    "ADMIN": "管理者",
+    "SUPERADMIN": "スーパー管理者"
+  },
+  "Meta": {
+    "siteTitle": "UCOMMERZ — あらゆるサービスに信頼できる専門家を予約",
+    "siteDesc": "UCOMMERZ は、お客様と認証済みの地元プロをつなぐオンデマンドのサービスマーケットです。事前に料金を比較し、柔軟に予約を調整し、サービスの依頼を安全に管理できます。",
+    "ogDesc": "認証済みの地元プロとつながり、安心して予約しましょう。",
+    "ogAlt": "UCOMMERZ — あらゆるサービスに信頼できる専門家を予約",
+    "twDesc": "あらゆるサービスに信頼できる専門家を予約。",
+    "homeDesc": "認証済みの地元プロを探して予約：ホームサービス、Web開発、写真撮影、清掃、コンサルティングなど。",
+    "browseTitle": "サービスを探す",
+    "browseDesc": "カテゴリ、価格、評価、距離で信頼できるサービス提供者を検索・絞り込みできます。",
+    "categoriesTitle": "カテゴリ",
+    "categoriesDesc": "UCOMMERZ のすべてのサービスカテゴリを見る。",
+    "categoryNotFound": "カテゴリが見つかりません",
+    "categoryDesc": "UCOMMERZ で{name}のサービスを探す。",
+    "loginTitle": "ログイン",
+    "loginDesc": "UCOMMERZ にログインして予約とメッセージを管理しましょう。",
+    "registerTitle": "アカウントを作成",
+    "registerDesc": "お客様またはサービス提供者として UCOMMERZ に参加しましょう。",
+    "forgotTitle": "パスワードをお忘れの方",
+    "resetTitle": "新しいパスワードを設定"
+  }
+}

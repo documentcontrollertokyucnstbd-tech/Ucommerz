@@ -1,0 +1,203 @@
+{
+  "PubService": {
+    "notFound": "الخدمة غير موجودة",
+    "metaDescription": "احجز {title} على UCOMMERZ.",
+    "breadcrumb": "مسار التنقل",
+    "browse": "تصفّح",
+    "photoAlt": "صورة {n} لـ {title}",
+    "remote": "عن بُعد",
+    "featured": "مميزة",
+    "views": "{count, plural, zero {# مشاهدة} one {مشاهدة واحدة} two {مشاهدتان اثنتان} few {# مشاهدات} many {# مشاهدة} other {# مشاهدة}}",
+    "hoursShort": "س",
+    "about": "عن هذه الخدمة",
+    "area": "نطاق الخدمة",
+    "servesWithin": "تخدم العملاء ضمن {km} كم.",
+    "reviewsHeading": "التقييمات ({count})",
+    "notAccepting": "هذه الخدمة لا تقبل الحجوزات حاليًا.",
+    "verified": "موثّق",
+    "viewProfile": "عرض الملف الشخصي",
+    "message": "مراسلة",
+    "similar": "خدمات مشابهة"
+  },
+  "PubProvider": {
+    "notFound": "مقدّم الخدمة غير موجود",
+    "metaDescription": "احجز خدمات من {name} على UCOMMERZ.",
+    "providerFallback": "مقدّم خدمة",
+    "verifiedProvider": "مقدّم خدمة موثّق",
+    "verified": "موثّق",
+    "joined": "انضم في {date}",
+    "website": "الموقع الإلكتروني",
+    "message": "مراسلة",
+    "editProfile": "تعديل الملف الشخصي",
+    "shareTitle": "{name} على UCOMMERZ",
+    "servicesHeading": "الخدمات ({count})",
+    "noServices": "لا توجد خدمات نشطة حاليًا.",
+    "packages": "الباقات",
+    "save": "وفّر {percent}%",
+    "serviceFallback": "خدمة",
+    "portfolio": "معرض الأعمال",
+    "viewProject": "عرض المشروع",
+    "reviewsHeading": "التقييمات ({count})",
+    "skills": "المهارات",
+    "yearsShort": "{n} سنة",
+    "certifications": "الشهادات",
+    "viewCertificate": "عرض الشهادة"
+  },
+  "PubProfile": {
+    "title": "ملفي الشخصي",
+    "viewPublic": "عرض الملف العام",
+    "photo": "الصورة",
+    "details": "البيانات",
+    "detailsDesc": "حافظ على تحديث معلوماتك.",
+    "accountType": "نوع الحساب",
+    "seekerPrompt": "تريد تقديم خدماتك أيضًا؟ فعّل أدوات مقدّم الخدمة — مجانًا.",
+    "providerPrompt": "تريد حجز خدمات من الآخرين؟ فعّل ميزات العميل.",
+    "becomeProvider": "كن مقدّم خدمة",
+    "enableCustomer": "تفعيل ميزات العميل"
+  },
+  "PubErrors": {
+    "notFoundTitle": "الصفحة غير موجودة",
+    "notFoundBody": "الصفحة التي تبحث عنها غير موجودة أو تم نقلها.",
+    "backHome": "العودة إلى الرئيسية",
+    "browseServices": "تصفّح الخدمات",
+    "loading": "جارٍ التحميل",
+    "title": "حدث خطأ ما",
+    "body": "وقع خطأ غير متوقع. يمكنك المحاولة مرة أخرى أو العودة.",
+    "reference": "المرجع: {digest}",
+    "tryAgain": "حاول مرة أخرى",
+    "goHome": "الذهاب إلى الرئيسية"
+  },
+  "PubBooking": {
+    "signInPrompt": "سجّل الدخول لحجز هذه الخدمة.",
+    "signInToBook": "سجّل الدخول للحجز",
+    "ownService": "هذه خدمتك الخاصة. يمكنك إدارتها من لوحة التحكم.",
+    "providerOnly": "حسابك مُعدّ كمقدّم خدمة. فعّل دور العميل في <link>ملفك الشخصي</link> لحجز الخدمات.",
+    "chooseDate": "اختر تاريخًا",
+    "chooseTime": "اختر وقتًا",
+    "chooseFuture": "اختر وقتًا في المستقبل",
+    "date": "التاريخ",
+    "pickDate": "اختر تاريخًا",
+    "startTime": "وقت البدء",
+    "duration": "المدة (بالساعات)",
+    "notes": "ملاحظات لمقدّم الخدمة (اختياري)",
+    "notesPlaceholder": "شارك أي تفاصيل قد تساعد…",
+    "estimatedTotal": "الإجمالي التقديري",
+    "noCharge": "لن يتم خصم أي مبلغ عبر الإنترنت — سيؤكد مقدّم الخدمة طلبك أولًا.",
+    "request": "طلب الحجز"
+  },
+  "PubBookPackage": {
+    "requested": "تم طلب الباقة!",
+    "book": "احجز الباقة",
+    "dialogTitle": "حجز «{title}»",
+    "dialogDesc": "اختر موعد البدء المناسب لك. سيؤكد مقدّم الخدمة طلبك.",
+    "when": "التاريخ والوقت المفضلان",
+    "notes": "ملاحظات (اختياري)",
+    "request": "طلب الباقة"
+  },
+  "PubReviews": {
+    "none": "لا توجد تقييمات بعد.",
+    "customer": "عميل",
+    "professionalism": "الاحترافية",
+    "quality": "الجودة",
+    "punctuality": "الالتزام بالمواعيد",
+    "response": "ردّ مقدّم الخدمة"
+  },
+  "PubReviewForm": {
+    "criteria": {
+      "rating": "التقييم العام",
+      "professionalism": "الاحترافية",
+      "quality": "جودة العمل",
+      "punctuality": "الالتزام بالمواعيد"
+    },
+    "selectRating": "اختر تقييمًا",
+    "yourReview": "تقييمك",
+    "placeholder": "كيف كانت تجربتك؟",
+    "submit": "إرسال التقييم"
+  },
+  "PubStars": {
+    "rated": "التقييم {value} من 5",
+    "ratedWithCount": "التقييم {value} من 5 بناءً على {count, plural, zero {# تقييم} one {تقييم واحد} two {تقييمان اثنان} few {# تقييمات} many {# تقييمًا} other {# تقييم}}",
+    "rating": "التقييم",
+    "starsLabel": "{count, plural, zero {# نجمة} one {نجمة واحدة} two {نجمتان اثنتان} few {# نجوم} many {# نجمة} other {# نجمة}}"
+  },
+  "PubFavorite": {
+    "signIn": "يرجى تسجيل الدخول لحفظ المفضلة.",
+    "failed": "تعذّر تحديث المفضلة. يرجى المحاولة مرة أخرى.",
+    "remove": "إزالة من المفضلة",
+    "save": "حفظ في المفضلة",
+    "saved": "تم الحفظ",
+    "saveShort": "حفظ"
+  },
+  "PubShare": {
+    "label": "مشاركة",
+    "copied": "تم نسخ الرابط إلى الحافظة",
+    "copyFailed": "تعذّر نسخ الرابط. انسخه من شريط العنوان."
+  },
+  "PubReport": {
+    "label": "إبلاغ",
+    "title": {
+      "SERVICE": "الإبلاغ عن هذه الخدمة",
+      "REVIEW": "الإبلاغ عن هذا التقييم",
+      "USER": "الإبلاغ عن هذا المستخدم",
+      "MESSAGE": "الإبلاغ عن هذه الرسالة"
+    },
+    "description": "أخبرنا بما حدث. يراجع فريق الإشراف لدينا البلاغات.",
+    "reason": "السبب",
+    "selectReason": "اختر سببًا",
+    "other": "أخرى",
+    "details": "التفاصيل (اختياري)",
+    "detailsPlaceholder": "أضف أي معلومات تساعدنا في التحقيق…",
+    "cancel": "إلغاء",
+    "submit": "إرسال البلاغ"
+  },
+  "PubMap": {
+    "viewDetails": "عرض التفاصيل",
+    "loadFailed": "تعذّر تحميل الخريطة حاليًا.",
+    "noKey": "أضف NEXT_PUBLIC_GOOGLE_MAPS_API_KEY لعرض الخريطة.",
+    "openInGoogle": "فتح في خرائط Google",
+    "label": "الخريطة"
+  },
+  "PubLocation": {
+    "placeholder": "المدينة أو العنوان أو المنطقة",
+    "enterAddress": "أدخل عنوانًا أولًا.",
+    "noKey": "مفتاح خرائط Google غير مُعدّ.",
+    "notFound": "تعذّر العثور على هذا العنوان.",
+    "found": "تم العثور على الموقع.",
+    "geocodeFailed": "فشل تحديد الإحداثيات. حاول مرة أخرى.",
+    "unsupported": "متصفحك لا يدعم تحديد الموقع الجغرافي.",
+    "usingCurrent": "يتم استخدام موقعك الحالي.",
+    "denied": "تم رفض إذن الوصول إلى الموقع.",
+    "couldNotLocate": "تعذّر تحديد موقعك.",
+    "findOnMap": "ابحث على الخريطة",
+    "useMyLocation": "استخدم موقعي"
+  },
+  "PubAvatar": {
+    "uploadFailed": "فشل الرفع",
+    "photoAlt": "صورة الملف الشخصي",
+    "uploadLabel": "رفع صورة الملف الشخصي",
+    "change": "تغيير الصورة",
+    "remove": "إزالة",
+    "hint": "JPG أو PNG أو WebP أو GIF · الحد الأقصى 3 ميغابايت"
+  },
+  "PubProfileForm": {
+    "fullName": "الاسم الكامل",
+    "phone": "الهاتف",
+    "about": "نبذة عنك",
+    "aboutHint": "تظهر في ملفك الشخصي العام.",
+    "location": "الموقع",
+    "locationHint": "تُستخدم للبحث عن الخدمات القريبة وفي الخرائط.",
+    "website": "الموقع الإلكتروني",
+    "save": "حفظ التغييرات"
+  },
+  "PubNotify": {
+    "title": "الإشعارات",
+    "labelUnread": "الإشعارات ({count} غير مقروء)",
+    "markAllRead": "تعليم الكل كمقروء",
+    "caughtUp": "لا توجد إشعارات جديدة.",
+    "history": "عرض سجل النشاط"
+  },
+  "PubEnableRole": {
+    "providerEnabled": "تم تفعيل أدوات مقدّم الخدمة!",
+    "customerEnabled": "تم تفعيل ميزات العميل!"
+  }
+}

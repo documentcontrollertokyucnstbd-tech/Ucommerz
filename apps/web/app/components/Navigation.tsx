@@ -58,6 +58,7 @@ const NAV = [
 
 export function Navigation({ user }: { user: NavUser | null }) {
   const t = useTranslations("Nav");
+  const tr = useTranslations("Role");
   const router = useRouter();
   const pathname = usePathname() ?? "/";
   const [open, setOpen] = useState(false);
@@ -175,7 +176,7 @@ export function Navigation({ user }: { user: NavUser | null }) {
                   <DropdownMenuLabel className="flex flex-col gap-0.5">
                     <span className="truncate">{user.full_name ?? t("yourAccount")}</span>
                     <span className="truncate text-xs font-normal text-muted-foreground">{user.email}</span>
-                    <Badge variant="muted" className="mt-1 w-fit">{user.role.toLowerCase()}</Badge>
+                    <Badge variant="muted" className="mt-1 w-fit">{tr(user.role)}</Badge>
                   </DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   {!staff && (

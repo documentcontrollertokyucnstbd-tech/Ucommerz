@@ -1,0 +1,203 @@
+{
+  "PubService": {
+    "notFound": "未找到该服务",
+    "metaDescription": "在 UCOMMERZ 预订{title}。",
+    "breadcrumb": "面包屑导航",
+    "browse": "浏览",
+    "photoAlt": "{title} 图片 {n}",
+    "remote": "远程",
+    "featured": "精选",
+    "views": "{count, plural, other {# 次浏览}}",
+    "hoursShort": "小时",
+    "about": "服务介绍",
+    "area": "服务区域",
+    "servesWithin": "服务范围：{km} 公里以内的客户。",
+    "reviewsHeading": "评价（{count}）",
+    "notAccepting": "该服务目前暂不接受预订。",
+    "verified": "已认证",
+    "viewProfile": "查看资料",
+    "message": "发消息",
+    "similar": "相似服务"
+  },
+  "PubProvider": {
+    "notFound": "未找到该服务商",
+    "metaDescription": "在 UCOMMERZ 预订 {name} 提供的服务。",
+    "providerFallback": "服务商",
+    "verifiedProvider": "认证服务商",
+    "verified": "已认证",
+    "joined": "加入于 {date}",
+    "website": "网站",
+    "message": "发消息",
+    "editProfile": "编辑资料",
+    "shareTitle": "UCOMMERZ 上的 {name}",
+    "servicesHeading": "服务（{count}）",
+    "noServices": "目前没有在线服务。",
+    "packages": "套餐",
+    "save": "立省 {percent}%",
+    "serviceFallback": "服务",
+    "portfolio": "作品集",
+    "viewProject": "查看项目",
+    "reviewsHeading": "评价（{count}）",
+    "skills": "技能",
+    "yearsShort": "{n} 年",
+    "certifications": "资质证书",
+    "viewCertificate": "查看证书"
+  },
+  "PubProfile": {
+    "title": "我的资料",
+    "viewPublic": "查看公开资料",
+    "photo": "头像",
+    "details": "详细信息",
+    "detailsDesc": "请保持您的信息为最新。",
+    "accountType": "账户类型",
+    "seekerPrompt": "想同时提供自己的服务吗？启用服务商功能，完全免费。",
+    "providerPrompt": "想预订他人的服务吗？启用客户功能。",
+    "becomeProvider": "成为服务商",
+    "enableCustomer": "启用客户功能"
+  },
+  "PubErrors": {
+    "notFoundTitle": "页面未找到",
+    "notFoundBody": "您查找的页面不存在或已移动。",
+    "backHome": "返回首页",
+    "browseServices": "浏览服务",
+    "loading": "加载中",
+    "title": "出了点问题",
+    "body": "发生了意外错误。您可以重试，或返回上一页。",
+    "reference": "参考编号：{digest}",
+    "tryAgain": "重试",
+    "goHome": "返回首页"
+  },
+  "PubBooking": {
+    "signInPrompt": "请登录后预订此服务。",
+    "signInToBook": "登录后预订",
+    "ownService": "这是您自己的服务，请在控制台中管理。",
+    "providerOnly": "您的账户当前为服务商身份。请在<link>个人资料</link>中启用客户角色后再预订服务。",
+    "chooseDate": "请选择日期",
+    "chooseTime": "请选择时间",
+    "chooseFuture": "请选择未来的时间",
+    "date": "日期",
+    "pickDate": "选择日期",
+    "startTime": "开始时间",
+    "duration": "时长（小时）",
+    "notes": "给服务商的备注（选填）",
+    "notesPlaceholder": "请补充有助于服务商了解需求的信息…",
+    "estimatedTotal": "预估总价",
+    "noCharge": "无需在线付款，服务商确认您的请求后才会生效。",
+    "request": "申请预订"
+  },
+  "PubBookPackage": {
+    "requested": "已提交套餐申请！",
+    "book": "预订套餐",
+    "dialogTitle": "预订“{title}”",
+    "dialogDesc": "请选择您希望开始的时间，服务商将确认您的申请。",
+    "when": "期望日期和时间",
+    "notes": "备注（选填）",
+    "request": "申请套餐"
+  },
+  "PubReviews": {
+    "none": "暂无评价。",
+    "customer": "客户",
+    "professionalism": "专业度",
+    "quality": "质量",
+    "punctuality": "守时",
+    "response": "服务商回复"
+  },
+  "PubReviewForm": {
+    "criteria": {
+      "rating": "总体",
+      "professionalism": "专业度",
+      "quality": "工作质量",
+      "punctuality": "守时"
+    },
+    "selectRating": "请选择评分",
+    "yourReview": "您的评价",
+    "placeholder": "您的体验如何？",
+    "submit": "提交评价"
+  },
+  "PubStars": {
+    "rated": "评分 {value}（满分 5）",
+    "ratedWithCount": "评分 {value}（满分 5），共 {count, plural, other {# 条评价}}",
+    "rating": "评分",
+    "starsLabel": "{count, plural, other {# 星}}"
+  },
+  "PubFavorite": {
+    "signIn": "请登录后收藏。",
+    "failed": "无法更新收藏，请重试。",
+    "remove": "取消收藏",
+    "save": "收藏",
+    "saved": "已收藏",
+    "saveShort": "收藏"
+  },
+  "PubShare": {
+    "label": "分享",
+    "copied": "链接已复制到剪贴板",
+    "copyFailed": "无法复制链接，请从地址栏复制。"
+  },
+  "PubReport": {
+    "label": "举报",
+    "title": {
+      "SERVICE": "举报此服务",
+      "REVIEW": "举报此评价",
+      "USER": "举报此用户",
+      "MESSAGE": "举报此消息"
+    },
+    "description": "请告诉我们存在什么问题。举报将由我们的审核团队处理。",
+    "reason": "原因",
+    "selectReason": "请选择原因",
+    "other": "其他",
+    "details": "详细说明（选填）",
+    "detailsPlaceholder": "请补充有助于我们调查的信息…",
+    "cancel": "取消",
+    "submit": "提交举报"
+  },
+  "PubMap": {
+    "viewDetails": "查看详情",
+    "loadFailed": "暂时无法加载地图。",
+    "noKey": "请添加 NEXT_PUBLIC_GOOGLE_MAPS_API_KEY 以显示地图。",
+    "openInGoogle": "在 Google 地图中打开",
+    "label": "地图"
+  },
+  "PubLocation": {
+    "placeholder": "城市、地址或区域",
+    "enterAddress": "请先输入地址。",
+    "noKey": "尚未配置 Google 地图密钥。",
+    "notFound": "找不到该地址。",
+    "found": "已找到位置。",
+    "geocodeFailed": "地址解析失败，请重试。",
+    "unsupported": "您的浏览器不支持地理定位。",
+    "usingCurrent": "正在使用您的当前位置。",
+    "denied": "位置权限被拒绝。",
+    "couldNotLocate": "无法获取您的位置。",
+    "findOnMap": "在地图上查找",
+    "useMyLocation": "使用我的位置"
+  },
+  "PubAvatar": {
+    "uploadFailed": "上传失败",
+    "photoAlt": "头像",
+    "uploadLabel": "上传头像",
+    "change": "更换头像",
+    "remove": "移除",
+    "hint": "JPG、PNG、WebP 或 GIF · 最大 3 MB"
+  },
+  "PubProfileForm": {
+    "fullName": "姓名",
+    "phone": "电话",
+    "about": "个人简介",
+    "aboutHint": "将显示在您的公开资料中。",
+    "location": "位置",
+    "locationHint": "用于附近服务搜索和地图。",
+    "website": "网站",
+    "save": "保存更改"
+  },
+  "PubNotify": {
+    "title": "通知",
+    "labelUnread": "通知（{count} 条未读）",
+    "markAllRead": "全部标为已读",
+    "caughtUp": "您已查看全部通知。",
+    "history": "查看活动记录"
+  },
+  "PubEnableRole": {
+    "providerEnabled": "服务商功能已启用！",
+    "customerEnabled": "客户功能已启用！"
+  }
+}

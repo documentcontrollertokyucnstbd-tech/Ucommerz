@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
@@ -15,6 +16,7 @@ import { updateProfileAction } from "@/app/actions/auth";
 import { toastAction } from "@/app/lib/toast-action";
 
 export function ProfileForm({ profile }: { profile: UserProfile }) {
+  const t = useTranslations("PubProfileForm");
   const router = useRouter();
   const [coords, setCoords] = useState<LatLng>({ latitude: profile.latitude, longitude: profile.longitude });
   const form = useForm<ProfileInput>({
@@ -44,25 +46,25 @@ export function ProfileForm({ profile }: { profile: UserProfile }) {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6" noValidate>
         <div className="grid gap-4 sm:grid-cols-2">
           <FormField control={form.control} name="full_name" render={({ field }) => (
-            <FormItem><FormLabel>Full name</FormLabel><FormControl><Input autoComplete="name" {...field} /></FormControl><FormMessage /></FormItem>
+            <FormItem><FormLabel>{t("fullName")}</FormLabel><FormControl><Input autoComplete="name" {...field} /></FormControl><FormMessage /></FormItem>
           )} />
           <FormField control={form.control} name="phone" render={({ field }) => (
-            <FormItem><FormLabel>Phone</FormLabel><FormControl><Input type="tel" autoComplete="tel" {...field} value={field.value ?? ""} /></FormControl><FormMessage /></FormItem>
+            <FormItem><FormLabel>{t("phone")}</FormLabel><FormControl><Input type="tel" autoComplete="tel" {...field} value={field.value ?? ""} /></FormControl><FormMessage /></FormItem>
           )} />
         </div>
         <FormField control={form.control} name="bio" render={({ field }) => (
-          <FormItem><FormLabel>About you</FormLabel><FormControl><Textarea rows={4} {...field} value={field.value ?? ""} /></FormControl><FormDescription>Shown on your public profile.</FormDescription><FormMessage /></FormItem>
+          <FormItem><FormLabel>{t("about")}</FormLabel><FormControl><Textarea rows={4} {...field} value={field.value ?? ""} /></FormControl><FormDescription>{t("aboutHint")}</FormDescription><FormMessage /></FormItem>
         )} />
         <FormField control={form.control} name="location" render={({ field }) => (
           <FormItem>
-            <FormLabel>Location</FormLabel>
+            <FormLabel>{t("location")}</FormLabel>
             <LocationField value={field.value ?? ""} coords={coords} onChange={(addr, c) => { field.onChange(addr); setCoords(c); }} />
-            <FormDescription>Used for nearby-service search and maps.</FormDescription>
+            <FormDescription>{t("locationHint")}</FormDescription>
             <FormMessage />
           </FormItem>
         )} />
         <FormField control={form.control} name="website" render={({ field }) => (
-          <FormItem><FormLabel>Website</FormLabel><FormControl><Input type="url" placeholder="https://" {...field} value={field.value ?? ""} /></FormControl><FormMessage /></FormItem>
+          <FormItem><FormLabel>{t("website")}</FormLabel><FormControl><Input type="url" placeholder="https://" {...field} value={field.value ?? ""} /></FormControl><FormMessage /></FormItem>
         )} />
         <div className="grid gap-4 sm:grid-cols-2">
           {(["facebook", "instagram", "twitter", "linkedin"] as const).map((k) => (
@@ -72,7 +74,7 @@ export function ProfileForm({ profile }: { profile: UserProfile }) {
           ))}
         </div>
         <Button type="submit" disabled={form.formState.isSubmitting}>
-          {form.formState.isSubmitting && <Loader2 className="animate-spin" />} Save changes
+          {form.formState.isSubmitting && <Loader2 className="animate-spin" />} {t("save")}
         </Button>
       </form>
     </Form>

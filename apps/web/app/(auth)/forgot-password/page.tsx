@@ -4,7 +4,10 @@ import { getTranslations } from "next-intl/server";
 import { ForgotPasswordForm } from "@/app/components/auth/ForgotPasswordForm";
 import { getAuth } from "@/app/lib/guards";
 
-export const metadata: Metadata = { title: "Forgot password" };
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("Meta");
+  return { title: t("forgotTitle") };
+}
 
 export default async function ForgotPasswordPage() {
   const t = await getTranslations("Forgot");

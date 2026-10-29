@@ -1,0 +1,203 @@
+{
+  "PubService": {
+    "notFound": "सेवा नहीं मिली",
+    "metaDescription": "UCOMMERZ पर {title} बुक करें।",
+    "breadcrumb": "ब्रेडक्रंब",
+    "browse": "सेवाएँ देखें",
+    "photoAlt": "{title} की फ़ोटो {n}",
+    "remote": "रिमोट",
+    "featured": "विशेष",
+    "views": "{count, plural, one {# बार देखा गया} other {# बार देखा गया}}",
+    "hoursShort": "घं",
+    "about": "इस सेवा के बारे में",
+    "area": "सेवा क्षेत्र",
+    "servesWithin": "{km} किमी के भीतर के ग्राहकों को सेवा देता है।",
+    "reviewsHeading": "समीक्षाएँ ({count})",
+    "notAccepting": "यह सेवा अभी बुकिंग स्वीकार नहीं कर रही है।",
+    "verified": "सत्यापित",
+    "viewProfile": "प्रोफ़ाइल देखें",
+    "message": "संदेश भेजें",
+    "similar": "मिलती-जुलती सेवाएँ"
+  },
+  "PubProvider": {
+    "notFound": "प्रोवाइडर नहीं मिला",
+    "metaDescription": "UCOMMERZ पर {name} की सेवाएँ बुक करें।",
+    "providerFallback": "प्रोवाइडर",
+    "verifiedProvider": "सत्यापित प्रोवाइडर",
+    "verified": "सत्यापित",
+    "joined": "{date} को जुड़े",
+    "website": "वेबसाइट",
+    "message": "संदेश भेजें",
+    "editProfile": "प्रोफ़ाइल संपादित करें",
+    "shareTitle": "UCOMMERZ पर {name}",
+    "servicesHeading": "सेवाएँ ({count})",
+    "noServices": "अभी कोई सक्रिय सेवा नहीं है।",
+    "packages": "पैकेज",
+    "save": "{percent}% बचाएँ",
+    "serviceFallback": "सेवा",
+    "portfolio": "पोर्टफ़ोलियो",
+    "viewProject": "प्रोजेक्ट देखें",
+    "reviewsHeading": "समीक्षाएँ ({count})",
+    "skills": "कौशल",
+    "yearsShort": "{n} वर्ष",
+    "certifications": "प्रमाणपत्र",
+    "viewCertificate": "प्रमाणपत्र देखें"
+  },
+  "PubProfile": {
+    "title": "मेरी प्रोफ़ाइल",
+    "viewPublic": "सार्वजनिक प्रोफ़ाइल देखें",
+    "photo": "फ़ोटो",
+    "details": "विवरण",
+    "detailsDesc": "अपनी जानकारी अद्यतन रखें।",
+    "accountType": "खाते का प्रकार",
+    "seekerPrompt": "क्या आप अपनी सेवाएँ भी देना चाहते हैं? प्रोवाइडर टूल चालू करें — यह मुफ़्त है।",
+    "providerPrompt": "क्या आप दूसरों की सेवाएँ बुक करना चाहते हैं? ग्राहक सुविधाएँ चालू करें।",
+    "becomeProvider": "प्रोवाइडर बनें",
+    "enableCustomer": "ग्राहक सुविधाएँ चालू करें"
+  },
+  "PubErrors": {
+    "notFoundTitle": "पृष्ठ नहीं मिला",
+    "notFoundBody": "आप जो पृष्ठ ढूँढ रहे हैं वह मौजूद नहीं है या हटा दिया गया है।",
+    "backHome": "होम पर वापस जाएँ",
+    "browseServices": "सेवाएँ देखें",
+    "loading": "लोड हो रहा है",
+    "title": "कुछ गड़बड़ हो गई",
+    "body": "एक अप्रत्याशित त्रुटि हुई। आप दोबारा कोशिश कर सकते हैं या वापस जा सकते हैं।",
+    "reference": "संदर्भ: {digest}",
+    "tryAgain": "फिर कोशिश करें",
+    "goHome": "होम पर जाएँ"
+  },
+  "PubBooking": {
+    "signInPrompt": "इस सेवा को बुक करने के लिए साइन इन करें।",
+    "signInToBook": "बुक करने के लिए साइन इन करें",
+    "ownService": "यह आपकी अपनी सेवा है। इसे अपने डैशबोर्ड से प्रबंधित करें।",
+    "providerOnly": "आपका खाता प्रोवाइडर के रूप में सेट है। सेवाएँ बुक करने के लिए अपनी <link>प्रोफ़ाइल</link> में ग्राहक भूमिका चालू करें।",
+    "chooseDate": "तारीख़ चुनें",
+    "chooseTime": "समय चुनें",
+    "chooseFuture": "भविष्य का समय चुनें",
+    "date": "तारीख़",
+    "pickDate": "तारीख़ चुनें",
+    "startTime": "प्रारंभ समय",
+    "duration": "अवधि (घंटे)",
+    "notes": "प्रोवाइडर के लिए नोट्स (वैकल्पिक)",
+    "notesPlaceholder": "मददगार कोई भी जानकारी साझा करें…",
+    "estimatedTotal": "अनुमानित कुल",
+    "noCharge": "ऑनलाइन कोई शुल्क नहीं लिया जाएगा — पहले प्रोवाइडर आपके अनुरोध की पुष्टि करेगा।",
+    "request": "बुकिंग का अनुरोध करें"
+  },
+  "PubBookPackage": {
+    "requested": "पैकेज का अनुरोध भेजा गया!",
+    "book": "पैकेज बुक करें",
+    "dialogTitle": "“{title}” बुक करें",
+    "dialogDesc": "चुनें कि आप कब शुरू करना चाहते हैं। प्रोवाइडर आपके अनुरोध की पुष्टि करेगा।",
+    "when": "पसंदीदा तारीख़ और समय",
+    "notes": "नोट्स (वैकल्पिक)",
+    "request": "पैकेज का अनुरोध करें"
+  },
+  "PubReviews": {
+    "none": "अभी तक कोई समीक्षा नहीं।",
+    "customer": "ग्राहक",
+    "professionalism": "व्यावसायिकता",
+    "quality": "गुणवत्ता",
+    "punctuality": "समय की पाबंदी",
+    "response": "प्रोवाइडर का जवाब"
+  },
+  "PubReviewForm": {
+    "criteria": {
+      "rating": "कुल मिलाकर",
+      "professionalism": "व्यावसायिकता",
+      "quality": "काम की गुणवत्ता",
+      "punctuality": "समय की पाबंदी"
+    },
+    "selectRating": "रेटिंग चुनें",
+    "yourReview": "आपकी समीक्षा",
+    "placeholder": "आपका अनुभव कैसा रहा?",
+    "submit": "समीक्षा सबमिट करें"
+  },
+  "PubStars": {
+    "rated": "5 में से {value} रेटिंग",
+    "ratedWithCount": "{count, plural, one {# समीक्षा} other {# समीक्षाओं}} के आधार पर 5 में से {value} रेटिंग",
+    "rating": "रेटिंग",
+    "starsLabel": "{count, plural, one {# स्टार} other {# स्टार}}"
+  },
+  "PubFavorite": {
+    "signIn": "पसंदीदा सहेजने के लिए कृपया साइन इन करें।",
+    "failed": "पसंदीदा अपडेट नहीं हो सके। कृपया फिर कोशिश करें।",
+    "remove": "पसंदीदा से हटाएँ",
+    "save": "पसंदीदा में सहेजें",
+    "saved": "सहेजा गया",
+    "saveShort": "सहेजें"
+  },
+  "PubShare": {
+    "label": "साझा करें",
+    "copied": "लिंक क्लिपबोर्ड पर कॉपी हो गया",
+    "copyFailed": "लिंक कॉपी नहीं हो सका। इसे एड्रेस बार से कॉपी करें।"
+  },
+  "PubReport": {
+    "label": "रिपोर्ट करें",
+    "title": {
+      "SERVICE": "इस सेवा की रिपोर्ट करें",
+      "REVIEW": "इस समीक्षा की रिपोर्ट करें",
+      "USER": "इस उपयोगकर्ता की रिपोर्ट करें",
+      "MESSAGE": "इस संदेश की रिपोर्ट करें"
+    },
+    "description": "हमें बताएँ क्या गलत है। रिपोर्ट की समीक्षा हमारी मॉडरेशन टीम करती है।",
+    "reason": "कारण",
+    "selectReason": "कारण चुनें",
+    "other": "अन्य",
+    "details": "विवरण (वैकल्पिक)",
+    "detailsPlaceholder": "जाँच में मदद करने वाली कोई भी जानकारी जोड़ें…",
+    "cancel": "रद्द करें",
+    "submit": "रिपोर्ट सबमिट करें"
+  },
+  "PubMap": {
+    "viewDetails": "विवरण देखें",
+    "loadFailed": "मानचित्र अभी लोड नहीं हो सका।",
+    "noKey": "मानचित्र दिखाने के लिए NEXT_PUBLIC_GOOGLE_MAPS_API_KEY जोड़ें।",
+    "openInGoogle": "Google Maps में खोलें",
+    "label": "मानचित्र"
+  },
+  "PubLocation": {
+    "placeholder": "शहर, पता या क्षेत्र",
+    "enterAddress": "पहले कोई पता दर्ज करें।",
+    "noKey": "Google Maps कुंजी कॉन्फ़िगर नहीं है।",
+    "notFound": "यह पता नहीं मिला।",
+    "found": "स्थान मिल गया।",
+    "geocodeFailed": "जियोकोडिंग विफल रही। फिर कोशिश करें।",
+    "unsupported": "आपका ब्राउज़र जियोलोकेशन का समर्थन नहीं करता।",
+    "usingCurrent": "आपका वर्तमान स्थान उपयोग किया जा रहा है।",
+    "denied": "स्थान की अनुमति अस्वीकार कर दी गई।",
+    "couldNotLocate": "आपका स्थान प्राप्त नहीं हो सका।",
+    "findOnMap": "मानचित्र पर खोजें",
+    "useMyLocation": "मेरा स्थान उपयोग करें"
+  },
+  "PubAvatar": {
+    "uploadFailed": "अपलोड विफल रहा",
+    "photoAlt": "प्रोफ़ाइल फ़ोटो",
+    "uploadLabel": "प्रोफ़ाइल फ़ोटो अपलोड करें",
+    "change": "फ़ोटो बदलें",
+    "remove": "हटाएँ",
+    "hint": "JPG, PNG, WebP या GIF · अधिकतम 3 MB"
+  },
+  "PubProfileForm": {
+    "fullName": "पूरा नाम",
+    "phone": "फ़ोन",
+    "about": "आपके बारे में",
+    "aboutHint": "आपकी सार्वजनिक प्रोफ़ाइल पर दिखाया जाता है।",
+    "location": "स्थान",
+    "locationHint": "आस-पास की सेवाएँ खोजने और मानचित्र के लिए उपयोग होता है।",
+    "website": "वेबसाइट",
+    "save": "बदलाव सहेजें"
+  },
+  "PubNotify": {
+    "title": "सूचनाएँ",
+    "labelUnread": "सूचनाएँ ({count} अपठित)",
+    "markAllRead": "सभी को पढ़ा हुआ चिह्नित करें",
+    "caughtUp": "आप सब देख चुके हैं।",
+    "history": "गतिविधि इतिहास देखें"
+  },
+  "PubEnableRole": {
+    "providerEnabled": "प्रोवाइडर टूल चालू हो गए!",
+    "customerEnabled": "ग्राहक सुविधाएँ चालू हो गईं!"
+  }
+}

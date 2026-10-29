@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import {
   Bell,
   CalendarCheck,
@@ -14,7 +15,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import type { ActivityLog } from "@ucommerz/shared";
-import { formatDateTime, formatRelative } from "@/app/lib/utils";
+import { useFormat } from "@/app/lib/use-format";
 
 const ICONS: Record<string, LucideIcon> = {
   LOGIN: LogIn,
@@ -34,25 +35,28 @@ const ICONS: Record<string, LucideIcon> = {
   SETTINGS_UPDATED: Settings,
 };
 
-function label(action: string) {
+function humanize(action: string) {
   return action.toLowerCase().replace(/_/g, " ").replace(/^\w/, (c) => c.toUpperCase());
 }
 
 /** Vertical timeline of the user's recent activity (rows from activity_logs). */
-export function ActivityHistory({ logs, empty = "No activity yet." }: { logs: ActivityLog[]; empty?: string }) {
-  if (logs.length === 0) return <p className="text-sm text-muted-foreground">{empty}</p>;
+export function ActivityHistory({ logs, empty }: { logs: ActivityLog[]; empty?: string }) {
+  const t = useTranslations("DashActivity");
+  const f = useFormat();
+  const label = (action: string) => (t.has(`actions.${action}`) ? t(`actions.${action}`) : humanize(action));
+  if (logs.length === 0) return <p className="text-sm text-muted-foreground">{empty ?? t("empty")}</p>;
   return (
-    <ol className="relative space-y-4 border-l pl-6">
+    <ol className="relative space-y-4 border-s ps-6">
       {logs.map((l) => {
         const Icon = ICONS[l.action_type] ?? (l.action_type === "NOTIFICATION" ? Bell : FileText);
         return (
           <li key={l.id} className="relative">
-            <span className="absolute -left-[34px] flex size-7 items-center justify-center rounded-full border bg-card text-primary">
+            <span className="absolute -start-[34px] flex size-7 items-center justify-center rounded-full border bg-card text-primary">
               <Icon className="size-3.5" />
             </span>
             <p className="text-sm font-medium">{l.description ?? label(l.action_type)}</p>
-            <p className="text-xs text-muted-foreground" title={formatDateTime(l.created_at)}>
-              {label(l.action_type)} · {formatRelative(l.created_at)}
+            <p className="text-xs text-muted-foreground" title={f.dateTime(l.created_at)}>
+              {label(l.action_type)} · {f.relative(l.created_at)}
             </p>
           </li>
         );

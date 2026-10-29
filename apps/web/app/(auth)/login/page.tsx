@@ -8,7 +8,10 @@ import { getAuth } from "@/app/lib/guards";
 import { safeNext } from "@/app/lib/safe-next";
 import { first } from "@/app/lib/utils";
 
-export const metadata: Metadata = { title: "Sign in", description: "Sign in to manage your bookings and messages on UCOMMERZ." };
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("Meta");
+  return { title: t("loginTitle"), description: t("loginDesc") };
+}
 
 const ERRORS: Record<string, "suspended" | "profileMissing" | "authCallback"> = {
   suspended: "suspended",

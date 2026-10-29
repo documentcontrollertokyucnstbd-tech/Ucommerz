@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 import { Flag } from "lucide-react";
 import { PAGE_SIZE, REPORT_STATUSES, type ReportWithReporter } from "@ucommerz/shared";
 import { requireAdmin } from "@/app/lib/guards";
-import { cn, first, formatDateTime, parsePositiveInt } from "@/app/lib/utils";
+import { cn, first, parsePositiveInt } from "@/app/lib/utils";
+import { getFormat } from "@/app/lib/format-server";
 import { PageHeader } from "@/app/components/PageHeader";
 import { EmptyState } from "@/app/components/EmptyState";
 import { Pagination } from "@/app/components/Pagination";
@@ -12,7 +14,10 @@ import { ReportResolver } from "@/app/components/ReportResolver";
 import { Badge } from "@/app/components/ui/badge";
 import { Card, CardContent } from "@/app/components/ui/card";
 
-export const metadata: Metadata = { title: "Reports" };
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("AdmReports");
+  return { title: t("metaTitle") };
+}
 
 function targetHref(type: string, id: string): string | null {
   if (type === "SERVICE") return `/services/${id}`;
@@ -21,7 +26,10 @@ function targetHref(type: string, id: string): string | null {
 }
 
 export default async function AdminReportsPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
+  const f = await getFormat();
   const sp = await searchParams;
+  const t = await getTranslations("AdmReports");
+  const tStatus = await getTranslations("Status");
   const { supabase } = await requireAdmin();
   const status = REPORT_STATUSES.find((s) => s === first(sp.status));
   const page = parsePositiveInt(first(sp.page), 1);
@@ -35,13 +43,13 @@ export default async function AdminReportsPage({ searchParams }: { searchParams:
 
   return (
     <div className="space-y-4">
-      <PageHeader title="Reports" description="Moderate content flagged by users." />
+      <PageHeader title={t("title")} description={t("description")} />
       <div className="flex flex-wrap gap-2">
-        <Link href="/admin/reports" className={chip(!status)}>Open</Link>
-        {REPORT_STATUSES.map((s) => <Link key={s} href={`/admin/reports?status=${s}`} className={chip(status === s)}>{s.replace("_", " ").toLowerCase()}</Link>)}
+        <Link href="/admin/reports" className={chip(!status)}>{t("open")}</Link>
+        {REPORT_STATUSES.map((s) => <Link key={s} href={`/admin/reports?status=${s}`} className={chip(status === s)}>{tStatus(s)}</Link>)}
       </div>
       {reports.length === 0 ? (
-        <EmptyState icon={<Flag className="size-5" />} title="Nothing here" description="No reports match this filter." />
+        <EmptyState icon={<Flag className="size-5" />} title={t("emptyTitle")} description={t("emptyDescription")} />
       ) : (
         <div className="space-y-3">
           {reports.map((r) => {
@@ -51,13 +59,13 @@ export default async function AdminReportsPage({ searchParams }: { searchParams:
                 <CardContent className="space-y-3">
                   <div className="flex flex-wrap items-start justify-between gap-2">
                     <div className="space-y-1">
-                      <div className="flex flex-wrap items-center gap-2"><Badge variant="secondary">{r.target_type.toLowerCase()}</Badge><span className="font-medium">{r.reason}</span></div>
-                      <p className="text-xs text-muted-foreground">Reported by {r.reporter?.full_name ?? "unknown"} · {formatDateTime(r.created_at)}</p>
+                      <div className="flex flex-wrap items-center gap-2"><Badge variant="secondary">{t.has(`target.${r.target_type}`) ? t(`target.${r.target_type}`) : r.target_type.toLowerCase()}</Badge><span className="font-medium">{r.reason}</span></div>
+                      <p className="text-xs text-muted-foreground">{t("reportedBy", { name: r.reporter?.full_name ?? t("unknown"), date: f.dateTime(r.created_at) })}</p>
                     </div>
                     <StatusBadge status={r.status} />
                   </div>
                   {r.description && <p className="rounded-lg bg-muted/50 p-3 text-sm">{r.description}</p>}
-                  {href && <Link href={href} className="text-sm font-medium text-primary hover:underline">View reported {r.target_type.toLowerCase()} →</Link>}
+                  {href && <Link href={href} className="text-sm font-medium text-primary hover:underline">{t.has(`viewTarget.${r.target_type}`) ? t(`viewTarget.${r.target_type}`) : t("viewTargetGeneric")} <span className="rtl-flip inline-block" aria-hidden="true">→</span></Link>}
                   <ReportResolver reportId={r.id} status={r.status} notes={r.resolution_notes} />
                 </CardContent>
               </Card>

@@ -13,11 +13,10 @@ import { EmptyState } from "@/app/components/EmptyState";
 import { PageHeader } from "@/app/components/PageHeader";
 import { ServiceMap } from "@/app/components/Map";
 
-export const metadata: Metadata = {
-  title: "Browse services",
-  description: "Search and filter trusted service providers by category, price, rating and distance.",
-  alternates: { canonical: "/browse" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("Meta");
+  return { title: t("browseTitle"), description: t("browseDesc"), alternates: { canonical: "/browse" } };
+}
 
 type SP = Record<string, string | string[] | undefined>;
 

@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { FileText } from "lucide-react";
-import { TEMPLATE_CATEGORY_LABELS, type MessageTemplate } from "@ucommerz/shared";
+import { type MessageTemplate } from "@ucommerz/shared";
 import { Button } from "@/app/components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/app/components/ui/popover";
 import { ScrollArea } from "@/app/components/ui/scroll-area";
@@ -21,32 +22,33 @@ export function MessageTemplates({
   vars: Record<string, string | undefined>;
   onPick: (text: string, templateId: string) => void;
 }) {
+  const t = useTranslations("DashTemplates");
   const [open, setOpen] = useState(false);
-  const active = templates.filter((t) => t.is_active);
+  const active = templates.filter((tpl) => tpl.is_active);
   if (active.length === 0) return null;
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
-        <Button type="button" variant="ghost" size="icon" aria-label="Insert a template" title="Message templates">
+        <Button type="button" variant="ghost" size="icon" aria-label={t("insert")} title={t("pickerTitle")}>
           <FileText />
         </Button>
       </PopoverTrigger>
       <PopoverContent align="start" className="w-80 p-2">
         <ScrollArea className="max-h-72">
           <ul className="space-y-1">
-            {active.map((t) => (
-              <li key={t.id}>
+            {active.map((tpl) => (
+              <li key={tpl.id}>
                 <button
                   type="button"
-                  className="w-full rounded-md p-2 text-left transition hover:bg-accent"
+                  className="w-full rounded-md p-2 text-start transition hover:bg-accent"
                   onClick={() => {
-                    onPick(applyTemplateVariables(t.content, vars), t.id);
+                    onPick(applyTemplateVariables(tpl.content, vars), tpl.id);
                     setOpen(false);
                   }}
                 >
-                  <p className="text-sm font-medium">{t.name}</p>
-                  <p className="text-[11px] text-muted-foreground">{TEMPLATE_CATEGORY_LABELS[t.category]}</p>
-                  <p className="mt-0.5 line-clamp-2 text-xs text-muted-foreground">{t.content}</p>
+                  <p className="text-sm font-medium">{tpl.name}</p>
+                  <p className="text-[11px] text-muted-foreground">{t(`categories.${tpl.category}`)}</p>
+                  <p className="mt-0.5 line-clamp-2 text-xs text-muted-foreground">{tpl.content}</p>
                 </button>
               </li>
             ))}

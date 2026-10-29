@@ -5,7 +5,10 @@ import { Button } from "@/app/components/ui/button";
 import { ResetPasswordForm } from "@/app/components/auth/ResetPasswordForm";
 import { getAuth } from "@/app/lib/guards";
 
-export const metadata: Metadata = { title: "Choose a new password", robots: { index: false } };
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("Meta");
+  return { title: t("resetTitle"), robots: { index: false } };
+}
 
 export default async function ResetPasswordPage() {
   const t = await getTranslations("Reset");

@@ -1,13 +1,15 @@
 import { isStaffRole } from "@ucommerz/shared";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { BadgeCheck, Eye, MapPin, MessageSquare, Clock, Wifi } from "lucide-react";
 import { PRICE_UNIT_LABELS, type PriceUnit } from "@ucommerz/shared";
 import { getAuth } from "@/app/lib/guards";
 import { getCategories, getRelatedServices, getServiceById, getServiceReviews, categoryName } from "@/app/lib/queries";
 import { getFavoriteIds, safely } from "@/app/lib/queries-extra";
-import { absoluteUrl, formatCurrency, initials, isUuid, truncate } from "@/app/lib/utils";
+import { absoluteUrl, initials, isUuid, truncate } from "@/app/lib/utils";
+import { getFormat } from "@/app/lib/format-server";
 import { avatarOf, serviceImage } from "@/app/lib/media";
 import { Avatar, AvatarFallback, AvatarImage } from "@/app/components/ui/avatar";
 import { Badge } from "@/app/components/ui/badge";
@@ -26,11 +28,12 @@ type Props = { params: Promise<{ id: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
-  if (!isUuid(id)) return { title: "Service not found" };
+  const t = await getTranslations("PubService");
+  if (!isUuid(id)) return { title: t("notFound") };
   const service = await safely(() => getServiceById(id), null);
-  if (!service) return { title: "Service not found" };
+  if (!service) return { title: t("notFound") };
   const title = service.title;
-  const description = truncate(service.description, 155) || `Book ${service.title} on UCOMMERZ.`;
+  const description = truncate(service.description, 155) || t("metaDescription", { title: service.title });
   const image = serviceImage(service);
   return {
     title,
@@ -42,8 +45,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ServiceDetailPage({ params }: Props) {
+  const f = await getFormat();
   const { id } = await params;
   if (!isUuid(id)) notFound();
+  const t = await getTranslations("PubService");
 
   const service = await getServiceById(id);
   if (!service || (service.status !== "ACTIVE" && !(await canSeeInactive(service.provider_id)))) notFound();
@@ -84,8 +89,8 @@ export default async function ServiceDetailPage({ params }: Props) {
   return (
     <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
-      <nav className="mb-4 text-sm text-muted-foreground" aria-label="Breadcrumb">
-        <Link href="/browse" className="hover:text-foreground">Browse</Link>
+      <nav className="mb-4 text-sm text-muted-foreground" aria-label={t("breadcrumb")}>
+        <Link href="/browse" className="hover:text-foreground">{t("browse")}</Link>
         {service.category && (
           <>
             {" / "}
@@ -103,7 +108,7 @@ export default async function ServiceDetailPage({ params }: Props) {
             {images.length > 1 && (
               <div className="grid grid-cols-4 gap-3">
                 {images.slice(1, 5).map((src, i) => (
-                  <img key={src + i} src={src} alt={`${service.title} photo ${i + 2}`} loading="lazy" className="aspect-[4/3] rounded-lg border object-cover" />
+                  <img key={src + i} src={src} alt={t("photoAlt", { title: service.title, n: i + 2 })} loading="lazy" className="aspect-[4/3] rounded-lg border object-cover" />
                 ))}
               </div>
             )}
@@ -114,8 +119,8 @@ export default async function ServiceDetailPage({ params }: Props) {
               <div className="min-w-0">
                 <div className="mb-2 flex flex-wrap items-center gap-2">
                   <Badge variant="secondary">{categoryName(categories, service.category)}</Badge>
-                  {service.is_remote && <Badge variant="info"><Wifi className="size-3" /> Remote</Badge>}
-                  {service.featured && <Badge variant="warning">Featured</Badge>}
+                  {service.is_remote && <Badge variant="info"><Wifi className="size-3" /> {t("remote")}</Badge>}
+                  {service.featured && <Badge variant="warning">{t("featured")}</Badge>}
                   {service.status !== "ACTIVE" && <Badge variant="muted">{service.status}</Badge>}
                 </div>
                 <h1 className="font-display text-2xl font-bold tracking-tight sm:text-3xl">{service.title}</h1>
@@ -129,21 +134,21 @@ export default async function ServiceDetailPage({ params }: Props) {
             <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-muted-foreground">
               <ReviewStars rating={service.rating} count={service.total_reviews} />
               {service.location && <span className="flex items-center gap-1"><MapPin className="size-4" />{service.location}</span>}
-              <span className="flex items-center gap-1"><Eye className="size-4" />{service.views} views</span>
+              <span className="flex items-center gap-1"><Eye className="size-4" />{t("views", { count: service.views })}</span>
               {(service.min_duration || service.max_duration) && (
-                <span className="flex items-center gap-1"><Clock className="size-4" />{service.min_duration ?? "—"}–{service.max_duration ?? "—"} h</span>
+                <span className="flex items-center gap-1"><Clock className="size-4" />{service.min_duration ?? "—"}–{service.max_duration ?? "—"} {t("hoursShort")}</span>
               )}
             </div>
           </div>
 
           <section aria-labelledby="about-heading">
-            <h2 id="about-heading" className="mb-3 font-display text-lg font-semibold">About this service</h2>
+            <h2 id="about-heading" className="mb-3 font-display text-lg font-semibold">{t("about")}</h2>
             <p className="whitespace-pre-line text-sm leading-relaxed text-foreground/90">{service.description}</p>
           </section>
 
           {lat != null && lng != null && (
             <section aria-labelledby="area-heading">
-              <h2 id="area-heading" className="mb-3 font-display text-lg font-semibold">Service area</h2>
+              <h2 id="area-heading" className="mb-3 font-display text-lg font-semibold">{t("area")}</h2>
               <div className="overflow-hidden rounded-xl border">
                 <ServiceMap
                   markers={[{ id: service.id, lat, lng, title: service.title, subtitle: service.service_address ?? service.location ?? undefined }]}
@@ -152,12 +157,12 @@ export default async function ServiceDetailPage({ params }: Props) {
                   zoom={service.service_radius ? 10 : 13}
                 />
               </div>
-              {service.service_radius ? <p className="mt-2 text-xs text-muted-foreground">Serves customers within {Number(service.service_radius)} km.</p> : null}
+              {service.service_radius ? <p className="mt-2 text-xs text-muted-foreground">{t("servesWithin", { km: Number(service.service_radius) })}</p> : null}
             </section>
           )}
 
           <section aria-labelledby="reviews-heading">
-            <h2 id="reviews-heading" className="mb-3 font-display text-lg font-semibold">Reviews ({service.total_reviews})</h2>
+            <h2 id="reviews-heading" className="mb-3 font-display text-lg font-semibold">{t("reviewsHeading", { count: service.total_reviews })}</h2>
             <ReviewsList reviews={reviews} viewerId={profile?.id} />
           </section>
         </div>
@@ -166,7 +171,7 @@ export default async function ServiceDetailPage({ params }: Props) {
           <Card className="glass-card">
             <CardHeader>
               <div className="flex items-baseline gap-2">
-                <CardTitle className="font-display text-3xl text-primary">{formatCurrency(service.price)}</CardTitle>
+                <CardTitle className="font-display text-3xl text-primary">{f.currency(service.price)}</CardTitle>
                 <span className="text-sm text-muted-foreground">{unit}</span>
               </div>
             </CardHeader>
@@ -177,7 +182,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                   service={{ id: service.id, title: service.title, price: Number(service.price), price_unit: service.price_unit, min_duration: service.min_duration ? Number(service.min_duration) : null, max_duration: service.max_duration ? Number(service.max_duration) : null }}
                 />
               ) : (
-                <p className="text-sm text-muted-foreground">This service is not currently accepting bookings.</p>
+                <p className="text-sm text-muted-foreground">{t("notAccepting")}</p>
               )}
             </CardContent>
           </Card>
@@ -193,7 +198,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                   <div className="min-w-0">
                     <p className="flex items-center gap-1 font-semibold">
                       <span className="truncate">{provider.full_name}</span>
-                      {provider.verified && <BadgeCheck className="size-4 shrink-0 text-primary" aria-label="Verified" />}
+                      {provider.verified && <BadgeCheck className="size-4 shrink-0 text-primary" aria-label={t("verified")} />}
                     </p>
                     <ReviewStars rating={provider.rating} count={provider.total_reviews} size={12} />
                   </div>
@@ -201,10 +206,10 @@ export default async function ServiceDetailPage({ params }: Props) {
                 {provider.bio && <p className="line-clamp-3 text-sm text-muted-foreground">{provider.bio}</p>}
                 <div className="flex gap-2">
                   {provider.slug && (
-                    <Button asChild variant="outline" size="sm" className="flex-1"><Link href={`/provider/${provider.slug}`}>View profile</Link></Button>
+                    <Button asChild variant="outline" size="sm" className="flex-1"><Link href={`/provider/${provider.slug}`}>{t("viewProfile")}</Link></Button>
                   )}
                   {profile && !isOwner && (
-                    <Button asChild size="sm" className="flex-1"><Link href={`/dashboard/messages?to=${provider.id}&service=${service.id}`}><MessageSquare /> Message</Link></Button>
+                    <Button asChild size="sm" className="flex-1"><Link href={`/dashboard/messages?to=${provider.id}&service=${service.id}`}><MessageSquare /> {t("message")}</Link></Button>
                   )}
                 </div>
               </CardContent>
@@ -215,7 +220,7 @@ export default async function ServiceDetailPage({ params }: Props) {
 
       {related.length > 0 && (
         <section className="mt-12" aria-labelledby="related-heading">
-          <h2 id="related-heading" className="mb-4 font-display text-xl font-semibold">Similar services</h2>
+          <h2 id="related-heading" className="mb-4 font-display text-xl font-semibold">{t("similar")}</h2>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {related.map((s) => (
               <ServiceCard key={s.id} service={s} categoryLabel={categoryName(categories, s.category)} showFavorite={Boolean(profile)} favorite={favorites.has(s.id)} />

@@ -1,0 +1,203 @@
+{
+  "PubService": {
+    "notFound": "Servicio no encontrado",
+    "metaDescription": "Reserva {title} en UCOMMERZ.",
+    "breadcrumb": "Ruta de navegación",
+    "browse": "Explorar",
+    "photoAlt": "{title}, foto {n}",
+    "remote": "Remoto",
+    "featured": "Destacado",
+    "views": "{count, plural, one {# visita} other {# visitas}}",
+    "hoursShort": "h",
+    "about": "Acerca de este servicio",
+    "area": "Zona de servicio",
+    "servesWithin": "Atiende a clientes en un radio de {km} km.",
+    "reviewsHeading": "Reseñas ({count})",
+    "notAccepting": "Este servicio no acepta reservas por el momento.",
+    "verified": "Verificado",
+    "viewProfile": "Ver perfil",
+    "message": "Mensaje",
+    "similar": "Servicios similares"
+  },
+  "PubProvider": {
+    "notFound": "Proveedor no encontrado",
+    "metaDescription": "Reserva servicios de {name} en UCOMMERZ.",
+    "providerFallback": "Proveedor",
+    "verifiedProvider": "Proveedor verificado",
+    "verified": "Verificado",
+    "joined": "Se unió el {date}",
+    "website": "Sitio web",
+    "message": "Mensaje",
+    "editProfile": "Editar perfil",
+    "shareTitle": "{name} en UCOMMERZ",
+    "servicesHeading": "Servicios ({count})",
+    "noServices": "No hay servicios activos por ahora.",
+    "packages": "Paquetes",
+    "save": "Ahorra {percent} %",
+    "serviceFallback": "Servicio",
+    "portfolio": "Portafolio",
+    "viewProject": "Ver proyecto",
+    "reviewsHeading": "Reseñas ({count})",
+    "skills": "Habilidades",
+    "yearsShort": "{n} a.",
+    "certifications": "Certificaciones",
+    "viewCertificate": "Ver certificado"
+  },
+  "PubProfile": {
+    "title": "Mi perfil",
+    "viewPublic": "Ver perfil público",
+    "photo": "Foto",
+    "details": "Datos",
+    "detailsDesc": "Mantén tu información actualizada.",
+    "accountType": "Tipo de cuenta",
+    "seekerPrompt": "¿Quieres ofrecer también tus propios servicios? Activa las herramientas de proveedor, es gratis.",
+    "providerPrompt": "¿Quieres reservar servicios de otros? Activa las funciones de cliente.",
+    "becomeProvider": "Hazte proveedor",
+    "enableCustomer": "Activar funciones de cliente"
+  },
+  "PubErrors": {
+    "notFoundTitle": "Página no encontrada",
+    "notFoundBody": "La página que buscas no existe o ha cambiado de lugar.",
+    "backHome": "Volver al inicio",
+    "browseServices": "Explorar servicios",
+    "loading": "Cargando",
+    "title": "Algo salió mal",
+    "body": "Ocurrió un error inesperado. Puedes intentarlo de nuevo o volver atrás.",
+    "reference": "Referencia: {digest}",
+    "tryAgain": "Intentar de nuevo",
+    "goHome": "Ir al inicio"
+  },
+  "PubBooking": {
+    "signInPrompt": "Inicia sesión para reservar este servicio.",
+    "signInToBook": "Inicia sesión para reservar",
+    "ownService": "Este es tu propio servicio. Gestiónalo desde tu panel.",
+    "providerOnly": "Tu cuenta está configurada como proveedor. Activa el rol de cliente en tu <link>perfil</link> para reservar servicios.",
+    "chooseDate": "Elige una fecha",
+    "chooseTime": "Elige una hora",
+    "chooseFuture": "Elige una hora futura",
+    "date": "Fecha",
+    "pickDate": "Selecciona una fecha",
+    "startTime": "Hora de inicio",
+    "duration": "Duración (horas)",
+    "notes": "Notas para el proveedor (opcional)",
+    "notesPlaceholder": "Comparte cualquier detalle que ayude…",
+    "estimatedTotal": "Total estimado",
+    "noCharge": "No se te cobrará en línea: el proveedor confirmará primero tu solicitud.",
+    "request": "Solicitar reserva"
+  },
+  "PubBookPackage": {
+    "requested": "¡Paquete solicitado!",
+    "book": "Reservar paquete",
+    "dialogTitle": "Reservar “{title}”",
+    "dialogDesc": "Elige cuándo quieres empezar. El proveedor confirmará tu solicitud.",
+    "when": "Fecha y hora preferidas",
+    "notes": "Notas (opcional)",
+    "request": "Solicitar paquete"
+  },
+  "PubReviews": {
+    "none": "Aún no hay reseñas.",
+    "customer": "Cliente",
+    "professionalism": "Profesionalidad",
+    "quality": "Calidad",
+    "punctuality": "Puntualidad",
+    "response": "Respuesta del proveedor"
+  },
+  "PubReviewForm": {
+    "criteria": {
+      "rating": "General",
+      "professionalism": "Profesionalidad",
+      "quality": "Calidad del trabajo",
+      "punctuality": "Puntualidad"
+    },
+    "selectRating": "Selecciona una valoración",
+    "yourReview": "Tu reseña",
+    "placeholder": "¿Cómo fue tu experiencia?",
+    "submit": "Enviar reseña"
+  },
+  "PubStars": {
+    "rated": "Valoración de {value} sobre 5",
+    "ratedWithCount": "Valoración de {value} sobre 5 según {count, plural, one {# reseña} other {# reseñas}}",
+    "rating": "Valoración",
+    "starsLabel": "{count, plural, one {# estrella} other {# estrellas}}"
+  },
+  "PubFavorite": {
+    "signIn": "Inicia sesión para guardar favoritos.",
+    "failed": "No se pudieron actualizar los favoritos. Inténtalo de nuevo.",
+    "remove": "Quitar de favoritos",
+    "save": "Guardar en favoritos",
+    "saved": "Guardado",
+    "saveShort": "Guardar"
+  },
+  "PubShare": {
+    "label": "Compartir",
+    "copied": "Enlace copiado al portapapeles",
+    "copyFailed": "No se pudo copiar el enlace. Cópialo desde la barra de direcciones."
+  },
+  "PubReport": {
+    "label": "Denunciar",
+    "title": {
+      "SERVICE": "Denunciar este servicio",
+      "REVIEW": "Denunciar esta reseña",
+      "USER": "Denunciar a este usuario",
+      "MESSAGE": "Denunciar este mensaje"
+    },
+    "description": "Cuéntanos qué ocurre. Nuestro equipo de moderación revisa las denuncias.",
+    "reason": "Motivo",
+    "selectReason": "Selecciona un motivo",
+    "other": "Otro",
+    "details": "Detalles (opcional)",
+    "detailsPlaceholder": "Añade cualquier dato que nos ayude a investigar…",
+    "cancel": "Cancelar",
+    "submit": "Enviar denuncia"
+  },
+  "PubMap": {
+    "viewDetails": "Ver detalles",
+    "loadFailed": "No se pudo cargar el mapa en este momento.",
+    "noKey": "Añade NEXT_PUBLIC_GOOGLE_MAPS_API_KEY para mostrar el mapa.",
+    "openInGoogle": "Abrir en Google Maps",
+    "label": "Mapa"
+  },
+  "PubLocation": {
+    "placeholder": "Ciudad, dirección o zona",
+    "enterAddress": "Primero introduce una dirección.",
+    "noKey": "La clave de Google Maps no está configurada.",
+    "notFound": "No se encontró esa dirección.",
+    "found": "Ubicación encontrada.",
+    "geocodeFailed": "Falló la geocodificación. Inténtalo de nuevo.",
+    "unsupported": "Tu navegador no admite la geolocalización.",
+    "usingCurrent": "Usando tu ubicación actual.",
+    "denied": "Se denegó el permiso de ubicación.",
+    "couldNotLocate": "No se pudo obtener tu ubicación.",
+    "findOnMap": "Buscar en el mapa",
+    "useMyLocation": "Usar mi ubicación"
+  },
+  "PubAvatar": {
+    "uploadFailed": "Error al subir el archivo",
+    "photoAlt": "Foto de perfil",
+    "uploadLabel": "Subir foto de perfil",
+    "change": "Cambiar foto",
+    "remove": "Quitar",
+    "hint": "JPG, PNG, WebP o GIF · máx. 3 MB"
+  },
+  "PubProfileForm": {
+    "fullName": "Nombre completo",
+    "phone": "Teléfono",
+    "about": "Acerca de ti",
+    "aboutHint": "Se muestra en tu perfil público.",
+    "location": "Ubicación",
+    "locationHint": "Se usa para buscar servicios cercanos y en los mapas.",
+    "website": "Sitio web",
+    "save": "Guardar cambios"
+  },
+  "PubNotify": {
+    "title": "Notificaciones",
+    "labelUnread": "Notificaciones ({count} sin leer)",
+    "markAllRead": "Marcar todo como leído",
+    "caughtUp": "Estás al día.",
+    "history": "Ver historial de actividad"
+  },
+  "PubEnableRole": {
+    "providerEnabled": "¡Herramientas de proveedor activadas!",
+    "customerEnabled": "¡Funciones de cliente activadas!"
+  }
+}

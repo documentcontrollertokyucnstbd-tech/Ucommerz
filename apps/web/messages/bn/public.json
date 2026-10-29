@@ -1,0 +1,203 @@
+{
+  "PubService": {
+    "notFound": "সেবাটি পাওয়া যায়নি",
+    "metaDescription": "UCOMMERZ-এ {title} বুক করুন।",
+    "breadcrumb": "ব্রেডক্রাম্ব",
+    "browse": "সেবা খুঁজুন",
+    "photoAlt": "{title} ছবি {n}",
+    "remote": "রিমোট",
+    "featured": "ফিচার্ড",
+    "views": "{count, plural, one {# বার দেখা হয়েছে} other {# বার দেখা হয়েছে}}",
+    "hoursShort": "ঘণ্টা",
+    "about": "এই সেবা সম্পর্কে",
+    "area": "সেবা এলাকা",
+    "servesWithin": "{km} কিমির মধ্যে গ্রাহকদের সেবা দেয়।",
+    "reviewsHeading": "রিভিউ ({count})",
+    "notAccepting": "এই সেবায় এখন বুকিং নেওয়া হচ্ছে না।",
+    "verified": "যাচাইকৃত",
+    "viewProfile": "প্রোফাইল দেখুন",
+    "message": "বার্তা",
+    "similar": "অনুরূপ সেবা"
+  },
+  "PubProvider": {
+    "notFound": "প্রোভাইডার পাওয়া যায়নি",
+    "metaDescription": "UCOMMERZ-এ {name}-এর সেবা বুক করুন।",
+    "providerFallback": "প্রোভাইডার",
+    "verifiedProvider": "যাচাইকৃত প্রোভাইডার",
+    "verified": "যাচাইকৃত",
+    "joined": "যোগ দিয়েছেন {date}",
+    "website": "ওয়েবসাইট",
+    "message": "বার্তা",
+    "editProfile": "প্রোফাইল সম্পাদনা",
+    "shareTitle": "UCOMMERZ-এ {name}",
+    "servicesHeading": "সেবা ({count})",
+    "noServices": "এখন কোনো সক্রিয় সেবা নেই।",
+    "packages": "প্যাকেজ",
+    "save": "{percent}% সাশ্রয়",
+    "serviceFallback": "সেবা",
+    "portfolio": "পোর্টফোলিও",
+    "viewProject": "প্রকল্প দেখুন",
+    "reviewsHeading": "রিভিউ ({count})",
+    "skills": "দক্ষতা",
+    "yearsShort": "{n} বছর",
+    "certifications": "সনদ",
+    "viewCertificate": "সনদ দেখুন"
+  },
+  "PubProfile": {
+    "title": "আমার প্রোফাইল",
+    "viewPublic": "পাবলিক প্রোফাইল দেখুন",
+    "photo": "ছবি",
+    "details": "বিবরণ",
+    "detailsDesc": "আপনার তথ্য হালনাগাদ রাখুন।",
+    "accountType": "অ্যাকাউন্টের ধরন",
+    "seekerPrompt": "নিজের সেবাও দিতে চান? প্রোভাইডার টুল চালু করুন — এটি বিনামূল্যে।",
+    "providerPrompt": "অন্যদের সেবা বুক করতে চান? গ্রাহক সুবিধা চালু করুন।",
+    "becomeProvider": "প্রোভাইডার হোন",
+    "enableCustomer": "গ্রাহক সুবিধা চালু করুন"
+  },
+  "PubErrors": {
+    "notFoundTitle": "পৃষ্ঠাটি পাওয়া যায়নি",
+    "notFoundBody": "আপনি যে পৃষ্ঠাটি খুঁজছেন তা নেই অথবা সরানো হয়েছে।",
+    "backHome": "হোমে ফিরুন",
+    "browseServices": "সেবা খুঁজুন",
+    "loading": "লোড হচ্ছে",
+    "title": "কিছু একটা ভুল হয়েছে",
+    "body": "একটি অপ্রত্যাশিত ত্রুটি ঘটেছে। আপনি আবার চেষ্টা করতে পারেন অথবা ফিরে যেতে পারেন।",
+    "reference": "রেফারেন্স: {digest}",
+    "tryAgain": "আবার চেষ্টা করুন",
+    "goHome": "হোমে যান"
+  },
+  "PubBooking": {
+    "signInPrompt": "এই সেবা বুক করতে সাইন ইন করুন।",
+    "signInToBook": "বুক করতে সাইন ইন করুন",
+    "ownService": "এটি আপনার নিজের সেবা। ড্যাশবোর্ড থেকে এটি পরিচালনা করুন।",
+    "providerOnly": "আপনার অ্যাকাউন্ট প্রোভাইডার হিসেবে সেট করা আছে। সেবা বুক করতে আপনার <link>প্রোফাইলে</link> গ্রাহক ভূমিকা চালু করুন।",
+    "chooseDate": "একটি তারিখ বেছে নিন",
+    "chooseTime": "একটি সময় বেছে নিন",
+    "chooseFuture": "ভবিষ্যতের একটি সময় বেছে নিন",
+    "date": "তারিখ",
+    "pickDate": "তারিখ নির্বাচন করুন",
+    "startTime": "শুরুর সময়",
+    "duration": "সময়কাল (ঘণ্টা)",
+    "notes": "প্রোভাইডারের জন্য নোট (ঐচ্ছিক)",
+    "notesPlaceholder": "সহায়ক কোনো তথ্য জানান…",
+    "estimatedTotal": "আনুমানিক মোট",
+    "noCharge": "অনলাইনে কোনো অর্থ কাটা হবে না — প্রোভাইডার প্রথমে আপনার অনুরোধ নিশ্চিত করবেন।",
+    "request": "বুকিংয়ের অনুরোধ করুন"
+  },
+  "PubBookPackage": {
+    "requested": "প্যাকেজের অনুরোধ করা হয়েছে!",
+    "book": "প্যাকেজ বুক করুন",
+    "dialogTitle": "“{title}” বুক করুন",
+    "dialogDesc": "কখন শুরু করতে চান তা বেছে নিন। প্রোভাইডার আপনার অনুরোধ নিশ্চিত করবেন।",
+    "when": "পছন্দের তারিখ ও সময়",
+    "notes": "নোট (ঐচ্ছিক)",
+    "request": "প্যাকেজের অনুরোধ করুন"
+  },
+  "PubReviews": {
+    "none": "এখনও কোনো রিভিউ নেই।",
+    "customer": "গ্রাহক",
+    "professionalism": "পেশাদারিত্ব",
+    "quality": "মান",
+    "punctuality": "সময়ানুবর্তিতা",
+    "response": "প্রোভাইডারের উত্তর"
+  },
+  "PubReviewForm": {
+    "criteria": {
+      "rating": "সামগ্রিক",
+      "professionalism": "পেশাদারিত্ব",
+      "quality": "কাজের মান",
+      "punctuality": "সময়ানুবর্তিতা"
+    },
+    "selectRating": "একটি রেটিং নির্বাচন করুন",
+    "yourReview": "আপনার রিভিউ",
+    "placeholder": "আপনার অভিজ্ঞতা কেমন ছিল?",
+    "submit": "রিভিউ জমা দিন"
+  },
+  "PubStars": {
+    "rated": "৫-এর মধ্যে {value} রেটিং",
+    "ratedWithCount": "{count, plural, one {# রিভিউ} other {# রিভিউ}} থেকে ৫-এর মধ্যে {value} রেটিং",
+    "rating": "রেটিং",
+    "starsLabel": "{count, plural, one {# তারকা} other {# তারকা}}"
+  },
+  "PubFavorite": {
+    "signIn": "পছন্দের তালিকায় রাখতে সাইন ইন করুন।",
+    "failed": "পছন্দের তালিকা হালনাগাদ করা যায়নি। আবার চেষ্টা করুন।",
+    "remove": "পছন্দের তালিকা থেকে সরান",
+    "save": "পছন্দের তালিকায় রাখুন",
+    "saved": "সংরক্ষিত",
+    "saveShort": "সংরক্ষণ"
+  },
+  "PubShare": {
+    "label": "শেয়ার",
+    "copied": "লিংক ক্লিপবোর্ডে কপি হয়েছে",
+    "copyFailed": "লিংক কপি করা যায়নি। অ্যাড্রেস বার থেকে কপি করুন।"
+  },
+  "PubReport": {
+    "label": "রিপোর্ট",
+    "title": {
+      "SERVICE": "এই সেবা রিপোর্ট করুন",
+      "REVIEW": "এই রিভিউ রিপোর্ট করুন",
+      "USER": "এই ব্যবহারকারীকে রিপোর্ট করুন",
+      "MESSAGE": "এই বার্তা রিপোর্ট করুন"
+    },
+    "description": "কী সমস্যা তা আমাদের জানান। আমাদের মডারেশন টিম রিপোর্টগুলো পর্যালোচনা করে।",
+    "reason": "কারণ",
+    "selectReason": "একটি কারণ নির্বাচন করুন",
+    "other": "অন্যান্য",
+    "details": "বিবরণ (ঐচ্ছিক)",
+    "detailsPlaceholder": "তদন্তে সহায়ক কিছু থাকলে যোগ করুন…",
+    "cancel": "বাতিল",
+    "submit": "রিপোর্ট জমা দিন"
+  },
+  "PubMap": {
+    "viewDetails": "বিস্তারিত দেখুন",
+    "loadFailed": "এখন মানচিত্র লোড করা যায়নি।",
+    "noKey": "মানচিত্র দেখাতে NEXT_PUBLIC_GOOGLE_MAPS_API_KEY যোগ করুন।",
+    "openInGoogle": "গুগল ম্যাপসে খুলুন",
+    "label": "মানচিত্র"
+  },
+  "PubLocation": {
+    "placeholder": "শহর, ঠিকানা বা এলাকা",
+    "enterAddress": "আগে একটি ঠিকানা দিন।",
+    "noKey": "গুগল ম্যাপস কি কনফিগার করা নেই।",
+    "notFound": "ঠিকানাটি খুঁজে পাওয়া যায়নি।",
+    "found": "অবস্থান পাওয়া গেছে।",
+    "geocodeFailed": "জিওকোডিং ব্যর্থ হয়েছে। আবার চেষ্টা করুন।",
+    "unsupported": "আপনার ব্রাউজারে জিওলোকেশন সমর্থিত নয়।",
+    "usingCurrent": "আপনার বর্তমান অবস্থান ব্যবহার করা হচ্ছে।",
+    "denied": "অবস্থানের অনুমতি দেওয়া হয়নি।",
+    "couldNotLocate": "আপনার অবস্থান পাওয়া যায়নি।",
+    "findOnMap": "মানচিত্রে খুঁজুন",
+    "useMyLocation": "আমার অবস্থান ব্যবহার করুন"
+  },
+  "PubAvatar": {
+    "uploadFailed": "আপলোড ব্যর্থ হয়েছে",
+    "photoAlt": "প্রোফাইল ছবি",
+    "uploadLabel": "প্রোফাইল ছবি আপলোড করুন",
+    "change": "ছবি পরিবর্তন",
+    "remove": "সরান",
+    "hint": "JPG, PNG, WebP বা GIF · সর্বোচ্চ ৩ MB"
+  },
+  "PubProfileForm": {
+    "fullName": "পূর্ণ নাম",
+    "phone": "ফোন",
+    "about": "আপনার সম্পর্কে",
+    "aboutHint": "আপনার পাবলিক প্রোফাইলে দেখানো হবে।",
+    "location": "অবস্থান",
+    "locationHint": "কাছের সেবা খোঁজা ও মানচিত্রে ব্যবহৃত হয়।",
+    "website": "ওয়েবসাইট",
+    "save": "পরিবর্তন সংরক্ষণ করুন"
+  },
+  "PubNotify": {
+    "title": "নোটিফিকেশন",
+    "labelUnread": "নোটিফিকেশন ({count}টি অপঠিত)",
+    "markAllRead": "সব পঠিত চিহ্নিত করুন",
+    "caughtUp": "সব দেখা হয়ে গেছে।",
+    "history": "কার্যকলাপের ইতিহাস দেখুন"
+  },
+  "PubEnableRole": {
+    "providerEnabled": "প্রোভাইডার টুল চালু হয়েছে!",
+    "customerEnabled": "গ্রাহক সুবিধা চালু হয়েছে!"
+  }
+}

@@ -6,7 +6,7 @@ import { Badge } from "@/app/components/ui/badge";
 import { ReviewStars } from "@/app/components/ReviewStars";
 import { FavoriteButton } from "@/app/components/FavoriteButton";
 import { serviceImage } from "@/app/lib/media";
-import { formatCurrency } from "@/app/lib/utils";
+import { useFormat } from "@/app/lib/use-format";
 import { formatDistance } from "@/app/lib/proximity-search";
 
 export function ServiceCard({
@@ -21,6 +21,7 @@ export function ServiceCard({
   showFavorite?: boolean;
 }) {
   const t = useTranslations("Card");
+  const f = useFormat();
   const unitKey = service.price_unit as PriceUnit;
   const unit = t.has(`units.${unitKey}`) ? t(`units.${unitKey}`) : service.price_unit;
   return (
@@ -54,7 +55,7 @@ export function ServiceCard({
           <div className="mt-4 flex items-center justify-between border-t border-border pt-3 text-xs">
             <span className="text-muted-foreground">{t("startingAt")}</span>
             <span className="font-bold text-primary">
-              {formatCurrency(service.price)}
+              {f.currency(service.price)}
               <span className="font-normal text-muted-foreground"> {unit}</span>
             </span>
           </div>

@@ -1,0 +1,203 @@
+{
+  "PubService": {
+    "notFound": "Service not found",
+    "metaDescription": "Book {title} on UCOMMERZ.",
+    "breadcrumb": "Breadcrumb",
+    "browse": "Browse",
+    "photoAlt": "{title} photo {n}",
+    "remote": "Remote",
+    "featured": "Featured",
+    "views": "{count, plural, one {# view} other {# views}}",
+    "hoursShort": "h",
+    "about": "About this service",
+    "area": "Service area",
+    "servesWithin": "Serves customers within {km} km.",
+    "reviewsHeading": "Reviews ({count})",
+    "notAccepting": "This service is not currently accepting bookings.",
+    "verified": "Verified",
+    "viewProfile": "View profile",
+    "message": "Message",
+    "similar": "Similar services"
+  },
+  "PubProvider": {
+    "notFound": "Provider not found",
+    "metaDescription": "Book services from {name} on UCOMMERZ.",
+    "providerFallback": "Provider",
+    "verifiedProvider": "Verified provider",
+    "verified": "Verified",
+    "joined": "Joined {date}",
+    "website": "Website",
+    "message": "Message",
+    "editProfile": "Edit profile",
+    "shareTitle": "{name} on UCOMMERZ",
+    "servicesHeading": "Services ({count})",
+    "noServices": "No active services right now.",
+    "packages": "Packages",
+    "save": "Save {percent}%",
+    "serviceFallback": "Service",
+    "portfolio": "Portfolio",
+    "viewProject": "View project",
+    "reviewsHeading": "Reviews ({count})",
+    "skills": "Skills",
+    "yearsShort": "{n}y",
+    "certifications": "Certifications",
+    "viewCertificate": "View certificate"
+  },
+  "PubProfile": {
+    "title": "My profile",
+    "viewPublic": "View public profile",
+    "photo": "Photo",
+    "details": "Details",
+    "detailsDesc": "Keep your information up to date.",
+    "accountType": "Account type",
+    "seekerPrompt": "Want to offer your own services too? Enable provider tools — it's free.",
+    "providerPrompt": "Want to book services from others? Enable customer features.",
+    "becomeProvider": "Become a provider",
+    "enableCustomer": "Enable customer features"
+  },
+  "PubErrors": {
+    "notFoundTitle": "Page not found",
+    "notFoundBody": "The page you're looking for doesn't exist or has moved.",
+    "backHome": "Back home",
+    "browseServices": "Browse services",
+    "loading": "Loading",
+    "title": "Something went wrong",
+    "body": "An unexpected error occurred. You can try again, or head back.",
+    "reference": "Reference: {digest}",
+    "tryAgain": "Try again",
+    "goHome": "Go home"
+  },
+  "PubBooking": {
+    "signInPrompt": "Sign in to book this service.",
+    "signInToBook": "Sign in to book",
+    "ownService": "This is your own service. Manage it from your dashboard.",
+    "providerOnly": "Your account is set up as a provider. Enable the customer role in your <link>profile</link> to book services.",
+    "chooseDate": "Choose a date",
+    "chooseTime": "Choose a time",
+    "chooseFuture": "Choose a time in the future",
+    "date": "Date",
+    "pickDate": "Pick a date",
+    "startTime": "Start time",
+    "duration": "Duration (hours)",
+    "notes": "Notes for the provider (optional)",
+    "notesPlaceholder": "Share any details that will help…",
+    "estimatedTotal": "Estimated total",
+    "noCharge": "You won't be charged online — the provider will confirm your request first.",
+    "request": "Request booking"
+  },
+  "PubBookPackage": {
+    "requested": "Package requested!",
+    "book": "Book package",
+    "dialogTitle": "Book “{title}”",
+    "dialogDesc": "Choose when you'd like to start. The provider will confirm your request.",
+    "when": "Preferred date & time",
+    "notes": "Notes (optional)",
+    "request": "Request package"
+  },
+  "PubReviews": {
+    "none": "No reviews yet.",
+    "customer": "Customer",
+    "professionalism": "Professionalism",
+    "quality": "Quality",
+    "punctuality": "Punctuality",
+    "response": "Response from the provider"
+  },
+  "PubReviewForm": {
+    "criteria": {
+      "rating": "Overall",
+      "professionalism": "Professionalism",
+      "quality": "Quality of work",
+      "punctuality": "Punctuality"
+    },
+    "selectRating": "Select a rating",
+    "yourReview": "Your review",
+    "placeholder": "How was your experience?",
+    "submit": "Submit review"
+  },
+  "PubStars": {
+    "rated": "Rated {value} out of 5",
+    "ratedWithCount": "Rated {value} out of 5 from {count, plural, one {# review} other {# reviews}}",
+    "rating": "Rating",
+    "starsLabel": "{count, plural, one {# star} other {# stars}}"
+  },
+  "PubFavorite": {
+    "signIn": "Please sign in to save favorites.",
+    "failed": "Couldn't update favorites. Please try again.",
+    "remove": "Remove from favorites",
+    "save": "Save to favorites",
+    "saved": "Saved",
+    "saveShort": "Save"
+  },
+  "PubShare": {
+    "label": "Share",
+    "copied": "Link copied to clipboard",
+    "copyFailed": "Couldn't copy the link. Copy it from the address bar instead."
+  },
+  "PubReport": {
+    "label": "Report",
+    "title": {
+      "SERVICE": "Report this service",
+      "REVIEW": "Report this review",
+      "USER": "Report this user",
+      "MESSAGE": "Report this message"
+    },
+    "description": "Tell us what's wrong. Reports are reviewed by our moderation team.",
+    "reason": "Reason",
+    "selectReason": "Select a reason",
+    "other": "Other",
+    "details": "Details (optional)",
+    "detailsPlaceholder": "Add anything that helps us investigate…",
+    "cancel": "Cancel",
+    "submit": "Submit report"
+  },
+  "PubMap": {
+    "viewDetails": "View details",
+    "loadFailed": "The map couldn't be loaded right now.",
+    "noKey": "Add NEXT_PUBLIC_GOOGLE_MAPS_API_KEY to show the map.",
+    "openInGoogle": "Open in Google Maps",
+    "label": "Map"
+  },
+  "PubLocation": {
+    "placeholder": "City, address or area",
+    "enterAddress": "Enter an address first.",
+    "noKey": "Google Maps key is not configured.",
+    "notFound": "Couldn't find that address.",
+    "found": "Location found.",
+    "geocodeFailed": "Geocoding failed. Try again.",
+    "unsupported": "Geolocation is not supported by your browser.",
+    "usingCurrent": "Using your current location.",
+    "denied": "Location permission was denied.",
+    "couldNotLocate": "Could not get your location.",
+    "findOnMap": "Find on map",
+    "useMyLocation": "Use my location"
+  },
+  "PubAvatar": {
+    "uploadFailed": "Upload failed",
+    "photoAlt": "Profile photo",
+    "uploadLabel": "Upload profile photo",
+    "change": "Change photo",
+    "remove": "Remove",
+    "hint": "JPG, PNG, WebP or GIF · max 3 MB"
+  },
+  "PubProfileForm": {
+    "fullName": "Full name",
+    "phone": "Phone",
+    "about": "About you",
+    "aboutHint": "Shown on your public profile.",
+    "location": "Location",
+    "locationHint": "Used for nearby-service search and maps.",
+    "website": "Website",
+    "save": "Save changes"
+  },
+  "PubNotify": {
+    "title": "Notifications",
+    "labelUnread": "Notifications ({count} unread)",
+    "markAllRead": "Mark all read",
+    "caughtUp": "You're all caught up.",
+    "history": "View activity history"
+  },
+  "PubEnableRole": {
+    "providerEnabled": "Provider tools enabled!",
+    "customerEnabled": "Customer features enabled!"
+  }
+}

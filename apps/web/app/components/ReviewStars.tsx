@@ -1,6 +1,7 @@
 "use client";
 
 import { Star } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { cn } from "@/app/lib/utils";
 
@@ -18,6 +19,7 @@ export function ReviewStars({
   showValue?: boolean;
   className?: string;
 }) {
+  const t = useTranslations("PubStars");
   const value = Number(rating ?? 0);
   return (
     <div className={cn("flex items-center gap-1", className)}>
@@ -33,7 +35,7 @@ export function ReviewStars({
       </span>
       {showValue && <span className="text-sm font-semibold text-foreground">{value.toFixed(1)}</span>}
       {count != null && <span className="text-sm text-muted-foreground">({count})</span>}
-      <span className="sr-only">{`Rated ${value.toFixed(1)} out of 5${count != null ? ` from ${count} reviews` : ""}`}</span>
+      <span className="sr-only">{count != null ? t("ratedWithCount", { value: value.toFixed(1), count }) : t("rated", { value: value.toFixed(1) })}</span>
     </div>
   );
 }
@@ -50,17 +52,18 @@ export function StarInput({
   size?: number;
   label?: string;
 }) {
+  const t = useTranslations("PubStars");
   const [hover, setHover] = useState(0);
   const active = hover || value;
   return (
-    <div role="radiogroup" aria-label={label ?? "Rating"} className="flex items-center gap-1">
+    <div role="radiogroup" aria-label={label ?? t("rating")} className="flex items-center gap-1">
       {[1, 2, 3, 4, 5].map((n) => (
         <button
           key={n}
           type="button"
           role="radio"
           aria-checked={value === n}
-          aria-label={`${n} star${n > 1 ? "s" : ""}`}
+          aria-label={t("starsLabel", { count: n })}
           onMouseEnter={() => setHover(n)}
           onMouseLeave={() => setHover(0)}
           onFocus={() => setHover(n)}

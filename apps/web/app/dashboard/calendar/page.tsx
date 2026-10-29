@@ -2,14 +2,19 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { BookingWithRelations } from "@ucommerz/shared";
+import { getTranslations } from "next-intl/server";
 import { requireUser } from "@/app/lib/guards";
 import { BOOKING_SELECT } from "@/app/lib/booking-select";
-import { cn, first, formatCurrency } from "@/app/lib/utils";
+import { cn, first } from "@/app/lib/utils";
+import { getFormat } from "@/app/lib/format-server";
 import { PageHeader } from "@/app/components/PageHeader";
 import { StatusBadge } from "@/app/components/StatusBadge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/app/components/ui/card";
 
-export const metadata: Metadata = { title: "Calendar" };
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("DashCalendar");
+  return { title: t("metaTitle") };
+}
 
 const pad = (n: number) => String(n).padStart(2, "0");
 const key = (d: Date) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
@@ -23,6 +28,8 @@ const DOT: Record<string, string> = {
 };
 
 export default async function CalendarPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
+  const f = await getFormat();
+  const t = await getTranslations("DashCalendar");
   const sp = await searchParams;
   const { profile, supabase } = await requireUser("/dashboard/calendar");
 
@@ -60,20 +67,20 @@ export default async function CalendarPage({ searchParams }: { searchParams: Pro
 
   return (
     <div className="space-y-5">
-      <PageHeader title="Calendar" description="Your bookings at a glance." />
+      <PageHeader title={t("title")} description={t("desc")} />
       <div className="grid gap-6 lg:grid-cols-3">
         <Card className="lg:col-span-2">
           <CardHeader className="flex-row items-center justify-between">
-            <CardTitle className="font-display text-lg">{start.toLocaleDateString(undefined, { month: "long", year: "numeric" })}</CardTitle>
+            <CardTitle className="font-display text-lg">{start.toLocaleDateString(f.tag, { month: "long", year: "numeric" })}</CardTitle>
             <div className="flex gap-1">
-              <Link href={`/dashboard/calendar?month=${mk(prev)}`} aria-label="Previous month" className="rounded-md border p-1.5 hover:bg-accent"><ChevronLeft className="size-4" /></Link>
-              <Link href="/dashboard/calendar" className="rounded-md border px-2.5 py-1 text-xs hover:bg-accent">Today</Link>
-              <Link href={`/dashboard/calendar?month=${mk(next)}`} aria-label="Next month" className="rounded-md border p-1.5 hover:bg-accent"><ChevronRight className="size-4" /></Link>
+              <Link href={`/dashboard/calendar?month=${mk(prev)}`} aria-label={t("prev")} className="rounded-md border p-1.5 hover:bg-accent"><ChevronLeft className="size-4 rtl-flip" /></Link>
+              <Link href="/dashboard/calendar" className="rounded-md border px-2.5 py-1 text-xs hover:bg-accent">{t("today")}</Link>
+              <Link href={`/dashboard/calendar?month=${mk(next)}`} aria-label={t("next")} className="rounded-md border p-1.5 hover:bg-accent"><ChevronRight className="size-4 rtl-flip" /></Link>
             </div>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-7 gap-1 text-center text-xs text-muted-foreground">
-              {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((d) => <div key={d} className="py-1">{d}</div>)}
+              {[0, 1, 2, 3, 4, 5, 6].map((d) => <div key={d} className="py-1">{t(`weekdays.${d}`)}</div>)}
             </div>
             <div className="grid grid-cols-7 gap-1">
               {cells.map((d, i) => {
@@ -85,7 +92,7 @@ export default async function CalendarPage({ searchParams }: { searchParams: Pro
                   <Link
                     key={i}
                     href={`/dashboard/calendar?month=${mk(start)}&day=${k}`}
-                    aria-label={`${d.toDateString()}, ${list.length} bookings`}
+                    aria-label={t("dayAria", { date: d.toDateString(), count: list.length })}
                     className={cn("flex aspect-square flex-col items-center justify-start rounded-lg border p-1 text-sm transition hover:bg-accent", k === selected && "border-primary bg-primary/5", isToday && "font-bold text-primary")}
                   >
                     <span>{d.getDate()}</span>
@@ -101,10 +108,10 @@ export default async function CalendarPage({ searchParams }: { searchParams: Pro
         </Card>
 
         <Card>
-          <CardHeader><CardTitle className="text-base">{new Date(`${selected}T00:00`).toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric" })}</CardTitle></CardHeader>
+          <CardHeader><CardTitle className="text-base">{new Date(`${selected}T00:00`).toLocaleDateString(f.tag, { weekday: "long", month: "long", day: "numeric" })}</CardTitle></CardHeader>
           <CardContent>
             {dayList.length === 0 ? (
-              <p className="text-sm text-muted-foreground">No bookings on this day.</p>
+              <p className="text-sm text-muted-foreground">{t("none")}</p>
             ) : (
               <ul className="space-y-3">
                 {dayList.map((b) => (
@@ -112,11 +119,11 @@ export default async function CalendarPage({ searchParams }: { searchParams: Pro
                     <Link href={`/dashboard/bookings/${b.id}`} className="block rounded-lg border p-3 transition hover:bg-accent">
                       <div className="flex items-start justify-between gap-2">
                         <div className="min-w-0">
-                          <p className="truncate text-sm font-medium">{b.service?.title ?? "Service"}</p>
+                          <p className="truncate text-sm font-medium">{b.service?.title ?? t("service")}</p>
                           <p className="text-xs text-muted-foreground">
-                            {new Date(b.booking_date).toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" })} · {Number(b.duration)}h · {formatCurrency(b.total_price)}
+                            {t("timeLine", { time: new Date(b.booking_date).toLocaleTimeString(f.tag, { hour: "numeric", minute: "2-digit" }), hours: Number(b.duration), amount: f.currency(b.total_price) })}
                           </p>
-                          <p className="text-xs text-muted-foreground">with {(b.seeker_id === profile.id ? b.provider : b.seeker)?.full_name ?? "—"}</p>
+                          <p className="text-xs text-muted-foreground">{t("with", { name: (b.seeker_id === profile.id ? b.provider : b.seeker)?.full_name ?? "—" })}</p>
                         </div>
                         <StatusBadge status={b.status} />
                       </div>

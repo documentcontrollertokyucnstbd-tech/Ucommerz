@@ -4,7 +4,10 @@ import { getTranslations } from "next-intl/server";
 import { RegisterForm } from "@/app/components/auth/RegisterForm";
 import { getAuth } from "@/app/lib/guards";
 
-export const metadata: Metadata = { title: "Create your account", description: "Join UCOMMERZ as a customer or a service provider." };
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("Meta");
+  return { title: t("registerTitle"), description: t("registerDesc") };
+}
 
 export default async function RegisterPage() {
   const t = await getTranslations("Register");

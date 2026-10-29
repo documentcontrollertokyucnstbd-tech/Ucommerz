@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
 import type { Conversation, Message, MessageTemplate } from "@ucommerz/shared";
+import { getTranslations } from "next-intl/server";
 import { canProvide, requireUser } from "@/app/lib/guards";
 import { first, isUuid } from "@/app/lib/utils";
 import { safely } from "@/app/lib/queries-extra";
 import { MessagesClient } from "@/app/components/MessagesClient";
 
-export const metadata: Metadata = { title: "Messages" };
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("DashMessages");
+  return { title: t("title") };
+}
 
 type Partner = { id: string; full_name: string | null; avatar_url: string | null };
 

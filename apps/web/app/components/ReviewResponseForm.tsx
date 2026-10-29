@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { Loader2, Reply } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
 import { Textarea } from "@/app/components/ui/textarea";
@@ -9,6 +10,7 @@ import { respondToReviewAction } from "@/app/actions/reviews";
 import { toastAction } from "@/app/lib/toast-action";
 
 export function ReviewResponseForm({ reviewId }: { reviewId: string }) {
+  const t = useTranslations("DashReviews");
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [text, setText] = useState("");
@@ -17,13 +19,13 @@ export function ReviewResponseForm({ reviewId }: { reviewId: string }) {
   if (!open) {
     return (
       <Button type="button" variant="ghost" size="sm" onClick={() => setOpen(true)}>
-        <Reply /> Respond
+        <Reply /> {t("respond")}
       </Button>
     );
   }
   return (
     <div className="mt-2 space-y-2">
-      <Textarea rows={3} value={text} onChange={(e) => setText(e.target.value)} placeholder="Write a public response…" />
+      <Textarea rows={3} value={text} onChange={(e) => setText(e.target.value)} placeholder={t("placeholder")} />
       <div className="flex gap-2">
         <Button
           type="button"
@@ -39,9 +41,9 @@ export function ReviewResponseForm({ reviewId }: { reviewId: string }) {
             }
           }}
         >
-          {busy && <Loader2 className="animate-spin" />} Publish response
+          {busy && <Loader2 className="animate-spin" />} {t("publish")}
         </Button>
-        <Button type="button" variant="ghost" size="sm" onClick={() => setOpen(false)}>Cancel</Button>
+        <Button type="button" variant="ghost" size="sm" onClick={() => setOpen(false)}>{t("cancel")}</Button>
       </div>
     </div>
   );
